@@ -1,7 +1,39 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="e => {miniToogle = !miniToogle}"></v-app-bar-nav-icon>
+    <v-navigation-drawer app
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.lgAndUp"
+    >
+      <v-list dense nav shaped>
+      <v-list-item-group color="primary">
+        <v-list-item
+          v-for="item in tabs"
+          :key="item.title"
+          link
+          @click="toSub(item.val)"
+        >
+          <v-list-item-icon>
+            <v-icon :color="item.color" v-text="item.icon"></v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+      <v-divider></v-divider>
+      <v-list-item link href="https://github.com/GuMengYu/v2exp" target="_blank">
+         <v-list-item-icon><v-icon>mdi-github-circle</v-icon></v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>
+            GitHub <v-icon :size="12">mdi-open-in-new</v-icon>
+          </v-list-item-title>
+          </v-list-item-content>
+      </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>V2EX</span>
         <span class="font-weight-light"> by Vuetify</span>
@@ -14,47 +46,13 @@
         <v-btn text>链接</v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <v-content>
-      <v-navigation-drawer permanent :mini-variant.sync="miniToogle">
-      <v-list
-        dense
-        nav
-        shaped
-      >
-      <v-list-item-group v-model="item" color="primary">
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon :color="item.color">{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-      </v-list>
-       <v-divider></v-divider>
-       <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="title">
-            Application
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            subtext
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-    </v-navigation-drawer>
-      <transition name="fade" mode="out-in">
-        <keep-alive v-if="$route.meta.keepAlive">
-          <router-view/>
-        </keep-alive>
-        <router-view v-if="!$route.meta.keepAlive" />
-      </transition>
+    <v-content class="content">
+    <section class="v2-content">
+      <keep-alive v-if="$route.meta.keepAlive">
+        <router-view/>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"/>
+    </section>
     </v-content>
   </v-app>
 </template>
@@ -63,7 +61,7 @@
 export default {
   name: 'App',
   data: () => ({
-    items: [
+    tabs: [
       { title: '技术', icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
       { title: '创意', icon: 'mdi-thought-bubble', val: 'creative', color: '#66bb6a'},
       { title: '好玩', icon: 'mdi-mushroom', val: 'play', color: '#ffa726' },
@@ -77,13 +75,16 @@ export default {
       { title: 'R2', icon: 'mdi-alphabetical-off', val: 'r2', color: '#000000' },
       ],
     right: null,
-    miniToogle: false,
-
+    drawer: true,
   }),
+  methods: {
+    toSub(id) {
+      this.$router.push({path: `/sub/${id}`});
+    },
+  }
 };
 </script>
 <style lang="less" scoped>
-
 .headline {
   display: flex;
 }
@@ -91,7 +92,6 @@ export default {
     padding: 0 10px;
     border-radius: 4px;
     max-width: 700px;
-
   }
 .font-weight-light {
   font-size: 0.4em;
