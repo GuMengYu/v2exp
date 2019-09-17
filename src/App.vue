@@ -56,8 +56,9 @@
                   <router-view v-if="!$route.meta.keepAlive"/>
               </v-col>
               <v-col lg="3" tag="aside">
-                  <tags-card title="热点主题" :subjects="hotNodes" :loading="loading"/>
-                  <tags-card title="新增节点" :subjects="newNodes" :loading="loading"/>
+                  <tags-card title="热议主题" :data="hotTopics" :loading="loading" type="topic"/>
+                  <tags-card title="热门节点" :data="hotNodes" :loading="loading"/>
+                  <tags-card title="新增节点" :data="newNodes" :loading="loading"/>
               </v-col>
           </v-row>
       </v-container>
@@ -90,6 +91,7 @@ export default {
     drawer: true,
     hotNodes: [],
     newNodes: [],
+    hotTopics: [],
     loading: false,
   }),
   methods: {
@@ -102,6 +104,7 @@ export default {
     service.getNodes().then(res => {
       this.hotNodes = res.hotNodes;
       this.newNodes = res.newNodes;
+      this.hotTopics = res.hotTopics;
       this.loading = false;
     });
   },

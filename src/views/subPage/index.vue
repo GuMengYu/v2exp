@@ -1,7 +1,7 @@
 <template>
 <v-container fluid>
     <v-row>
-        具体
+        具体内容{{$attrs.tab}}
     </v-row>
 </v-container>
 </template>

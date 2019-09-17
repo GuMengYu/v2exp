@@ -1,20 +1,36 @@
 <template>
     <v-card
-        class="mx-auto"
+        class="right-card"
         :flat="true"
         :loading="loading"
     >
         <v-card-title v-text="title"/>
         <v-divider></v-divider>
-        <div class="subject-list">
-        <v-btn 
-            x-small 
-            v-for="(subject, index) in subjects"
-            v-text="subject.label"
-            :key="index" 
-            :outlined="true" 
-            :rounded="true"
-        />
+        <div class="card-content node-list" v-if="type === 'node'">
+            <v-btn 
+                x-small 
+                v-for="(node, index) in data"
+                v-text="node.label"
+                :key="index" 
+                :outlined="true" 
+                :rounded="true"
+            />  
+        </div>
+        <div class="card-content topic-list" v-else-if="type === 'topic'">
+            <v-list dense>
+                <v-list-item
+                :key="index"
+                v-for="(topic, index) in data"
+                @click=""
+                >
+                <v-list-item-avatar size="30">
+                    <v-img :src="topic.avatarImg"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                    <v-list-item-title v-html="topic.title"></v-list-item-title>
+                </v-list-item-content>
+                </v-list-item>
+            </v-list>
         </div>
     </v-card>
 </template>
@@ -23,23 +39,33 @@ export default {
     name: 'tags-card',
     props: {
         title: '',
-        subjects: {
+        data: {
             type: Array,
             default: [],
         },
         loading: false,
+        type: {
+            type: String,
+            default: 'node',
+        }
     },
 }
 </script>
 <style lang="less" scoped>
+.right-card {
+    margin-bottom: 10px;
+}
 .v-card__title {
     padding: 10px 10px 5px 10px;
     font-size: 1em;
 }
-.subject-list {
+.node-list {
     padding: 10px;
     button {
     margin: 0 7px 7px 0;
     }
+}
+.topic-list {
+    padding: 0;
 }
 </style>
