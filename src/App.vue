@@ -47,19 +47,31 @@
       </v-toolbar-items>
     </v-app-bar>
     <v-content class="content">
-    <section class="v2-content">
-      <keep-alive v-if="$route.meta.keepAlive">
-        <router-view/>
-      </keep-alive>
-      <router-view v-if="!$route.meta.keepAlive"/>
-    </section>
+      <v-container fluid>
+          <v-row>
+              <v-col lg="9" tag="main">
+                  <keep-alive v-if="$route.meta.keepAlive">
+                    <router-view/>
+                  </keep-alive>
+                  <router-view v-if="!$route.meta.keepAlive"/>
+              </v-col>
+              <v-col lg="3" tag="aside">
+                  <tags-card title="热点主题" :subjects="hotNodes" :loading="loading"/>
+                  <tags-card title="新增节点" :subjects="newNodes" :loading="loading"/>
+              </v-col>
+          </v-row>
+      </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
+import TagsCard from '@/components/tagsCard';
+import service from '@/util/service';
+
 export default {
   name: 'App',
+  components: {TagsCard},
   data: () => ({
     tabs: [
       { title: '技术', icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
@@ -76,12 +88,23 @@ export default {
       ],
     right: null,
     drawer: true,
+    hotNodes: [],
+    newNodes: [],
+    loading: false,
   }),
   methods: {
     toSub(id) {
       this.$router.push({path: `/sub/${id}`});
     },
-  }
+  },
+  mounted() {
+    this.loading = true;
+    service.getNodes().then(res => {
+      this.hotNodes = res.hotNodes;
+      this.newNodes = res.newNodes;
+      this.loading = false;
+    });
+  },
 };
 </script>
 <style lang="less" scoped>

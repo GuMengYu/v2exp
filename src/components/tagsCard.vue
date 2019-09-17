@@ -2,13 +2,13 @@
     <v-card
         class="mx-auto"
         :flat="true"
-        color="#f0f0f0"
+        :loading="loading"
     >
         <v-card-title v-text="title"/>
         <v-divider></v-divider>
         <div class="subject-list">
         <v-btn 
-            small 
+            x-small 
             v-for="(subject, index) in subjects"
             v-text="subject.label"
             :key="index" 
@@ -26,13 +26,18 @@ export default {
         subjects: {
             type: Array,
             default: [],
-        }
+        },
+        loading: false,
     },
 }
 </script>
 <style lang="less" scoped>
+.v-card__title {
+    padding: 10px 10px 5px 10px;
+    font-size: 1em;
+}
 .subject-list {
-    padding: 5px;
+    padding: 10px;
     button {
     margin: 0 7px 7px 0;
     }
