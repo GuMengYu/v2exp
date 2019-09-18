@@ -1,6 +1,6 @@
 <template>
     <v-btn 
-        x-small 
+        small 
         v-text="options.label"
         :outlined="true" 
         :rounded="true"

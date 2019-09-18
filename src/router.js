@@ -19,12 +19,12 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     {
-      path: '/sub/:tab/',
-      name: 'subPage',
-      component: () => import(/* webpackChunkName: "subpage" */ './views/subPage/index.vue'),
+      path: '/tab/:tab/',
+      name: 'tabPage',
+      component: () => import(/* webpackChunkName: "subpage" */ './views/tabPage/index.vue'),
       props: true,
       meta: {
-        keepAlive: true
+        keepAlive: false
       },
     },
   ]

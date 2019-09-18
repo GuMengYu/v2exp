@@ -14,13 +14,13 @@
                 <v-list-item
                 :key="index"
                 v-for="(topic, index) in data"
-                @click=""
+                @click="go"
                 >
                 <v-list-item-avatar size="30">
                     <v-img :src="topic.avatarImg"></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content>
-                    <v-list-item-title v-html="topic.title"></v-list-item-title>
+                    <v-list-item-title v-text="topic.title"/>
                 </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -42,6 +42,11 @@ export default {
         type: {
             type: String,
             default: 'node',
+        }
+    },
+    methods: {
+        go() {
+
         }
     },
 }

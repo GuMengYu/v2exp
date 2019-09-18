@@ -96,7 +96,7 @@ export default {
   }),
   methods: {
     toSub(id) {
-      this.$router.push({path: `/sub/${id}`});
+      this.$router.push({path: `/tab/${id}`});
     },
   },
   mounted() {
