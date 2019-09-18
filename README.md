@@ -1,5 +1,7 @@
 # v2exp
 
+## Preview
+![首页](/docs/1.png "首页")
 ## Project setup
 ```
 yarn install
