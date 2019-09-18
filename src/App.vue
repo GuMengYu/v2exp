@@ -46,16 +46,16 @@
         <v-btn text>链接</v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <v-content class="content">
+    <v-content class="content" :class="{open : drawer}">
       <v-container fluid>
           <v-row>
-              <v-col lg="9" tag="main">
+              <v-col lg="8" tag="main">
                   <keep-alive v-if="$route.meta.keepAlive">
                     <router-view/>
                   </keep-alive>
                   <router-view v-if="!$route.meta.keepAlive"/>
               </v-col>
-              <v-col lg="3" tag="aside">
+              <v-col lg="4" tag="aside">
                   <tags-card title="热议主题" :data="hotTopics" :loading="loading" type="topic"/>
                   <tags-card title="热门节点" :data="hotNodes" :loading="loading"/>
                   <tags-card title="新增节点" :data="newNodes" :loading="loading"/>
@@ -113,6 +113,16 @@ export default {
 <style lang="less" scoped>
 .headline {
   display: flex;
+}
+.open {
+  padding-left: 0 !important;
+  @media(max-width: 1736px) {
+      margin-left: 260px !important;
+  }
+}
+.content {
+  max-width: 1276px;
+  margin: auto;
 }
 .search-wrap {
     padding: 0 10px;
