@@ -1,7 +1,7 @@
 import xhr from './xhr';
 
 const BKHOST = 'http://localhost:3000/';
-const V2EXHOST = 'https://v2ex.com/api';
+const V2EXHOST = 'https://v2ex.com/api/';
 
 // 获取分类下的节点和主题信息
 const getTabInfo = tabId => xhr.get(`${BKHOST}getTabInfo?tab=${tabId}`);

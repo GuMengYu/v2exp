@@ -8,7 +8,7 @@
             <template v-for="(topic, index) in tabTopics">
             <v-list-item
                 :key="topic.title"
-                @click="go"
+                @click="go(topic.id)"
                 >
                 <v-list-item-avatar size="35">
                     <v-img :src="topic.avator"></v-img>
@@ -62,8 +62,8 @@ export default {
                 this.loading = false;
             });
         },
-        go(e) {
-            console.log(e);
+        go(id) {
+            this.$router.push({path: `/topic/${id}`});
         },
     },
 }
