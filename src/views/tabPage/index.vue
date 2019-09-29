@@ -62,8 +62,8 @@ export default {
                 this.loading = false;
             });
         },
-        go() {
-
+        go(e) {
+            console.log(e);
         },
     },
 }
