@@ -1,29 +1,30 @@
 <template>
-    <v-card :loading="loading" :flat="true" class="tab-content">
+    <section>
         <nav class="tab-node-list">
             <tag v-for="(node, index) in tabNodes" :key="index" :options="node"/>
         </nav>
-        <v-divider/>
-        <v-list three-line>
-            <template v-for="(topic, index) in tabTopics">
-            <v-list-item
-                :key="topic.title"
-                @click="go(topic.id)"
-                >
-                <v-list-item-avatar size="35">
-                    <v-img :src="topic.avator"></v-img>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                    <v-list-item-title v-text="topic.title"/>
-                    <v-list-item-subtitle>
-                        {{topic.nodeName}} . {{topic.author }}
-                    </v-list-item-subtitle>
-                </v-list-item-content>
-                </v-list-item>
-                <v-divider v-if="tabTopics.length > index + 1" :key="index"/>
-            </template>
-      </v-list>
-    </v-card>
+        <v-card :loading="loading" :flat="true" :outlined="true" class="tab-content">
+            <v-list two-line>
+                <template v-for="(topic, index) in tabTopics">
+                <v-list-item
+                    :key="topic.title"
+                    @click="go(topic.id)"
+                    >
+                    <v-list-item-avatar size="35">
+                        <v-img :src="topic.avator"></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                        <v-list-item-title v-text="topic.title"/>
+                        <v-list-item-subtitle>
+                            {{topic.nodeName}} . {{topic.author }}
+                        </v-list-item-subtitle>
+                    </v-list-item-content>
+                    </v-list-item>
+                    <v-divider v-if="tabTopics.length > index + 1" :key="index"/>
+                </template>
+        </v-list>
+        </v-card>
+    </section>
 </template>
 
 <script>
@@ -71,12 +72,12 @@ export default {
 
 <style lang="less" scoped>
 .tab-content {
-    height: 100%;
-    .tab-node-list {
+    height: 95%;
+}
+.tab-node-list {
         padding: 10px;
         button {
             margin-right: 10px;
         }
-    }
 }
 </style>

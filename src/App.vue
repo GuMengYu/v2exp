@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="v2exp_app">
     <v-navigation-drawer app
       v-model="drawer"
       :clipped="$vuetify.breakpoint.lgAndUp"
@@ -111,26 +111,30 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.headline {
-  display: flex;
-}
-.open {
-  padding-left: 0 !important;
-  @media(max-width: 1736px) {
-      margin-left: 260px !important;
+.v2exp_app {
+  background: #fff;
+  .headline {
+    display: flex;
+  }
+  .open {
+    padding-left: 0 !important;
+    @media(max-width: 1736px) {
+        margin-left: 260px !important;
+    }
+  }
+  .content {
+    max-width: 1276px;
+    margin: auto;
+  }
+  .search-wrap {
+      padding: 0 10px;
+      border-radius: 4px;
+      max-width: 700px;
+    }
+  .font-weight-light {
+    font-size: 0.4em;
   }
 }
-.content {
-  max-width: 1276px;
-  margin: auto;
-}
-.search-wrap {
-    padding: 0 10px;
-    border-radius: 4px;
-    max-width: 700px;
-  }
-.font-weight-light {
-  font-size: 0.4em;
-}
+
 
 </style>

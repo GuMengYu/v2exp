@@ -11,7 +11,8 @@
                 </v-list-item-content>                
             </v-list-item>
         </div>
-        <section class="topic-info" v-html="topic.content"/>
+        <v-divider/>
+        <section class="topic_content" v-html="topic.content_rendered"/>
     </v-card>
 </template>
 <script>
@@ -23,15 +24,33 @@ export default {
         topic: {},
     }),
     props: {
-        id: String,
+        id: {
+            type: String,
+            default: '',
+        },
+    },
+    watch: {
+        id() {
+            this.fetchData();
+        },
     },
     mounted() {
-        Service.getTopicInfo(this.id).then(result => {
-            this.topic = result;
-        });
+        this.fetchData();
+    },
+    methods: {
+        fetchData() {
+            Service.getTopicInfo(this.id).then(result => {
+                this.topic = result;
+            });
+        },
     },
 }
 </script>
 <style lang="less" scoped>
-
+.topic_author {
+    padding: 15px 10px;
+}
+.topic_content {
+    padding: 10px;
+}
 </style>

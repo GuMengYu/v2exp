@@ -24,7 +24,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "tabpage" */ './views/tabPage/index.vue'),
       props: true,
       meta: {
-        keepAlive: false
+        keepAlive: true,
       },
     },
     {
@@ -33,7 +33,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "topicPage" */ './views/topicPage/index.vue'),
       props: true,
       meta: {
-        keepAlive: false
+        keepAlive: true,
       },
     },
   ]

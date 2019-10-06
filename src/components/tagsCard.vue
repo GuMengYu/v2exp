@@ -1,11 +1,12 @@
 <template>
     <v-card
-        class="right-card"
+        class="right_card"
         :flat="true"
         :loading="loading"
+        :outlined="true"
     >
         <v-card-title v-text="title"/>
-        <v-divider></v-divider>
+        <v-divider class="tagcard_devider"></v-divider>
         <div class="card-content node-list" v-if="type === 'node'">
             <tag v-for="(node, index) in data" :options="node" :key="index" />  
         </div>
@@ -52,20 +53,24 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.right-card {
+.right_card {
     margin-bottom: 10px;
-}
-.v-card__title {
-    padding: 10px 10px 5px 10px;
-    font-size: 1em;
-}
-.node-list {
-    padding: 10px 10px 0 10px;
-    button {
-        margin: 0 7px 7px 0;
+    .tagcard_devider {
+        margin: 0 10px 0 10px;
+    }
+    .v-card__title {
+        padding: 10px 10px 5px 10px;
+        font-size: 1em;
+    }
+    .node-list {
+        padding: 10px 10px 0 10px;
+        button {
+            margin: 0 7px 7px 0;
+        }
+    }
+    .topic-list {
+        padding: 0;
     }
 }
-.topic-list {
-    padding: 0;
-}
+
 </style>
