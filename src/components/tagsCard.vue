@@ -55,6 +55,11 @@ export default {
 <style lang="less" scoped>
 .right_card {
     margin-bottom: 10px;
+    min-width: 401px;
+    @media(max-width: 1366px) {
+        min-width: 344px;
+    }
+    min-width: 300px;
     .tagcard_devider {
         margin: 0 10px 0 10px;
     }
