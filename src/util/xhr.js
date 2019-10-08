@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { VSnackbar } from 'vuetify/lib';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://localhost:3000',
-  timeout: 5000 // request timeout
+  baseURL: 'http://192.168.200.174:3000',
+  timeout: 15000 // request timeout
 });
 
 // request interceptor

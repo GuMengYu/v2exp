@@ -2,8 +2,7 @@
   <v-app class="v2exp_app">
     <v-navigation-drawer app
       v-model="drawer"
-      :clipped="$vuetify.breakpoint.lgAndUp"
-    >
+      :clipped="$vuetify.breakpoint.lgAndUp">
       <v-list dense nav shaped>
       <v-list-item-group color="primary">
         <v-list-item
@@ -56,9 +55,7 @@
                   <router-view v-if="!$route.meta.keepAlive"/>
               </v-col>
               <v-col lg="4" tag="aside">
-                  <tags-card title="热议主题" :data="hotTopics" :loading="loading" type="topic"/>
-                  <tags-card title="热门节点" :data="hotNodes" :loading="loading"/>
-                  <tags-card title="新增节点" :data="newNodes" :loading="loading"/>
+                  <right-nav />
               </v-col>
           </v-row>
       </v-container>
@@ -67,12 +64,10 @@
 </template>
 
 <script>
-import TagsCard from '@/components/tagsCard';
-import service from '@/util/service';
-
+import rightNav from '@/views/layout/right-nav.vue';
 export default {
   name: 'App',
-  components: {TagsCard},
+  components: {rightNav},
   data: () => ({
     tabs: [
       { title: '技术', icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
@@ -87,26 +82,12 @@ export default {
       { title: '全部', icon: 'mdi-all-inclusive', val: 'all', color: 'none' },
       { title: 'R2', icon: 'mdi-alphabetical-off', val: 'r2', color: '#000000' },
       ],
-    right: null,
     drawer: true,
-    hotNodes: [],
-    newNodes: [],
-    hotTopics: [],
-    loading: false,
   }),
   methods: {
     toSub(id) {
       this.$router.push({path: `/tab/${id}`});
     },
-  },
-  mounted() {
-    this.loading = true;
-    service.getNodes().then(res => {
-      this.hotNodes = res.hotNodes;
-      this.newNodes = res.newNodes;
-      this.hotTopics = res.hotTopics;
-      this.loading = false;
-    });
   },
 };
 </script>

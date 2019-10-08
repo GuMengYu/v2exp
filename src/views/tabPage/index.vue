@@ -1,6 +1,6 @@
 <template>
     <section>
-        <nav class="tab-node-list">
+        <nav class="tab-node-list" v-if="tabNodes.length > 0">
             <tag v-for="(node, index) in tabNodes" :key="index" :options="node"/>
         </nav>
         <v-card :loading="loading" :flat="true" :outlined="true" class="tab-content">

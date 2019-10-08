@@ -37,7 +37,7 @@ export default {
         title: '',
         data: {
             type: Array,
-            default: [],
+            default: () => ([]),
         },
         loading: false,
         type: {
