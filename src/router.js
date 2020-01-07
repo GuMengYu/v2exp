@@ -32,5 +32,14 @@ export default new Router({
         keepAlive: true,
       },
     },
+    {
+      path: '/node/:id/',
+      name: 'topicPage',
+      component: () => import(/* webpackChunkName: "nodePage" */ './views/nodePage/index.vue'),
+      props: true,
+      meta: {
+        keepAlive: true,
+      },
+    },
   ],
 });

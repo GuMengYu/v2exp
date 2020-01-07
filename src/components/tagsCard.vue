@@ -2,16 +2,21 @@
     <v-card
         class="right_card"
         :flat="true"
-        :loading="loading"
         :outlined="true"
     >
         <v-card-title v-text="title"/>
         <v-divider class="tagcard_devider"></v-divider>
         <div class="card-content node-list" v-if="type === 'node'">
+            <div class="skeleton-loading" v-if="loading">
+              <v-skeleton-loader type="chip" class="max-auto"></v-skeleton-loader>
+            </div>
             <tag v-for="(node, index) in data" :options="node" :key="index" />  
         </div>
         <div class="card-content topic-list" v-else-if="type === 'topic'">
-            <v-list dense>
+            <div class="skeleton-loading" v-if="loading">
+              <v-skeleton-loader v-for="n in 8" :key="n" type="list-item-avatar" class="max-auto"></v-skeleton-loader>
+            </div>
+            <v-list dense v-else>
                 <v-list-item
                 :key="index"
                 v-for="(topic, index) in data"
@@ -69,7 +74,7 @@ export default {
     }
     .node-list {
         padding: 10px 10px 0 10px;
-        button {
+        .v-chip {
             margin: 0 7px 7px 0;
         }
     }

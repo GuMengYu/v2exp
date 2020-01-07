@@ -2,6 +2,7 @@
   <v-app class="v2exp_app">
     <v-navigation-drawer app
       v-model="drawer"
+      :floating="true"
       :clipped="$vuetify.breakpoint.lgAndUp">
       <v-list dense nav shaped>
       <v-list-item-group color="primary">
@@ -89,6 +90,10 @@ export default {
       this.$router.push({path: `/tab/${id}`});
     },
   },
+  mounted() {
+    console.log(this.$vuetify.application);
+
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -102,10 +107,6 @@ export default {
     @media(max-width: 1736px) {
         margin-left: 260px !important;
     }
-  }
-  .content {
-    max-width: 1276px;
-    margin: auto;
   }
   .search-wrap {
       padding: 0 10px;

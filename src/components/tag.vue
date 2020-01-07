@@ -1,12 +1,7 @@
 <template>
-    <v-btn 
-        small 
-        v-text="options.label"
-        :outlined="true" 
-        :rounded="true"
-        :color="options.color"
-        @click="go"
-    /> 
+    <v-chip :color="options.color" :to="`/node/${options.id}`">
+        {{options.label}}
+    </v-chip>
 </template>
 <script>
 export default {
@@ -23,7 +18,7 @@ export default {
     },
     methods: {
         go() {
-            this.$router.push({name: 'nodePage', id: this.options.id});
+            this.$router.push({name: 'node', id: this.options.id});
         },
     }
 }

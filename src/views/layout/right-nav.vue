@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="right-nav">
         <tags-card title="热议主题" :data="nodeData.hotTopics" :loading="loading" type="topic"/>
         <tags-card title="热门节点" :data="nodeData.hotNodes" :loading="loading"/>
         <tags-card title="新增节点" :data="nodeData.newNodes" :loading="loading"/>
@@ -21,3 +21,5 @@ export default {
     }
 }
 </script>
+<style>
+</style>
