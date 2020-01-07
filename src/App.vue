@@ -32,10 +32,10 @@
       </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp">
+    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp" color="teal" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="headline text-uppercase">
-        <span>V2EX</span>
+        <span>VTEX</span>
         <span class="font-weight-light"> by Vuetify</span>
       </v-toolbar-title>
       <div class="flex-grow-1"></div>
@@ -98,7 +98,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .v2exp_app {
-  background: #fff;
   .headline {
     display: flex;
   }
@@ -114,6 +113,7 @@ export default {
       max-width: 700px;
     }
   .font-weight-light {
+    padding-left: 1em;
     font-size: 0.4em;
   }
 }
