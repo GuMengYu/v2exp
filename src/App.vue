@@ -32,18 +32,19 @@
       </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp" color="teal" dark>
+    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp" color="white" :elevate-on-scroll="true">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>VTEX</span>
         <span class="font-weight-light"> by Vuetify</span>
       </v-toolbar-title>
-      <div class="flex-grow-1"></div>
-      <v-text-field placeholder="请输入" solo :hide-details="true" prepend-inner-icon="mdi-magnify"/>
-      <div class="flex-grow-1"></div>
+      <v-spacer/>
+      <!-- <v-text-field placeholder="请输入" solo rounded dense :hide-details="true" prepend-inner-icon="mdi-magnify"/> -->
       <v-toolbar-items>
-        <v-btn text>首页</v-btn>
-        <v-btn text>链接</v-btn>
+      <v-btn icon><v-icon>mdi-magnify</v-icon></v-btn>
+      <v-btn icon><v-icon>mdi-apps</v-icon></v-btn>
+      <v-btn icon><v-icon>mdi-home</v-icon></v-btn>
+      <v-btn icon><v-icon>mdi-information</v-icon></v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-content class="content" :class="{open : drawer}">
@@ -98,6 +99,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .v2exp_app {
+  background: white !important;
   .headline {
     display: flex;
   }

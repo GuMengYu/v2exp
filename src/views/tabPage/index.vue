@@ -1,5 +1,6 @@
 <template>
     <section>
+        <div class="tab-title"><h2>{{tab}}</h2></div>
         <div class="skeletion-loader-list" v-if="loading">
             <v-card :flat="true" :outlined="true" class="tab-content">
                 <nav class="tab-node-list">
@@ -69,6 +70,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.tab-title {
+    margin-bottom: 10px;
+}
 .tab-content {
     height: 95%;
 }

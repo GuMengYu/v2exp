@@ -1,5 +1,5 @@
 <template>
-    <v-chip :color="options.color" :to="`/node/${options.id}`">
+    <v-chip :color="options.color" :to="`/node/${options.id}`" outlined label>
         {{options.label}}
     </v-chip>
 </template>
@@ -11,7 +11,7 @@ export default {
             type: Object,
             default: () => ({
                 label: '',
-                color: '',
+                color: '#fff',
                 id: '',
             }),
         }

@@ -21,5 +21,8 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="less">
+.right-nav {
+    padding-top: 45px;
+}
 </style>
