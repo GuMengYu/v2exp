@@ -1,8 +1,9 @@
 import axios from 'axios';
+import localConfig from '../config/local.config';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://192.168.200.174:3000',
+  baseURL: `${localConfig.protocal}//${localConfig.url}:${localConfig.port}`,
   timeout: 15000 // request timeout
 });
 
