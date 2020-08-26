@@ -4,7 +4,7 @@
     @click="go(topic.id)"
     >
         <v-list-item-avatar size="35">
-            <v-img :src="topic.avator" lazy-src="@/assets/logo.png"></v-img>
+            <v-img :src="topic.avator" lazy-src="@/assets/man.png"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
             <v-list-item-title v-text="topic.title"/>
