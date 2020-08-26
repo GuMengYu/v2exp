@@ -103,12 +103,17 @@ export default {
   .headline {
     display: flex;
   }
-  .open {
+  .content {
     padding-left: 0 !important;
-    @media(max-width: 1736px) {
-        margin-left: 260px !important;
-    }
+    max-width: 1197px;
+    margin: auto;
   }
+  // .open {
+  //   padding-left: 0 !important;
+  //   @media(max-width: 1736px) {
+  //       margin-left: 260px !important;
+  //   }
+  // }
   .search-wrap {
       padding: 0 10px;
       border-radius: 4px;
