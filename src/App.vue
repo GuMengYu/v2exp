@@ -32,11 +32,11 @@
       </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp" color="white" :elevate-on-scroll="true">
+    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp" color="white" :elevate-on-scroll="false">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>VTEX</span>
-        <span class="font-weight-light"> by Vuetify</span>
+      <v-toolbar-title class="headline">
+        <span class="logo"></span>
+        <span class="logo-sub">&nbsp;•&nbsp;划水</span>
       </v-toolbar-title>
       <v-spacer/>
       <!-- <v-text-field placeholder="请输入" solo rounded dense :hide-details="true" prepend-inner-icon="mdi-magnify"/> -->
@@ -47,7 +47,7 @@
       <v-btn icon><v-icon>mdi-information</v-icon></v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <v-content class="content" :class="{open : drawer}">
+    <main class="content" :class="{open : drawer}">
       <v-container fluid>
           <v-row>
               <v-col lg="8" tag="main">
@@ -61,7 +61,7 @@
               </v-col>
           </v-row>
       </v-container>
-    </v-content>
+    </main>
   </v-app>
 </template>
 
@@ -94,26 +94,28 @@ export default {
   mounted() {
     console.log(this.$vuetify.application);
 
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
 .v2exp_app {
-  background: white !important;
+  // background: white !important;
   .headline {
     display: flex;
+    padding-left: 10px !important;
   }
   .content {
-    padding-left: 0 !important;
-    max-width: 1197px;
+    display: flex;
+    max-width: 1276px;
     margin: auto;
+    padding: 80px 32px 32px;
   }
-  // .open {
-  //   padding-left: 0 !important;
-  //   @media(max-width: 1736px) {
-  //       margin-left: 260px !important;
-  //   }
-  // }
+
+  .open {
+    @media(max-width: 1736px) {
+        margin-left: 256px;
+    }
+  }
   .search-wrap {
       padding: 0 10px;
       border-radius: 4px;
@@ -122,6 +124,21 @@ export default {
   .font-weight-light {
     padding-left: 1em;
     font-size: 0.4em;
+  }
+  .logo {
+    line-height: 24px;
+    vertical-align: middle;
+    &::before{
+      content: url(./assets/googlelogo_clr_74x24px.svg);
+      display: inline-block;
+      height: 24px;
+      width: 74px;
+    }
+  }
+  .logo-sub {
+    color: #5f6368;
+    font-size: 22px;
+    line-height: 26px;
   }
 }
 

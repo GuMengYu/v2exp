@@ -17,7 +17,7 @@
             <div class="skeleton-loading" v-if="loading">
               <v-skeleton-loader v-for="n in 8" :key="n" type="list-item-avatar" class="max-auto"></v-skeleton-loader>
             </div>
-            <v-list dense v-else>
+            <v-list dense v-else class="topic-list-content">
                 <template v-for="(topic, index) in data">
                     <v-list-item
                     @click="go"
@@ -30,7 +30,7 @@
                             <v-list-item-title v-text="topic.title"/>
                         </v-list-item-content>
                     </v-list-item>
-                    <v-divider v-if="data.length > index + 1" :key="index"/>
+                    <!-- <v-divider class="list-item-divider" v-if="data.length > index + 1" :key="index"/> -->
                 </template>
             </v-list>
         </div>
@@ -73,13 +73,15 @@ export default {
         margin: 0 16px 0 16px;
     }
     .v-card__title {
-        padding: 10px 0 10px 16px;
-        font-size: 1em;
+        padding: 12px 0 12px 16px;
+        font-size: 1rem;
+        line-height: 21px;
         color:rgb(95, 99, 104);
     }
     .node-list {
-        padding: 16px 10px 8px 16px;
-        & ::v-deep .v-chip {
+        margin: 16px 5px 8px 16px;
+        &::v-deep .v-chip {
+            background: white!important;
             &.v-chip--label {
                 border-radius: 8px !important;
             }
@@ -94,6 +96,12 @@ export default {
     }
     .topic-list {
         padding: 0;
+        .topic-list-content {
+            background: transparent;
+        }
+        .list-item-divider {
+            margin: 0 16px 0 16px;
+        }
     }
 }
 
