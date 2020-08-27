@@ -23,7 +23,7 @@
       </v-list-item-group>
       <v-divider></v-divider>
       <v-list-item link href="https://github.com/GuMengYu/v2exp" target="_blank">
-         <v-list-item-icon><v-icon>mdi-github-circle</v-icon></v-list-item-icon>
+         <v-list-item-icon><v-icon>mdi-github</v-icon></v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
             GitHub <v-icon :size="12">mdi-open-in-new</v-icon>
