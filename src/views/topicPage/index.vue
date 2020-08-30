@@ -16,7 +16,7 @@
     </v-card>
 </template>
 <script>
-import Service from '@/util/service';
+import {getTopicInfo} from '@/util/service';
 
 export default {
     name: 'topicPage',
@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         fetchData() {
-            Service.getTopicInfo(this.id).then(result => {
+            getTopicInfo(this.id).then(result => {
                 this.topic = result;
             });
         },

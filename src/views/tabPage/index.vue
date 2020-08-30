@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Service from '@/util/service';
+import {getTabInfo} from '@/util/service';
 import Tag from '@/components/tag';
 import TopicItem from './topic-item';
 export default {
@@ -54,7 +54,7 @@ export default {
     methods: {
         fetchData() {
             this.loading = true;
-            Service.getTabInfo(this.tab).then(result => {
+            getTabInfo(this.tab).then(result => {
                 this.tabNodes = result.tabNodes;
                 this.tabTopics = result.tabTopics;
                 this.loading = false;

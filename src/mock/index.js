@@ -1,5 +1,5 @@
 const Mock = require('mockjs')
-import localConfig from '../config/local.config';
+const localConfig  = require('../config/local.config');
 const request = `${localConfig.protocal}//${localConfig.url}:${localConfig.port}`;
 
 import {produceNewsData, indexNodes, tabData} from './test';

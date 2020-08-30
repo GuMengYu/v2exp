@@ -7,7 +7,7 @@
 </template>
 <script>
 import TagsCard from '@/components/tagsCard';
-import Service from '@/util/service';
+import {getNodes} from '@/util/service';
 
 export default {
     components: {TagsCard},
@@ -17,7 +17,7 @@ export default {
     }),
     mounted() {
         this.loading = true;
-        Service.getNodes().then(res => this.nodeData = res).finally(() => this.loading = false);
+        getNodes().then(res => this.nodeData = res).finally(() => this.loading = false);
     }
 }
 </script>
