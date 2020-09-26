@@ -96,4 +96,56 @@ const tabTopicList = () => {
     }
   }
 }
-export {produceNewsData, toDayHot, tabTopicList};
+const topicData = () => ({
+  code : 'ok',
+    data: [
+      {
+            "node": {
+                "avatar_large": "https://cdn.v2ex.com/navatar/03af/dbd6/63_large.png?m=1596211530",
+                "name": "java",
+                "avatar_normal": "https://cdn.v2ex.com/navatar/03af/dbd6/63_normal.png?m=1596211530",
+                "title": "Java",
+                "url": "https://www.v2ex.com/go/java",
+                "topics": 3798,
+                "footer": "",
+                "header": "The most popular programming language.",
+                "title_alternative": "Java",
+                "avatar_mini": "https://cdn.v2ex.com/navatar/03af/dbd6/63_mini.png?m=1596211530",
+                "stars": 4081,
+                "aliases": [
+                ],
+                "root": false,
+                "id": 63,
+                "parent_node_name": "programming"
+            },
+            "member": {
+                "username": "gransh",
+                "website": "",
+                "github": "",
+                "psn": "",
+                "avatar_normal": "https://cdn.v2ex.com/avatar/5fad/1233/367295_mini.png?m=1544065339",
+                "bio": "",
+                "url": "https://www.v2ex.com/u/gransh",
+                "tagline": "",
+                "twitter": "",
+                "created": 1543736687,
+                "avatar_large": "https://cdn.v2ex.com/avatar/5fad/1233/367295_mini.png?m=1544065339",
+                "avatar_mini": "https://cdn.v2ex.com/avatar/5fad/1233/367295_mini.png?m=1544065339",
+                "location": "",
+                "btc": "",
+                "id": 367295
+            },
+            "last_reply_by": "kanepan19",
+            "last_touched": 1601102776,
+            "title": "用 springboot 写一个简单的 web 项目，不分离，搭配什么前端框架好？",
+            "url": "https://www.v2ex.com/t/710439",
+            "created": 1601018160,
+            "content": "想自己独立完成一个 web 项目，自己对后端比较熟悉，前端那些一知半解。用的 springboot 框架，搭配什么前端 ui 类框架比较好，易于学习，界面美观的。\r\n有推荐 vue-element-admin，查了查好像过于复杂（功能上的），而且还得单独部署的样子。\r\nbootstrap 好像又过于简单了。\r\n是不是 layui elementui 这种会比较合适一些？\r\n另外对于前端的打包也不太了解，有没有集成到 springboot 项目里直接调用的？",
+            "content_rendered": "想自己独立完成一个 web 项目，自己对后端比较熟悉，前端那些一知半解。用的 springboot 框架，搭配什么前端 ui 类框架比较好，易于学习，界面美观的。<br />有推荐 vue-element-admin，查了查好像过于复杂（功能上的），而且还得单独部署的样子。<br />bootstrap 好像又过于简单了。<br />是不是 layui elementui 这种会比较合适一些？<br />另外对于前端的打包也不太了解，有没有集成到 springboot 项目里直接调用的？",
+            "last_modified": 1601018160,
+            "replies": 42,
+            "id": 710439
+      }
+    ]
+})
+export {produceNewsData, toDayHot, tabTopicList, topicData};

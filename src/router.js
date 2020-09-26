@@ -25,8 +25,8 @@ export default new Router({
     },
     {
       path: '/topic/:id/',
-      name: 'topicPage',
-      component: () => import(/* webpackChunkName: "topicPage" */ './views/topicPage/index.vue'),
+      name: 'topic',
+      component: () => import(/* webpackChunkName: "topicPage" */ './views/topic/index.vue'),
       props: true,
       meta: {
         keepAlive: true,
