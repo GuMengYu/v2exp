@@ -22,6 +22,7 @@
 <script>
 import {getTopicInfo, getTopicReply} from '@/util/service';
 import replyItem from './reply-item';
+import dayjs from 'dayjs';
 
 export default {
     name: 'topic',
@@ -45,9 +46,9 @@ export default {
     },
     created() {
         getTopicInfo(this.id).then(result => {
-            this.topic = result[0];
             const {node} = result[0];
-            this.breadcrumbs = [node.name, node.parent_node_name].map(i => ({
+            this.topic = result[0];
+            this.breadcrumbs = [node.parent_node_name, node.name].map(i => ({
                 text: i.toUpperCase(),
                 disabled: false,
                 href: `${i}`,
@@ -61,7 +62,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .topic-breadcrumbs {
-    padding-left: 5px;
+    padding: 10px 0 12px 5px;
 }
 .topic-header {
     display: flex;

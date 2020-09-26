@@ -41,5 +41,13 @@ export default new Router({
         keepAlive: true,
       },
     },
+    {
+      path: '/gank/',
+      name: 'gank',
+      component: () => import(/* webpackChunkName: "gank" */ './views/gank/index.vue'),
+      meta: {
+        keepAlive: true,
+      },
+    },
   ],
 });

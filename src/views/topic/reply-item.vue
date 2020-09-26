@@ -1,5 +1,5 @@
 <template>
-  <v-list-item outline="true">
+  <v-list-item outline="true" @click="()=>{}">
         <v-list-item-avatar size="40">
             <v-img :src="reply.member.avatar_mini" lazy-src="@/assets/man.png"></v-img>
         </v-list-item-avatar>

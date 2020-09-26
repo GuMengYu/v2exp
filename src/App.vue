@@ -81,14 +81,22 @@ export default {
       { title: '城市', icon: 'mdi-city', val: 'city', color: '#90a4ae' },
       { title: '问与答', icon: 'mdi-help-box', val: 'qna', color: '#03a9f4' },
       { title: '最热', icon: 'mdi-trending-up', val: 'hot', color: '#e53935' },
-      { title: '全部', icon: 'mdi-all-inclusive', val: 'all', color: 'none' },
-      { title: 'R2', icon: 'mdi-alphabetical-off', val: 'r2', color: '#000000' },
+      { title: '干货-gank.io', icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' }
+      // { title: '干货-IOS', icon: 'mdi-apple-ios', val: 'gank_ios', color: '#f95e74' },
+      // { title: '干货-Android', icon: 'mdi-android', val: 'gank_android', color: '#34a853' },
+      // { title: '干货-前端', icon: 'mdi-angular', val: 'gank_fe', color: '#ea4335' },
+      // { title: '干货-妹子', icon: 'mdi-face-woman-shimmer', val: 'gank_girl', color: 'pink' },
+      // { title: '干货-休息视频', icon: 'mdi-video-vintage', val: 'gank_video', color: '#ff9a00' },
       ],
     drawer: true,
   }),
   methods: {
     toSub(id) {
-      this.$router.push({path: `/tab/${id}`});
+      if(id === 'gank') {
+        this.$router.push({path: `/gank`});
+      } else {
+        this.$router.push({path: `/tab/${id}`});
+      }
     },
   },
   mounted() {
