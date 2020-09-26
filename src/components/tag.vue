@@ -1,5 +1,5 @@
 <template>
-    <v-chip :color="options.color" :to="`/node/${options.id}`" outlined label>
+    <v-chip :color="options.color" :to="`/node/${options.id}`" outlined label class="v2-tag">
         {{options.label}}
     </v-chip>
 </template>
@@ -23,3 +23,8 @@ export default {
     }
 }
 </script>
+<style lang="less" scoped>
+.v2-tag {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+</style>

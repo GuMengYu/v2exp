@@ -3,19 +3,18 @@
     :key="topic.title"
     @click="go(topic.id)"
     >
-        <v-list-item-avatar size="35">
+        <v-list-item-avatar size="40">
             <v-img :src="topic.avator" lazy-src="@/assets/man.png"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
             <v-list-item-title v-text="topic.title"/>
             <v-list-item-subtitle>
-                {{topic.nodeName}} . {{topic.author }}
+                {{topic.nodeName}} · {{topic.author }} · {{topic.reply.lastReplyTime}}
             </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
             <v-chip x-small>
                     {{topic.reply ? topic.reply.count : 0}}
-                    回复
             </v-chip>
         </v-list-item-action>
     </v-list-item>
@@ -27,9 +26,16 @@ export default {
             type: Object,
             default: () => ({}),
         }
+    },
+    methods: {
+        go(id) {
+            this.$router.push({path: `/topic/${id}`});
+        },
     }
 }
 </script>
 <style scoped lang="less">
-
+.v-list-item__subtitle {
+    margin-top: 5px;
+}
 </style>

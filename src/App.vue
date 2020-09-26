@@ -108,7 +108,7 @@ export default {
     display: flex;
     max-width: 1276px;
     margin: auto;
-    padding: 80px 32px 32px;
+    padding: 64px 10px 32px;
   }
 
   .open {

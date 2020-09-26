@@ -1,4 +1,4 @@
-const {port} = require('./src/config/local.config');
+const {port} = require('./config/local.config');
 module.exports = {
   lintOnSave: false,
   configureWebpack: {

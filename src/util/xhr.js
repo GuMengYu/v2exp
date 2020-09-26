@@ -1,5 +1,5 @@
 import axios from 'axios';
-import localConfig from '../config/local.config';
+import localConfig from '../../config/local.config';
 
 // create an axios instance
 const service = axios.create({
@@ -23,11 +23,11 @@ service.interceptors.request.use(
 // respone interceptor
 service.interceptors.response.use(
   response => {
-    const res = response.data;
-    if (res.error) {
-      return Promise.reject('error');
+    const {code, data} = response.data;
+    if(code === 'ok') {
+      return data;
     } else {
-      return response.data;
+      return Promise.reject(data);
     }
   },
   error => {

@@ -1,6 +1,13 @@
 <template>
     <section>
-        <div class="tab-title"><h2>{{tab}}</h2></div>
+        <div class="tab-header">
+            <div class=""><h2>{{tab.toUpperCase()}}</h2></div>
+            <div>
+                <a href="javascript:void(0);" class="link more">
+                    更多{{tab}}内容
+                </a>
+            </div>
+        </div>
         <div class="skeletion-loader-list" v-if="loading">
             <v-card :flat="true" :outlined="true" class="tab-content">
                 <nav class="tab-node-list">
@@ -35,7 +42,7 @@ export default {
     props: {
         tab: {
             type: String,
-            default: 'tech',
+            default: '技术',
         }
     },
     data: () =>({
@@ -55,6 +62,7 @@ export default {
         fetchData() {
             this.loading = true;
             getTabInfo(this.tab).then(result => {
+                console.log(result);
                 this.tabNodes = result.tabNodes;
                 this.tabTopics = result.tabTopics;
                 this.loading = false;
@@ -62,16 +70,23 @@ export default {
                 this.loading = false;
             });
         },
-        go(id) {
-            this.$router.push({path: `/topic/${id}`});
-        },
     },
 }
 </script>
 
 <style lang="less" scoped>
-.tab-title {
+.tab-header {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
+    .more {
+        font-family: 'Google Sans',sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 36px;
+    }
 }
 .tab-content {
     height: 95%;
