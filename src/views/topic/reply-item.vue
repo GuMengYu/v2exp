@@ -1,0 +1,29 @@
+<template>
+  <v-list-item outline="true">
+        <v-list-item-avatar size="40">
+            <v-img :src="reply.member.avatar_mini" lazy-src="@/assets/man.png"></v-img>
+        </v-list-item-avatar>
+        <v-list-item-content>
+            <v-list-item-title v-html="reply.content_rendered"/>
+            <v-list-item-subtitle>
+                {{reply.member.username}} · {{reply.created}}
+            </v-list-item-subtitle>
+        </v-list-item-content>
+    </v-list-item>
+</template>
+
+<script>
+import dayjs from 'dayjs';
+export default {
+    props: {
+        reply: {
+            type: Object,
+            default: () =>({}),
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>

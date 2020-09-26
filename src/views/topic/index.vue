@@ -5,32 +5,31 @@
     </v-breadcrumbs>
     <v-card :outlined="true">
         <div class="topic-header">
-            <v-list-item>
-                <v-list-item-content>
-                    <v-list-item-title>{{topic.title}}</v-list-item-title>
-                    <v-list-item-subtitle>{{topic.last_reply_by}}  {{topic.last_touched}} {{topic.replies}}</v-list-item-subtitle>
-                </v-list-item-content>    
-                <v-list-item-avatar size="60">
-                    <v-img :src="topic.member.avatar_large"></v-img>
-                </v-list-item-avatar>            
-            </v-list-item>
+            <div>
+                <h2 class="topic-title">{{topic.title}}</h2>
+                <span class="topic-sub-title">{{topic.last_reply_by}} · {{topic.last_touched}} · {{topic.replies}}次点击</span>
+            </div>
+            <v-avatar size="70"><v-img :src="topic.member.avatar_large" lazy-src="@/assets/man.png"></v-img></v-avatar>
         </div>
         <v-divider/>
         <section class="topic-content" v-html="topic.content_rendered"/>
     </v-card>
-    <v-card class="topic-reply-area">
-        
+    <v-card class="topic-reply-area" :outlined="true">
+        <reply-item v-for="o in replies" :key="o.id" :reply="o"/>
     </v-card>
 </section>
 </template>
 <script>
-import {getTopicInfo} from '@/util/service';
+import {getTopicInfo, getTopicReply} from '@/util/service';
+import replyItem from './reply-item';
 
 export default {
     name: 'topic',
+    components: {replyItem},
     data: () =>({
         topic: {},
         breadcrumbs: [],
+        replies:[],
     }),
     computed: {},
     props: {
@@ -54,10 +53,9 @@ export default {
                 href: `${i}`,
             }));
         });
-    },
-    mounted() {},
-    methods: {
-        
+        getTopicReply({}).then(res => {
+            this.replies  = res;
+        });
     },
 }
 </script>
@@ -66,7 +64,10 @@ export default {
     padding-left: 5px;
 }
 .topic-header {
+    display: flex;
     padding: 15px 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 .topic-content {
     padding: 25px 20px;
