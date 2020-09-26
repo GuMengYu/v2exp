@@ -37,7 +37,7 @@ import {getTabInfo} from '@/util/service';
 import Tag from '@/components/tag';
 import TopicItem from './topic-item';
 export default {
-    name: 'tabPage',
+    name: 'tab',
     components: {Tag, TopicItem},
     props: {
         tab: {

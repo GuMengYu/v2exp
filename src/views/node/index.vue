@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    name: 'nodePage',
+    name: 'node',
     props: {
         id: {
             type: String,

@@ -48,19 +48,7 @@
       </v-toolbar-items>
     </v-app-bar>
     <main class="content" :class="{open : drawer}">
-      <v-container fluid>
-          <v-row>
-              <v-col lg="8" tag="main">
-                  <keep-alive v-if="$route.meta.keepAlive">
-                    <router-view/>
-                  </keep-alive>
-                  <router-view v-if="!$route.meta.keepAlive"/>
-              </v-col>
-              <v-col lg="4" tag="aside">
-                  <right-nav />
-              </v-col>
-          </v-row>
-      </v-container>
+      <router-view/>
     </main>
   </v-app>
 </template>
@@ -95,7 +83,7 @@ export default {
       if(id === 'gank') {
         this.$router.push({path: `/gank`});
       } else {
-        this.$router.push({path: `/tab/${id}`});
+        this.$router.push({path: `/v2/tab/${id}`});
       }
     },
   },
