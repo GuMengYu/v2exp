@@ -1,10 +1,10 @@
 <template>
     <section>
         <div class="tab-header">
-            <div class=""><h2>{{tab.toUpperCase()}}</h2></div>
+            <div class=""><h2>{{id.toUpperCase()}}</h2></div>
             <div>
                 <a href="javascript:void(0);" class="link more">
-                    更多{{tab}}内容
+                    更多{{id}}内容
                 </a>
             </div>
         </div>
@@ -40,7 +40,7 @@ export default {
     name: 'tab',
     components: {Tag, TopicItem},
     props: {
-        tab: {
+        id: {
             type: String,
             default: '技术',
         }
@@ -61,7 +61,7 @@ export default {
     methods: {
         fetchData() {
             this.loading = true;
-            getTabInfo(this.tab).then(result => {
+            getTabInfo(this.id).then(result => {
                 console.log(result);
                 this.tabNodes = result.tabNodes;
                 this.tabTopics = result.tabTopics;

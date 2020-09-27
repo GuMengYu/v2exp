@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         go(id) {
-            this.$router.push({path: `/topic/${id}`});
+            this.$router.push({path: `/v2/topic/${id}`});
         },
     }
 }
