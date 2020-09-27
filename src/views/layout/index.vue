@@ -55,10 +55,8 @@
 
 <script>
 
-import rightNav from '@/views/layout/right-nav.vue';
 export default {
     name: 'layout',
-    components: {rightNav},
     data: () => ({
         tabs: [
         { title: '技术', icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
@@ -90,7 +88,6 @@ export default {
     },
     mounted() {
         console.log(this.$vuetify.application);
-
     },
 }
 </script>

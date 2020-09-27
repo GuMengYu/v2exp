@@ -62,10 +62,8 @@ export default {
         fetchData() {
             this.loading = true;
             getTabInfo(this.id).then(result => {
-                console.log(result);
                 this.tabNodes = result.tabNodes;
                 this.tabTopics = result.tabTopics;
-                this.loading = false;
             }).finally(() => {
                 this.loading = false;
             });
