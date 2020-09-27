@@ -1,5 +1,3 @@
-import { get } from "core-js/fn/dict";
-
 /**
  * 函数防抖
  * @param {() => {}} fn 
@@ -74,8 +72,14 @@ export const throttle_timestamp = (fn, wait, options) => {
         }
     }
 }
+export const optionalChaining = (obj, ...rest) => {
+    let temp = obj;
+    rest.forEach(key => temp = temp?.[key]);
+    return temp;
+}
 
 export default {
+    optionalChaining,
     debounce,
     throttle_timeout,
     throttle_timestamp,

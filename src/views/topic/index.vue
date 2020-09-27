@@ -9,7 +9,7 @@
                 <h2 class="topic-title">{{topic.title}}</h2>
                 <span class="topic-sub-title">{{topic.last_reply_by}} · {{topic.last_touched}} · {{topic.replies}}次点击</span>
             </div>
-            <v-avatar size="70"><v-img :src="topic.member.avatar_large" lazy-src="@/assets/man.png"></v-img></v-avatar>
+            <v-avatar size="70"><v-img :src="$$(topic, 'member', 'avatar_large')" lazy-src="@/assets/man.png"></v-img></v-avatar>
         </div>
         <v-divider/>
         <section class="topic-content" v-html="topic.content_rendered"/>
@@ -46,8 +46,8 @@ export default {
     },
     created() {
         getTopicInfo(this.id).then(result => {
-            const {node} = result[0];
-            this.topic = result[0];
+            const {node} = result?.[0];
+            this.topic = result?.[0];
             this.breadcrumbs = [node.parent_node_name, node.name].map(i => ({
                 text: i.toUpperCase(),
                 disabled: false,

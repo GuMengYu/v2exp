@@ -9,12 +9,12 @@
         <v-list-item-content>
             <v-list-item-title v-text="topic.title"/>
             <v-list-item-subtitle>
-                {{topic.nodeName}} · {{topic.author }} · {{topic.reply.lastReplyTime}}
+                {{topic.nodeName}} · {{topic.author }} · {{$$(topic, 'reply', 'lastReplyTime')}}
             </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
             <v-chip x-small>
-                    {{topic.reply ? topic.reply.count : 0}}
+                    {{topic.reply ? $$(topic, 'reply', 'count') : 0}}
             </v-chip>
         </v-list-item-action>
     </v-list-item>
