@@ -1,4 +1,4 @@
-import xhr from './xhr';
+import { v2Xhr as xhr } from './xhr';
 
 // 获取分类下的节点和主题信息
 const getTabInfo = tabId => xhr.get(`/getTabInfo?tab=${tabId}`);
