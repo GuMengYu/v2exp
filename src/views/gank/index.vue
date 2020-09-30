@@ -44,9 +44,9 @@ export default {
     slides: [],
     tabs: [
       {
-        title: 'ios',
+        title: 'iOS',
         icon: "mdi-apple-ios",
-        id: "ios",
+        id: "iOS",
         color: "#f95e74",
       },
       {
@@ -68,13 +68,13 @@ export default {
         color: "#ea4335",
       },
       {
-        title: "flutter",
+        title: "Flutter",
         icon: "mdi-monitor-cellphone",
-        id: "flutter",
+        id: "Flutter",
         color: "#ff9a00",
       },
       {
-        title: "app",
+        title: "App",
         icon: "mdi-whatsapp",
         id: "app",
         color: "#ff9a00",
