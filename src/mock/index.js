@@ -1,4 +1,4 @@
-const Mock = require('mockjs')
+const Mock = require('mockjs');
 const localConfig  = require('../../config/local.config');
 const request = `${localConfig.protocal}//${localConfig.url}:${localConfig.port}`;
 

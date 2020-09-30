@@ -1,20 +1,20 @@
 import Mock from 'mockjs';
 // 获取 mock.Random 对象
-const MRandom = Mock.Random
+const MRandom = Mock.Random;
 // mock新闻数据，包括新闻标题title、内容content、创建时间createdTime
 const produceNewsData = function () {
-  let newsList = []
+  let newsList = [];
   for (let i = 0; i < 20; i++) {
     let newNewsObject = {
       title: MRandom.ctitle(), //  Random.ctitle( min, max ) 随机产生一个中文标题，长度默认在3-7之间
       content: MRandom.cparagraph(), // Random.cparagraph(min, max) 随机生成一个中文段落，段落里的句子个数默认3-7个
-      createdTime: MRandom.date() // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；
-    }
-    newsList.push(newNewsObject)
+      createdTime: MRandom.date(), // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；
+    };
+    newsList.push(newNewsObject);
   }
 
   return newsList;
-}
+};
 
 const toDayHot = () => {
   return {
@@ -35,7 +35,7 @@ const toDayHot = () => {
         {"id":"gts","label":"全球工单系统"},
         {"id":"iphone","label":"iPhone"},
         {"id":"mbp","label":"MacBook Pro"},
-        {"id":"cv","label":"求职"}
+        {"id":"cv","label":"求职"},
       ],
       "newNodes":[
         {"id":"msfs","label":"微软飞行模拟"},
@@ -57,7 +57,7 @@ const toDayHot = () => {
         {"id":"nebula","label":"Nebula"},
         {"id":"objc","label":"Objective-C"},
         {"id":"cpp","label":"C++"},
-        {"id":"meraki","label":"Meraki"}
+        {"id":"meraki","label":"Meraki"},
       ],
       "hotTopics":[
         {"avatarImg":"https://cdn.v2ex.com/gravatar/86ba9c00cf69caa0776f3207ffe8ea4b?s=24&d=retro","id":"701141","title":"你们遇到过组长强制要求代码实现的吗?"},
@@ -67,11 +67,11 @@ const toDayHot = () => {
         {"avatarImg":"https://cdn.v2ex.com/gravatar/9d78d98eb716bac9bc41db70958f6b31?s=24&d=retro","id":"701131","title":"三年工作经验平薪跳槽去大厂值得吗？"},
         {"avatarImg":"https://cdn.v2ex.com/avatar/46c6/6e44/206024_normal.png?m=1574980271","id":"701241","title":"你怎么评价纯银这个人？"},
         {"avatarImg":"https://cdn.v2ex.com/avatar/1886/2182/461515_normal.png?m=1577863370","id":"701124","title":"也没融钱，就俩程序员自己搞， 12 个月从 0 到 700 万"},
-        {"avatarImg":"https://cdn.v2ex.com/gravatar/a19cf4180202dab1be072042bd9c990b?s=24&d=retro","id":"701157","title":"如何获得对自己长的好不好看的客观评价？"}
-      ]
-    }
+        {"avatarImg":"https://cdn.v2ex.com/gravatar/a19cf4180202dab1be072042bd9c990b?s=24&d=retro","id":"701157","title":"如何获得对自己长的好不好看的客观评价？"},
+      ],
+    },
   };
-}
+};
 const tabTopicList = () => {
   return {
     code : 'ok',
@@ -92,10 +92,10 @@ const tabTopicList = () => {
         {"avator":"https://cdn.v2ex.com/avatar/bdeb/e2f1/33357_normal.png?m=1359567498","title":"在京东也翻车了，返修被偷换了硬件。","id":"701579","votes":0,"nodeName":"京东","nodeId":"jd","author":"yech1990","reply":{"count":"35","lastFrom":"lovecy","lastReplyTime":"4 分钟前"}},
         {"avator":"https://cdn.v2ex.com/avatar/b3c5/7c85/353188_normal.png?m=1543990242","title":"为什么大家都不喜欢 Touch bar 我觉得很香？ 附配置","id":"701528","votes":0,"nodeName":"MacBook Pro","nodeId":"mbp","author":"Stain5","reply":{"count":"34","lastFrom":"20015jjw","lastReplyTime":"10 分钟前"}},
         {"avator":"https://cdn.v2ex.com/avatar/59dc/c634/445892_normal.png?m=1577094179","title":"0202 年了, 现在在 Windows 下快乐编程的姿势是什么❓","id":"701485","votes":0,"nodeName":"程序员","nodeId":"programmer","author":"KaynW","reply":{"count":"32","lastFrom":"wellsc","lastReplyTime":"38 分钟前"}},
-      ]
-    }
-  }
-}
+      ],
+    },
+  };
+};
 const topicData = () => ({
   code : 'ok',
     data: [
@@ -116,7 +116,7 @@ const topicData = () => ({
                 ],
                 "root": false,
                 "id": 63,
-                "parent_node_name": "programming"
+                "parent_node_name": "programming",
             },
             "member": {
                 "username": "gransh",
@@ -133,7 +133,7 @@ const topicData = () => ({
                 "avatar_mini": "https://cdn.v2ex.com/avatar/5fad/1233/367295_mini.png?m=1544065339",
                 "location": "",
                 "btc": "",
-                "id": 367295
+                "id": 367295,
             },
             "last_reply_by": "kanepan19",
             "last_touched": 1601102776,
@@ -144,10 +144,10 @@ const topicData = () => ({
             "content_rendered": "想自己独立完成一个 web 项目，自己对后端比较熟悉，前端那些一知半解。用的 springboot 框架，搭配什么前端 ui 类框架比较好，易于学习，界面美观的。<br />有推荐 vue-element-admin，查了查好像过于复杂（功能上的），而且还得单独部署的样子。<br />bootstrap 好像又过于简单了。<br />是不是 layui elementui 这种会比较合适一些？<br />另外对于前端的打包也不太了解，有没有集成到 springboot 项目里直接调用的？",
             "last_modified": 1601018160,
             "replies": 42,
-            "id": 710439
-      }
-    ]
-})
+            "id": 710439,
+      },
+    ],
+});
 
 const replies = () => ({
   code: 'ok',
@@ -168,7 +168,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/avatar/4271/6be2/154020_mini.png?m=1597919658",
             "location": "Nanjing",
             "btc": "",
-            "id": 154020
+            "id": 154020,
         },
         "created": 1601018418,
         "topic_id": 710439,
@@ -176,7 +176,7 @@ const replies = () => ({
         "content_rendered": "jQuery",
         "last_modified": 1601018418,
         "member_id": 154020,
-        "id": 9551389
+        "id": 9551389,
     },
     {
         "member": {
@@ -194,7 +194,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/gravatar/e8de98ac7f8fbe70f92db8a15e81ac88?s=24&d=retro",
             "location": null,
             "btc": null,
-            "id": 333361
+            "id": 333361,
         },
         "created": 1601018434,
         "topic_id": 710439,
@@ -202,7 +202,7 @@ const replies = () => ({
         "content_rendered": "去看看 guns 吧.. 有分离有不分离..",
         "last_modified": 1601018434,
         "member_id": 333361,
-        "id": 9551392
+        "id": 9551392,
     },
     {
         "member": {
@@ -220,7 +220,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/gravatar/68e5310c41c190e0c37465d6965165b2?s=24&d=retro",
             "location": null,
             "btc": null,
-            "id": 205734
+            "id": 205734,
         },
         "created": 1601018448,
         "topic_id": 710439,
@@ -228,7 +228,7 @@ const replies = () => ({
         "content_rendered": "H+",
         "last_modified": 1601018448,
         "member_id": 205734,
-        "id": 9551394
+        "id": 9551394,
     },
     {
         "member": {
@@ -246,7 +246,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/avatar/370a/92dd/164233_mini.png?m=1545791053",
             "location": "青岛",
             "btc": "",
-            "id": 164233
+            "id": 164233,
         },
         "created": 1601018571,
         "topic_id": 710439,
@@ -254,7 +254,7 @@ const replies = () => ({
         "content_rendered": "jQuery EasyUI",
         "last_modified": 1601018571,
         "member_id": 164233,
-        "id": 9551410
+        "id": 9551410,
     },
     {
         "member": {
@@ -272,7 +272,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/gravatar/4ae54b4c97bcdc381de7360eaabd956a?s=24&d=retro",
             "location": "",
             "btc": null,
-            "id": 418748
+            "id": 418748,
         },
         "created": 1601018869,
         "topic_id": 710439,
@@ -280,7 +280,7 @@ const replies = () => ({
         "content_rendered": "thymeleaf 就够用了吧，画个页面直接 thymeleaf 渲染",
         "last_modified": 1601018869,
         "member_id": 418748,
-        "id": 9551443
+        "id": 9551443,
     },
     {
         "member": {
@@ -298,7 +298,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/avatar/188f/d109/338173_mini.png?m=1583073329",
             "location": "",
             "btc": "",
-            "id": 338173
+            "id": 338173,
         },
         "created": 1601018870,
         "topic_id": 710439,
@@ -306,7 +306,7 @@ const replies = () => ({
         "content_rendered": "springboot 中可以放前端资源不用单独部署。还可以配置成打包的时候把前端部分分离出来，和 jar 包同目录，直接跑起来就能访问，方便前端资源更新",
         "last_modified": 1601018870,
         "member_id": 338173,
-        "id": 9551444
+        "id": 9551444,
     },
     {
         "member": {
@@ -324,7 +324,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/avatar/5fad/1233/367295_mini.png?m=1544065339",
             "location": "",
             "btc": "",
-            "id": 367295
+            "id": 367295,
         },
         "created": 1601019383,
         "topic_id": 710439,
@@ -332,7 +332,7 @@ const replies = () => ({
         "content_rendered": "@<a href=\"/member/lipcao\">lipcao</a> thymeleaf 好像没组件",
         "last_modified": 1601019383,
         "member_id": 367295,
-        "id": 9551505
+        "id": 9551505,
     },
     {
         "member": {
@@ -350,7 +350,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/avatar/327d/9878/468230_mini.png?m=1587780935",
             "location": "",
             "btc": "",
-            "id": 468230
+            "id": 468230,
         },
         "created": 1601020054,
         "topic_id": 710439,
@@ -358,7 +358,7 @@ const replies = () => ({
         "content_rendered": "@<a href=\"/member/gransh\">gransh</a> <br />她的 th:fragment 算不?",
         "last_modified": 1601020054,
         "member_id": 468230,
-        "id": 9551576
+        "id": 9551576,
     },
     {
         "member": {
@@ -376,7 +376,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/avatar/9197/a649/50801_mini.png?m=1577426833",
             "location": "",
             "btc": "",
-            "id": 50801
+            "id": 50801,
         },
         "created": 1601020567,
         "topic_id": 710439,
@@ -384,7 +384,7 @@ const replies = () => ({
         "content_rendered": "不想打包，直接引用 ui 库的 js 也可以的呀",
         "last_modified": 1601020567,
         "member_id": 50801,
-        "id": 9551622
+        "id": 9551622,
     },
     {
         "member": {
@@ -402,7 +402,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/gravatar/83e0b9b1bd618ee08954bf252fe74577?s=24&d=retro",
             "location": null,
             "btc": null,
-            "id": 272247
+            "id": 272247,
         },
         "created": 1601020934,
         "topic_id": 710439,
@@ -410,7 +410,7 @@ const replies = () => ({
         "content_rendered": "前端 npm 打包后就是传统的静态资源，放在 Java 的资源目录里就可以了。jQuery 除非你急着赶作业，不然还是了解下主流前端更好。",
         "last_modified": 1601020934,
         "member_id": 272247,
-        "id": 9551686
+        "id": 9551686,
     },
     {
         "member": {
@@ -428,7 +428,7 @@ const replies = () => ({
             "avatar_mini": "https://cdn.v2ex.com/avatar/15a7/218d/99608_mini.png?m=1480142459",
             "location": null,
             "btc": null,
-            "id": 99608
+            "id": 99608,
         },
         "created": 1601021254,
         "topic_id": 710439,
@@ -436,7 +436,7 @@ const replies = () => ({
         "content_rendered": "thymeleaf 我记得好难用的，写完第二天就看不懂了。<br />用 freemarker 。",
         "last_modified": 1601021254,
         "member_id": 99608,
-        "id": 9551716
-    }
-]})
+        "id": 9551716,
+    },
+]});
 export { produceNewsData, toDayHot, tabTopicList, topicData , replies};

@@ -41,6 +41,6 @@ export default new Router({
       component: lazyLoad('layout'),
       children: [...v2Routers, ...gankRouters],
       redirect: { path: '/v2/tab/hot' },
-    }
-  ]
+    },
+  ],
 });

@@ -1,22 +1,22 @@
 import Mock from 'mockjs';
 // 获取 mock.Random 对象
-const MRandom = Mock.Random
+const MRandom = Mock.Random;
 // mock数据，包括标题title、内容desc, 创建时间createdAt
 const images = [
   "https://ae01.alicdn.com/kf/U762ce81ae5ad48b798f241c2d91c36d3A.jpg_300x300xz.jpg",
   "https://ae01.alicdn.com/kf/U6624600595ca4e759992b895a9445cd5Q.jpg_300x300xz.jpg",
   "https://ae01.alicdn.com/kf/U72d9042334064e53bdd456fcc0414d3eC.jpg_300x300xz.jpg",
   "https://gank.io/images/131bc9a6661e46689af16b96a396facc/crop/1/w/300",
-]
+];
 const type = [
   'Android',
   'iOS',
   'Flutter',
   '前端',
   'APP',
-]
+];
 const GanHuo = function () {
-  let GanHuoList = []
+  let GanHuoList = [];
   for (let i = 0; i < 5; i++) {
     let obj = {
       _id: MRandom.guid(),
@@ -32,11 +32,11 @@ const GanHuo = function () {
       url: MRandom.url(),
       views: MRandom.integer(0, 100),
       title: MRandom.ctitle(), //  Random.ctitle( min, max ) 随机产生一个中文标题，长度默认在3-7之间
-    }
-    GanHuoList.push(obj)
+    };
+    GanHuoList.push(obj);
   }
   return { data: GanHuoList, status: 100, page: 1, page_count: 246, total_counts: 2453 };
-}
+};
 
 const girlsImages = [
   "http://gank.io/images/f4f6d68bf30147e1bdd4ddbc6ad7c2a2", 
@@ -48,10 +48,10 @@ const girlsImages = [
   "http://gank.io/images/25d3e3db2c1248bb917c09dc4f50a46f", 
   "http://gank.io/images/19c99c447e0a40a6b3ff89951957cfb1", 
   "http://gank.io/images/f0c192e3e335400db8a709a07a891b2e", 
-  "http://gank.io/images/bdb35e4b3c0045c799cc7a494a3db3e0"
-]
+  "http://gank.io/images/bdb35e4b3c0045c799cc7a494a3db3e0",
+];
 const Girls = () => {
-  let GirlList = []
+  let GirlList = [];
   for (let i = 0; i < 4; i++) {
     let obj = {
       author: MRandom.cname(),
@@ -67,9 +67,9 @@ const Girls = () => {
       views: MRandom.integer(0, 100),
       _id: MRandom.guid(),
       url: MRandom.url(),
-    }
-    GirlList.push(obj)
+    };
+    GirlList.push(obj);
   }
   return { data: GirlList, status: 100, page: 1, page_count: 246, total_counts: 2453 };
-}
+};
 export { GanHuo, Girls };

@@ -21,8 +21,8 @@ export const debounce = (fn, wait, immidiate) => {
                 fn.apply(this, arguments);
             }, wait);
         }
-    }   
-}
+    };   
+};
 
 /**
  * 函数节流 定时器版
@@ -39,8 +39,8 @@ export const throttle_timeout = (fn, wait, options) => {
                 timeout = null;
             }, wait);
         }
-    }
-}
+    };
+};
 
 /**
  * 函数节流 时间戳版
@@ -54,7 +54,7 @@ export const throttle_timestamp = (fn, wait, options) => {
         previous = new Date().getTime();
         timeout = null;
         fn.apply(context, args);
-    }
+    };
     return function() {
         context = this;
         args = arguments;
@@ -70,17 +70,17 @@ export const throttle_timestamp = (fn, wait, options) => {
         } else if (!timeout){
             timeout = setTimeout(later, remaining);
         }
-    }
-}
+    };
+};
 export const optionalChaining = (obj, ...rest) => {
     let temp = obj;
     rest.forEach(key => temp = temp?.[key]);
     return temp;
-}
+};
 
 export default {
     optionalChaining,
     debounce,
     throttle_timeout,
     throttle_timestamp,
-}
+};

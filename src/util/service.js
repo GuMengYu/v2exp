@@ -32,7 +32,7 @@ const mockTest = () => xhr.get('/mock/test');
  */
 const getTopics = condition => {
     return xhr.post('/getTopics', condition);
-}
+};
 export {
     getTabInfo,
     getToDayHot,
@@ -42,4 +42,4 @@ export {
     getTopicReply,
     getSiteStatus,
     mockTest,
-}
+};

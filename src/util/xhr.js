@@ -5,7 +5,7 @@ import localConfig from '../../config/local.config';
 const createRequest = (baseURL, successCode = 'ok') => {
   const service = axios.create({
     baseURL,
-    timeout: 15000 // request timeout
+    timeout: 15000, // request timeout
   });
 
   // request interceptor
@@ -37,7 +37,7 @@ const createRequest = (baseURL, successCode = 'ok') => {
     }
   );
   return service;
-}
+};
 
 export const gankXhr = createRequest('https://gank.io/api/v2');
 export const v2Xhr = createRequest(`${localConfig.protocal}//${localConfig.url}:${localConfig.port}`);
