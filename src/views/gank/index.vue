@@ -3,6 +3,7 @@
     <v-row>
       <v-col lg="8" tag="main">
         <v-carousel
+          height="400"
           cycle
           delimiter-icon="mdi-minus"
           hide-delimiter-background
@@ -81,7 +82,7 @@ export default {
       {
         title: "妹子",
         icon: "mdi-face-woman-shimmer",
-        val: "girl",
+        val: "Girl",
         color: "pink",
       },
     ],
@@ -99,16 +100,16 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.container {
-  .v-carousel {
-    @media (max-width: 1736px) {
-      width: 740px;
-      height: 370px !important;
-    }
-    @media (max-width: 1260px) {
-      width: 620px;
-      height: 310px !important;
-    }
-  }
-}
+// .container {
+//   .v-carousel {
+//     @media (max-width: 1736px) {
+//       width: 740px;
+//       height: 370px !important;
+//     }
+//     @media (max-width: 1260px) {
+//       width: 620px;
+//       height: 310px !important;
+//     }
+//   }
+// }
 </style>

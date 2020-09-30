@@ -24,4 +24,27 @@ const GanHuo = function () {
   }
   return {data: GanHuoList, status: 100, page: 1, page_count: 246, total_counts: 2453};
 }
-export { GanHuo };
+
+const Girls = () => {
+  let GirlList = []
+  for (let i = 0; i < 4; i++) {
+    let obj = {
+      author: MRandom.cname(),
+      category: "Girl",
+      createdAt: MRandom.datetime(),
+      desc: "与其安慰自己平凡可贵，不如拼尽全力活得漂亮。​​​​",
+      images: ["http://gank.io/images/f4f6d68bf30147e1bdd4ddbc6ad7c2a2"],
+      likeCounts: MRandom.integer(0, 100),
+      publishedAt: MRandom.datetime(),
+      stars: MRandom.integer(0, 100),
+      title: "第96期",
+      type: "Girl",
+      views: MRandom.integer(0, 100),
+      _id: MRandom.guid(),
+      url: MRandom.url(),
+    }
+    GirlList.push(obj)
+  }
+  return {data: GirlList, status: 100, page: 1, page_count: 246, total_counts: 2453};
+}
+export { GanHuo , Girls};

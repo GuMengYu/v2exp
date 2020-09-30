@@ -50,13 +50,16 @@
     <main class="content" :class="{open : drawer}">
       <router-view/>
     </main>
+    <my-footer />
   </main>
 </template>
 
 <script>
+import footer from './footer';
 
 export default {
     name: 'layout',
+    components: {myFooter: footer},
     data: () => ({
         tabs: [
         { title: '技术', icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
@@ -69,11 +72,6 @@ export default {
         { title: '问与答', icon: 'mdi-help-box', val: 'qna', color: '#03a9f4' },
         { title: '最热', icon: 'mdi-trending-up', val: 'hot', color: '#e53935' },
         { title: '干货-gank.io', icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' }
-        // { title: '干货-IOS', icon: 'mdi-apple-ios', val: 'gank_ios', color: '#f95e74' },
-        // { title: '干货-Android', icon: 'mdi-android', val: 'gank_android', color: '#34a853' },
-        // { title: '干货-前端', icon: 'mdi-angular', val: 'gank_fe', color: '#ea4335' },
-        // { title: '干货-妹子', icon: 'mdi-face-woman-shimmer', val: 'gank_girl', color: 'pink' },
-        // { title: '干货-休息视频', icon: 'mdi-video-vintage', val: 'gank_video', color: '#ff9a00' },
         ],
         drawer: true,
     }),
