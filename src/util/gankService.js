@@ -21,4 +21,7 @@ export default {
             tempLink.click();
             document.body.removeChild(tempLink);
     },
+
+    // 随机Api
+    randomGet: params => xhr.get(`/random/category/${params.category}/type/${params.type}/count/${params.count}`),
 };

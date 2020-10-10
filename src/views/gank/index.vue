@@ -13,6 +13,7 @@
             v-for="(slide, i) in slides"
             :key="i"
             :src="slide.image"
+            lazy-src="@/assets/girl.jpg"
           >
           </v-carousel-item>
         </v-carousel>

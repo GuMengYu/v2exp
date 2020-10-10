@@ -1,51 +1,56 @@
 <template>
-  <v-card>
+  <v-card outlined>
     <v-img
       max-height="400"
-      :aspect-ratio="2 / 3"
-      src="https://ae01.alicdn.com/kf/U23adfcbb49e94b329cca4240ffd2a360y.jpg"
+      :aspect-ratio="1/1"
+      lazy-src="@/assets/girl.jpg"
+      :src="$$(girl, 'images', '0')"
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
     >
       <div class="media-overlay pa-8 d-flex flex-column justify-space-between">
-        <div class="d-flex flex-column white--text">
-          <span class="d-block text-lg-h3">{{now.day}}</span>
-          <time class="d-block text-caption">{{now.month}}月, {{now.year}}</time>
-        </div>
-        <div class="media-overlay-footer white--text">
-          <div class="body">
+        <header class="d-flex flex-column">
+          <span class="d-block text-lg-h3">{{ day }}</span>
+          <time class="d-block text-caption"
+            >{{ monthYear }}</time
+          >
+        </header>
+        <footer class="media-overlay-footer">
+          <div class="ml-1">
             <a
               href="/post/5e512d8107d934eade79461c"
               target="_blank"
-              class="body-title text-body-1 white--text"
-              >妹子图第5期</a
+              class="body-title text-body-1"
+              >妹子图{{ girl.title }}</a
             >
           </div>
-          <div class="footer mt-2">
+          <div class="mt-2">
             <div class="d-flex justify-space-between">
               <v-chip small color="teal" text-color="white">
-                <v-avatar left>
-                  <v-icon>mdi-checkbox-marked-circle</v-icon>
-                </v-avatar>
-                Random Girl
+                随机发张妹纸
               </v-chip>
               <div>
                 <a
                   href="javascript:"
                   data-id="1"
-                  class="refresh-random-post white--text"
-                  :click="handelRandom"
-                  ><v-icon color="white">mdi-refresh</v-icon></a
+                  class="refresh-random-post"
+                  @click="handelRandom"
+                  ><v-icon color="white" :class="{ loading: isLoading }"
+                    >mdi-refresh</v-icon
+                  ></a
                 >
               </div>
             </div>
           </div>
-        </div>
+        </footer>
       </div>
     </v-img>
   </v-card>
 </template>
 
 <script>
+import gankService from "@/util/gankService";
+import dayjs from 'dayjs';
+
 export default {
   data: () => {
     const now = new Date();
@@ -55,20 +60,68 @@ export default {
         month: now.getMonth(),
         year: now.getFullYear(),
       },
+      isLoading: false,
+      girl: {},
     };
   },
+  created() {
+      this.handelRandom();
+  },
   methods: {
-    handelRandom() {},
+    handelRandom() {
+      this.isLoading = true;
+      gankService
+        .randomGet({ category: "Girl", type: "Girl", count: 1 })
+        .then(([girl = {}]) => {
+          this.girl = girl;
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    },
+    randomGril() {},
+  },
+  computed: {
+      monthYear() {
+          return dayjs(this.girl?.createdAt).format('MM, YYYY')
+      },
+      day() {
+          return dayjs(this.girl?.createdAt).format('DD')
+      }
   },
 };
 </script>
 
 <style lang="less" scoped>
 .media-overlay {
+  color: #fff;
   height: 100%;
   a:link,
   a:visited {
     text-decoration: none;
+    color: #fff;
+  }
+  footer {
+    .loading {
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
