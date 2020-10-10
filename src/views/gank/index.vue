@@ -28,17 +28,20 @@
         </v-tab-item>
         </v-tabs>
       </v-col>
-      <v-col lg="4" tag="aside"> </v-col>
+      <v-col lg="4" tag="aside">
+        <random-girl></random-girl>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
 import gankTab from './tab/index';
+import RandomGirl from './randomGirl';
 import gankService from '@/util/gankService';
 
 export default {
-  components: {gankTab},
+  components: {gankTab, RandomGirl},
   props: {},
   data: () => ({
     slides: [],
