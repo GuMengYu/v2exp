@@ -2,6 +2,7 @@
 
 ## Preview
 ![首页](/docs/1.png "首页")
+![干货](/docs/2.png "干货")
 ## Project setup
 ```
 yarn install
