@@ -50,6 +50,7 @@ import GankTab from "./tab/index";
 import RandomGirl from "./randomGirl";
 import HotList from "@/components/hotList";
 import gankService from "@/util/gankService";
+import dayjs from "dayjs";
 
 export default {
   components: { GankTab, RandomGirl, HotList },
@@ -102,7 +103,6 @@ export default {
     ],
     loading: false,
     article: [],
-    girl: [],
     ganhuo: [],
   }),
   methods: {},
@@ -112,12 +112,18 @@ export default {
       gankService.getBanner(),
       gankService.hot("GanHuo"),
       gankService.hot("Article"),
-      gankService.hot("Girl"),
     ])
-      .then(([banners, ganhuo, article, girl]) => {
+      .then(([banners, ganhuo, article]) => {
+        ganhuo.forEach((i) => {
+          i.img = i?.images?.[0];
+          i.datetime = dayjs(i.publishedAt).fromNow();
+        });
+        article.forEach((i) => {
+          i.datetime = dayjs(i.publishedAt).fromNow()
+          i.img = i?.images?.[0];
+        });
         this.slides = banners;
         this.ganhuo = ganhuo;
-        this.girl = girl;
         this.article = article;
       })
       .finally(() => {
