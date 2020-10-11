@@ -35,7 +35,6 @@ export default {
 
         fetch().then(res => {
             this.list = res;
-            console.log(this.list);
         })
     },
     methods: {

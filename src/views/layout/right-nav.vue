@@ -1,16 +1,18 @@
 <template>
     <div class="right-nav">
-        <tags-card title="热议主题" :data="nodeData.hotTopics" :loading="loading" type="topic"/>
-        <tags-card title="热门节点" :data="nodeData.hotNodes" :loading="loading"/>
-        <tags-card title="新增节点" :data="nodeData.newNodes" :loading="loading"/>
+        <hot-list title="热议主题" :data="nodeData.hotTopics" :loading="loading"/>
+        <tags-cloud title="热门节点" :data="nodeData.hotNodes" :loading="loading"/>
+        <tags-cloud title="新增节点" :data="nodeData.newNodes" :loading="loading"/>
     </div>
 </template>
 <script>
-import TagsCard from '@/components/tagsCard';
+import TagsCloud from '@/components/tagsCloud';
+import HotList from '@/components/hotList';
+
 import {getToDayHot} from '@/util/service';
 
 export default {
-    components: {TagsCard},
+    components: {HotList, TagsCloud},
     data:() => ({
         nodeData: {},
         loading: false,

@@ -24,4 +24,12 @@ export default {
 
     // 随机Api
     randomGet: params => xhr.get(`/random/category/${params.category}/type/${params.type}/count/${params.count}`),
+
+    /***
+     * 本周热门
+     * hotType: views（浏览数） | likes（点赞数） | comments（评论数）
+     * category 可接受参数 Article | GanHuo | Girl
+     * count: [1, 20]
+     **/ 
+    hot: category => xhr.get(`/hot/views/category/${category}/count/5`),
 };

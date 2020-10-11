@@ -19,36 +19,46 @@
         </v-carousel>
         <v-tabs>
           <v-tab v-for="tab in tabs" :key="tab.id">
-            <v-icon :color="tab.color" v-text="tab.icon"/>{{ tab.title }}
+            <v-icon :color="tab.color" v-text="tab.icon" />{{ tab.title }}
           </v-tab>
-          <v-tab-item
-            v-for="tab in tabs"
-            :key="tab.id"
-          >
+          <v-tab-item v-for="tab in tabs" :key="tab.id">
             <gank-tab :tab-id="tab.id"></gank-tab>
-        </v-tab-item>
+          </v-tab-item>
         </v-tabs>
       </v-col>
       <v-col lg="4" tag="aside">
-        <random-girl></random-girl>
+        <random-girl class="mb-6" />
+        <hot-list
+          class="mb-6"
+          title="本周热门文章"
+          :data="article"
+          :loading="loading"
+        />
+        <hot-list
+          class="mb-6"
+          title="本周热门干货"
+          :data="ganhuo"
+          :loading="loading"
+        />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import gankTab from './tab/index';
-import RandomGirl from './randomGirl';
-import gankService from '@/util/gankService';
+import GankTab from "./tab/index";
+import RandomGirl from "./randomGirl";
+import HotList from "@/components/hotList";
+import gankService from "@/util/gankService";
 
 export default {
-  components: {gankTab, RandomGirl},
+  components: { GankTab, RandomGirl, HotList },
   props: {},
   data: () => ({
     slides: [],
     tabs: [
       {
-        title: 'iOS',
+        title: "iOS",
         icon: "mdi-apple-ios",
         id: "iOS",
         color: "#f95e74",
@@ -90,30 +100,31 @@ export default {
         color: "pink",
       },
     ],
+    loading: false,
+    article: [],
+    girl: [],
+    ganhuo: [],
   }),
-  methods: {
-
-  },
+  methods: {},
   created() {
-    gankService.getBanner().then(banners => {
-      this.slides = banners;
-    }).finally(() => {
-      console.log('已加载');
-    });
-  }
+    this.loading = true;
+    Promise.all([
+      gankService.getBanner(),
+      gankService.hot("GanHuo"),
+      gankService.hot("Article"),
+      gankService.hot("Girl"),
+    ])
+      .then(([banners, ganhuo, article, girl]) => {
+        this.slides = banners;
+        this.ganhuo = ganhuo;
+        this.girl = girl;
+        this.article = article;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  },
 };
 </script>
 <style lang="less" scoped>
-// .container {
-//   .v-carousel {
-//     @media (max-width: 1736px) {
-//       width: 740px;
-//       height: 370px !important;
-//     }
-//     @media (max-width: 1260px) {
-//       width: 620px;
-//       height: 310px !important;
-//     }
-//   }
-// }
 </style>
