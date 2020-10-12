@@ -20,7 +20,7 @@
           </template>
         
       </div>
-      <v-list dense v-else-if="type==='list-item-avatar'" class="list-content">
+      <v-list dense v-else-if="type==='list-item-avatar'" class="list-content list-item-avatar">
         <template v-for="item in data">
           <v-list-item @click="go(item.id)" :key="item.id">
             <v-list-item-avatar size="30">
@@ -32,7 +32,7 @@
           </v-list-item>
         </template>
       </v-list>
-      <v-list dense v-else class="list-content">
+      <v-list dense v-else class="list-content list-item-image">
         <template v-for="item in data">
           <v-list-item @click="go(item.id)" :key="item.id">
             <v-img :src="item.img" height="66" max-width="91"></v-img>
@@ -101,11 +101,13 @@ export default {
   .list-content {
     background: transparent;
   }
-  .v-image {
-      margin-right: 10px;
-  }
-  .v-list-item {
-    margin: 5px 0;
+  .list-item-image {
+    .v-list-item {
+      padding: 10px 16px;
+      .v-image {
+        margin-right: 15px;
+      }
+   }
   }
 }
 </style>
