@@ -119,7 +119,7 @@ export default {
           i.datetime = dayjs(i.publishedAt).fromNow();
         });
         article.forEach((i) => {
-          i.datetime = dayjs(i.publishedAt).fromNow()
+          i.datetime = dayjs(i.publishedAt).fromNow();
           i.img = i?.images?.[0];
         });
         this.slides = banners;

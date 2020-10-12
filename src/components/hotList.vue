@@ -6,16 +6,14 @@
       <div class="skeleton-loading" v-if="loading">
           <template v-if="type === 'list-item-avatar'">
             <v-skeleton-loader
-            v-for="n in 5"
-            :key="n"
-            :type="type"
+            :type="`${type}@3`"
             class="max-auto skeleton-loading-item"
             ></v-skeleton-loader>
           </template>
           <template v-else>
            <v-boilerplate
             :tile="true"
-            type="list-item-avatar-two-line"
+            type="list-item-avatar-two-line@3"
           ></v-boilerplate>
           </template>
         
@@ -35,7 +33,7 @@
       <v-list dense v-else class="list-content list-item-image">
         <template v-for="item in data">
           <v-list-item @click="go(item.id)" :key="item.id">
-            <v-img :src="item.img" height="66" max-width="91"></v-img>
+            <v-img :src="item.img" height="66" max-width="91" lazy-src="@/assets/girl.jpg"></v-img>
             <v-list-item-content>
               <v-list-item-title v-text="item.title" />
               <v-list-item-subtitle v-text="item.datetime" />
@@ -60,7 +58,6 @@ export default {
             ...data,
             props: {
               boilerplate: false,
-              elevation: 2,
               ...props,
             },
           }, children)
@@ -77,7 +74,10 @@ export default {
       type: Array,
       default: () => [],
     },
-    loading: false,
+    loading: {
+        type: Boolean,
+        defalut: true
+    },
   },
   methods: {
     go(val) {
@@ -108,6 +108,14 @@ export default {
         margin-right: 15px;
       }
    }
+  }
+}
+.skeleton-loading {
+  .v-skeleton-loader {
+    margin: 10px 16px;
+    > div {
+      background: transparent !important;
+    }
   }
 }
 </style>

@@ -1,9 +1,12 @@
 <template>
- <section class="list-home">
-     <article v-for="(o, i) in list" :key="i" class="list-item">
+ <article class="list-home">
+     <v-skeleton-loader type="list-item-avatar-three-line@3" :tile="true" v-if="loading"/>
+     <template v-else>
+        <div v-for="(o, i) in list" :key="i" class="list-item">
         <tab-item :data="o"/>
-     </article>
- </section>
+        </div>
+     </template>
+ </article>
 </template>
 
 <script>
@@ -32,13 +35,15 @@ export default {
         const fetch = this.tabId === 'Girl' 
         ? gankService.gankGirls.bind(0, params) 
         : gankService.ganHuoData.bind(0, params);
-
         fetch().then(res => {
             this.list = res;
-        })
+        });
     },
     methods: {
     },
+    computed: {
+        loading: vm => !vm.list?.length,
+    }
 }
 </script>
 
