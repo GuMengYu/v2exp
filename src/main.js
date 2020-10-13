@@ -3,7 +3,12 @@ import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
 import plugins from './plugins';
-require('./mock/index');
+import './mock/index';
+import filters from './filters';
+
+Object.entries(filters).map((key, fn) => {
+  Vue.filter(key, fn);
+});
 
 Vue.use(plugins);
 Vue.config.productionTip = false;
