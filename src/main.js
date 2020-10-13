@@ -3,11 +3,9 @@ import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
 import plugins from './plugins';
-import {optionalChaining} from '@/util/fn';
 require('./mock/index');
 
 Vue.use(plugins);
-Vue.prototype.$$ = optionalChaining;
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
