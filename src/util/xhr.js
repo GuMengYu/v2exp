@@ -18,7 +18,7 @@ const createRequest = (baseURL, successCode = 'ok') => {
       // Do something with request error
       console.log(error); // for debug
       Promise.reject(error);
-    }
+    },
   );
 
   // respone interceptor
@@ -34,7 +34,7 @@ const createRequest = (baseURL, successCode = 'ok') => {
     error => {
       console.log('err' + error); // for debug
       return Promise.reject(error);
-    }
+    },
   );
   return service;
 };

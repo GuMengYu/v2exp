@@ -1,7 +1,22 @@
 {
     "rules": {
         "comma-dangle":["error", "always-multiline"],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "no-alert": "error"
     },
-    "parser": "babel-eslint"
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/recommended"
+    ],
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "parser": "babel-eslint"
+    },
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "browser": true,
+        "es6": true
+    }
 }

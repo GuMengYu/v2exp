@@ -10,9 +10,9 @@
       <div class="media-overlay pa-8 d-flex flex-column justify-space-between">
         <header class="d-flex flex-column">
           <span class="d-block text-lg-h3">{{ day }}</span>
-          <time class="d-block text-caption"
-            >{{ monthYear }}</time
-          >
+          <time
+            class="d-block text-caption"
+          >{{ monthYear }}</time>
         </header>
         <footer class="media-overlay-footer">
           <div class="ml-1">
@@ -20,12 +20,15 @@
               href="/post/5e512d8107d934eade79461c"
               target="_blank"
               class="body-title text-body-1"
-              >妹子图{{ girl.title }}</a
-            >
+            >妹子图{{ girl.title }}</a>
           </div>
           <div class="mt-2">
             <div class="d-flex justify-space-between">
-              <v-chip small color="teal" text-color="white">
+              <v-chip
+                small
+                color="teal"
+                text-color="white"
+              >
                 随机发张妹纸
               </v-chip>
               <div>
@@ -34,10 +37,10 @@
                   data-id="1"
                   class="refresh-random-post"
                   @click="handelRandom"
-                  ><v-icon color="white" :class="{ loading: isLoading }"
-                    >mdi-refresh</v-icon
-                  ></a
-                >
+                ><v-icon
+                  color="white"
+                  :class="{ loading: isLoading }"
+                >mdi-refresh</v-icon></a>
               </div>
             </div>
           </div>
@@ -48,7 +51,7 @@
 </template>
 
 <script>
-import gankService from "@/util/gankService";
+import gankService from '@/util/gankService';
 
 export default {
   data: () => {
@@ -63,6 +66,14 @@ export default {
       girl: {},
     };
   },
+  computed: {
+      monthYear() {
+          return this.$dayjs(this.girl?.createdAt).format('MM, YYYY');
+      },
+      day() {
+          return this.$dayjs(this.girl?.createdAt).format('DD');
+      },
+  },
   created() {
       this.handelRandom();
   },
@@ -70,7 +81,7 @@ export default {
     handelRandom() {
       this.isLoading = true;
       gankService
-        .randomGet({ category: "Girl", type: "Girl", count: 1 })
+        .randomGet({ category: 'Girl', type: 'Girl', count: 1 })
         .then(([girl = {}]) => {
           this.girl = girl;
         })
@@ -79,14 +90,6 @@ export default {
         });
     },
     randomGril() {},
-  },
-  computed: {
-      monthYear() {
-          return this.$dayjs(this.girl?.createdAt).format('MM, YYYY')
-      },
-      day() {
-          return this.$dayjs(this.girl?.createdAt).format('DD')
-      }
   },
 };
 </script>

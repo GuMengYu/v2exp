@@ -4,7 +4,7 @@ import { v2Xhr as xhr } from './xhr';
 const getTabInfo = tabId => xhr.get(`/getTabInfo?tab=${tabId}`);
 
 //获取首页右侧节点，热门主题
-const getToDayHot = () => xhr.get(`/getToDayHot`);
+const getToDayHot = () => xhr.get('/getToDayHot');
 
 /**
  * 获取主题详细信息

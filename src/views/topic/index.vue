@@ -1,43 +1,67 @@
 <template>
-<section>
-    <v-breadcrumbs :items="breadcrumbs" :large="true" class="topic-breadcrumbs">
-        <template v-slot:divider><v-icon>mdi-forward</v-icon></template>
+  <section>
+    <v-breadcrumbs
+      :items="breadcrumbs"
+      :large="true"
+      class="topic-breadcrumbs"
+    >
+      <template v-slot:divider>
+        <v-icon>mdi-forward</v-icon>
+      </template>
     </v-breadcrumbs>
     <v-card :outlined="true">
-        <div class="topic-header">
-            <div>
-                <h2 class="topic-title">{{topic.title}}</h2>
-                <span class="topic-sub-title">{{topic.last_reply_by}} · {{topic.last_touched}} · {{topic.replies}}次点击</span>
-            </div>
-            <v-avatar size="70"><v-img :src="$$(topic, 'member', 'avatar_large')" lazy-src="@/assets/man.png"></v-img></v-avatar>
+      <div class="topic-header">
+        <div>
+          <h2 class="topic-title">
+            {{ topic.title }}
+          </h2>
+          <span class="topic-sub-title">{{ topic.last_reply_by }} · {{ topic.last_touched }} · {{ topic.replies }}次点击</span>
         </div>
-        <v-divider/>
-        <section class="topic-content" v-html="topic.content_rendered"/>
+        <v-avatar size="70">
+          <v-img
+            :src="$$(topic, 'member', 'avatar_large')"
+            lazy-src="@/assets/man.png"
+          />
+        </v-avatar>
+      </div>
+      <v-divider />
+      <!--eslint-disable vue/no-v-html -->
+      <section 
+        class="topic-content" 
+        v-html="topic.content_rendered"
+      />
     </v-card>
-    <v-card class="topic-reply-area" :outlined="true">
-        <reply-item v-for="o in replies" :key="o.id" :reply="o"/>
+    <v-card
+      class="topic-reply-area"
+      :outlined="true"
+    >
+      <reply-item
+        v-for="o in replies"
+        :key="o.id"
+        :reply="o"
+      />
     </v-card>
-</section>
+  </section>
 </template>
 <script>
 import {getTopicInfo, getTopicReply} from '@/util/service';
 import replyItem from './reply-item';
 
 export default {
-    name: 'topic',
+    name: 'Topic',
     components: {replyItem},
-    data: () =>({
-        topic: {},
-        breadcrumbs: [],
-        replies:[],
-    }),
-    computed: {},
     props: {
         id: {
             type: String,
             default: '',
         },
     },
+    data: () =>({
+        topic: {},
+        breadcrumbs: [],
+        replies:[],
+    }),
+    computed: {},
     watch: {
         id() {
             this.fetchData();
@@ -57,7 +81,7 @@ export default {
             this.replies  = res;
         });
     },
-}
+};
 </script>
 <style lang="less" scoped>
 .topic-breadcrumbs {

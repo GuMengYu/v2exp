@@ -1,10 +1,10 @@
 <template>
   <div>
     <template v-if="data.type === 'Girl'">
-     <card-image :data="data"></card-image>
+      <card-image :data="data" />
     </template>
     <template v-else>
-      <card-plian :data="data"></card-plian>
+      <card-plian :data="data" />
     </template>
   </div>
 </template>

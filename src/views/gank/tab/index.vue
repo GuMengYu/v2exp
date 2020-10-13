@@ -1,12 +1,20 @@
 <template>
- <article class="list-home">
-     <v-skeleton-loader type="list-item-avatar-three-line@3" :tile="true" v-if="loading"/>
-     <template v-else>
-        <div v-for="(o, i) in list" :key="i" class="list-item">
-        <tab-item :data="o"/>
-        </div>
-     </template>
- </article>
+  <article class="list-home">
+    <v-skeleton-loader
+      v-if="loading"
+      type="list-item-avatar-three-line@3"
+      :tile="true"
+    />
+    <template v-else>
+      <div
+        v-for="(o, i) in list"
+        :key="i"
+        class="list-item"
+      >
+        <tab-item :data="o" />
+      </div>
+    </template>
+  </article>
 </template>
 
 <script>
@@ -19,13 +27,16 @@ export default {
         tabId: {
             type: String,
             default: 'Girl',
-        }
+        },
     },
     data: () => ({
         page: 1,
         size: 10,
         list: [],
     }),
+    computed: {
+        loading: vm => !vm.list?.length,
+    },
     created() {
         const params = {
             type: this.tabId,
@@ -41,10 +52,7 @@ export default {
     },
     methods: {
     },
-    computed: {
-        loading: vm => !vm.list?.length,
-    }
-}
+};
 </script>
 
 <style lang="less" scoped>

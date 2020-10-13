@@ -9,7 +9,7 @@ const Message = function(options) {
     options = options || {};
     if (typeof options === 'string') {
       options = {
-        message: options
+        message: options,
       };
     }
     let id = 'message_' + seed++;
@@ -20,7 +20,7 @@ const Message = function(options) {
 
     instance = new SnackBarConstructor({
       vuetify: options.vuetify,
-      data: options
+      data: options,
     });
     instance.id = id;
     // if (isVNode(instance.message)) {
@@ -39,7 +39,7 @@ const Message = function(options) {
     Message[type] = options => {
       if (typeof options === 'string') {
         options = {
-          message: options
+          message: options,
         };
       }
       options.type = type;

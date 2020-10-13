@@ -5,7 +5,7 @@
  * @param {Boolean} immidiate : 是否立即执行
  */
 export const debounce = (fn, wait, immidiate) => {
-    let timeout, result;
+    let timeout;
     return function() {
         timeout && clearTimeout(timeout);
         if (immidiate) {
@@ -30,7 +30,7 @@ export const debounce = (fn, wait, immidiate) => {
  * @param {*} wait 
  * @param {*} options : {  }
  */
-export const throttle_timeout = (fn, wait, options) => {
+export const throttle_timeout = (fn, wait) => {
     let timeout;
     return function() {
         if (!timeout) {
@@ -48,7 +48,7 @@ export const throttle_timeout = (fn, wait, options) => {
  * @param {*} wait 
  * @param {*} options : {  }
  */
-export const throttle_timestamp = (fn, wait, options) => {
+export const throttle_timestamp = (fn, wait) => {
     let previous = 0, timeout, context, args;
     const later = () => {
         previous = new Date().getTime();

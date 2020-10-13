@@ -1,38 +1,54 @@
 <template>
-    <v-card
-        :flat="true"
-        :outlined="true"
-        color="#f8f9fa"
-    >
-        <v-card-title v-text="title"/>
-        <v-divider class="tagcard_devider"></v-divider>
-        <div class="card-content node-list">
-            <div class="skeleton-loading" v-if="loading">
-              <v-skeleton-loader type="chip" class="max-auto"></v-skeleton-loader>
-            </div>
-            <tag v-for="(node, index) in data" :options="node" :key="index" />  
-        </div>
-    </v-card>
+  <v-card
+    :flat="true"
+    :outlined="true"
+    color="#f8f9fa"
+  >
+    <v-card-title v-text="title" />
+    <v-divider class="tagcard_devider" />
+    <div class="card-content node-list">
+      <div
+        v-if="loading"
+        class="skeleton-loading"
+      >
+        <v-skeleton-loader
+          type="chip"
+          class="max-auto"
+        />
+      </div>
+      <tag
+        v-for="(node, index) in data"
+        :key="index"
+        :options="node"
+      />  
+    </div>
+  </v-card>
 </template>
 <script>
 import Tag from '@/components/tag';
 export default {
-    name: 'tags-card',
+    name: 'TagsCard',
     components: {Tag},
     props: {
-        title: '',
+        title: {
+            type: String,
+            default: '',
+        },
         data: {
             type: Array,
             default: () => ([]),
         },
-        loading: true,
+        loading: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {
         go() {
 
-        }
+        },
     },
-}
+};
 </script>
 <style lang="less" scoped>
 .tagcard_devider {

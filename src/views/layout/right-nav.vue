@@ -6,15 +6,23 @@
       :loading="loading"
       type="list-item-avatar"
     />
-    <tags-cloud title="热门节点" :data="nodeData.hotNodes" :loading="loading" />
-    <tags-cloud title="新增节点" :data="nodeData.newNodes" :loading="loading" />
+    <tags-cloud
+      title="热门节点"
+      :data="nodeData.hotNodes"
+      :loading="loading"
+    />
+    <tags-cloud
+      title="新增节点"
+      :data="nodeData.newNodes"
+      :loading="loading"
+    />
   </div>
 </template>
 <script>
-import TagsCloud from "@/components/tagsCloud";
-import HotList from "@/components/hotList";
+import TagsCloud from '@/components/tagsCloud';
+import HotList from '@/components/hotList';
 
-import { getToDayHot } from "@/util/service";
+import { getToDayHot } from '@/util/service';
 
 export default {
   components: { HotList, TagsCloud },

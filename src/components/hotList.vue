@@ -1,28 +1,40 @@
 <template>
-  <v-card :outlined="true" color="#f8f9fa">
+  <v-card
+    :outlined="true"
+    color="#f8f9fa"
+  >
     <v-card-title v-text="title" />
-    <v-divider class="card_devider"></v-divider>
+    <v-divider class="card_devider" />
     <div class="card-content list">
-      <div class="skeleton-loading" v-if="loading">
-          <template v-if="type === 'list-item-avatar'">
-            <v-skeleton-loader
+      <div
+        v-if="loading"
+        class="skeleton-loading"
+      >
+        <template v-if="type === 'list-item-avatar'">
+          <v-skeleton-loader
             :type="`${type}@3`"
             class="max-auto skeleton-loading-item"
-            ></v-skeleton-loader>
-          </template>
-          <template v-else>
-           <v-boilerplate
+          />
+        </template>
+        <template v-else>
+          <v-boilerplate
             :tile="true"
             type="list-item-avatar-two-line@3"
-          ></v-boilerplate>
-          </template>
-        
+          />
+        </template>
       </div>
-      <v-list dense v-else-if="type==='list-item-avatar'" class="list-content list-item-avatar">
+      <v-list
+        v-else-if="type==='list-item-avatar'"
+        dense
+        class="list-content list-item-avatar"
+      >
         <template v-for="item in data">
-          <v-list-item @click="go(item.id)" :key="item.id">
+          <v-list-item
+            :key="item.id"
+            @click="go(item.id)"
+          >
             <v-list-item-avatar size="30">
-              <v-img :src="item.img"></v-img>
+              <v-img :src="item.img" />
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title v-text="item.title" />
@@ -30,10 +42,22 @@
           </v-list-item>
         </template>
       </v-list>
-      <v-list dense v-else class="list-content list-item-image">
+      <v-list
+        v-else
+        dense
+        class="list-content list-item-image"
+      >
         <template v-for="item in data">
-          <v-list-item @click="go(item.id)" :key="item.id">
-            <v-img :src="item.img" height="66" max-width="91" lazy-src="@/assets/girl.jpg"></v-img>
+          <v-list-item
+            :key="item.id"
+            @click="go(item.id)"
+          >
+            <v-img
+              :src="item.img"
+              height="66"
+              max-width="91"
+              lazy-src="@/assets/girl.jpg"
+            />
             <v-list-item-content>
               <v-list-item-title v-text="item.title" />
               <v-list-item-subtitle v-text="item.datetime" />
@@ -46,7 +70,7 @@
 </template>
 <script>
 export default {
-  name: "hot-list",
+  name: 'HotList',
   inject: ['theme'],
     components: {
       // Create a new component that
@@ -60,15 +84,18 @@ export default {
               boilerplate: false,
               ...props,
             },
-          }, children)
+          }, children);
         },
       },
     },
   props: {
-    title: "",
+    title: {
+      type: String,
+      default: '',
+    },
     type: {
         type: String,
-        defalut: 'list-item-avatar'
+        default: 'list-item-avatar',
     },
     data: {
       type: Array,
@@ -76,7 +103,7 @@ export default {
     },
     loading: {
         type: Boolean,
-        defalut: true
+        default: true,
     },
   },
   methods: {

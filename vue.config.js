@@ -1,6 +1,6 @@
 const {port} = require('./config/local.config');
 module.exports = {
-  lintOnSave: false,
+  lintOnSave: true,
   configureWebpack: {
     devtool: 'source-map',
     plugins: [],
