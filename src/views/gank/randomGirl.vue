@@ -49,7 +49,6 @@
 
 <script>
 import gankService from "@/util/gankService";
-import dayjs from 'dayjs';
 
 export default {
   data: () => {
@@ -83,10 +82,10 @@ export default {
   },
   computed: {
       monthYear() {
-          return dayjs(this.girl?.createdAt).format('MM, YYYY')
+          return this.$dayjs(this.girl?.createdAt).format('MM, YYYY')
       },
       day() {
-          return dayjs(this.girl?.createdAt).format('DD')
+          return this.$dayjs(this.girl?.createdAt).format('DD')
       }
   },
 };

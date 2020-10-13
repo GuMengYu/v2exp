@@ -22,7 +22,6 @@
 <script>
 import {getTopicInfo, getTopicReply} from '@/util/service';
 import replyItem from './reply-item';
-import dayjs from 'dayjs';
 
 export default {
     name: 'topic',

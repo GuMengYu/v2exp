@@ -6,14 +6,6 @@ import plugins from './plugins';
 import {optionalChaining} from '@/util/fn';
 require('./mock/index');
 
-import dayjs from "dayjs";
-import 'dayjs/locale/zh-cn';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.extend(localizedFormat);
-dayjs.extend(relativeTime);
-dayjs.locale('zh-cn');
-
 Vue.use(plugins);
 Vue.prototype.$$ = optionalChaining;
 Vue.config.productionTip = false;
