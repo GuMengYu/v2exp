@@ -84,11 +84,12 @@
           nav 
           dense
         >
-          <v-list-item @click="() => {}">
-            <v-list-item-title>简体中文</v-list-item-title>
-          </v-list-item>
-          <v-list-item @click="() => {}">
-            <v-list-item-title>English</v-list-item-title>
+          <v-list-item
+            v-for="o in locales"
+            :key="o.val"
+            @click="changeLocale(o.val)"
+          >
+            <v-list-item-title v-text="o.name" />
           </v-list-item>
         </v-list>
       </v-menu>
@@ -109,24 +110,28 @@
 <script>
 import footer from './footer';
 
+const supportLocalMap = {
+  en: 'English',
+  zh: '简体中文',
+};
 export default {
     name: 'Layout',
     components: {myFooter: footer},
-    data: () => ({
+    data: function(){
+      return {
         tabs: [
-        { title: '技术', icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
-        { title: '创意', icon: 'mdi-thought-bubble', val: 'creative', color: '#66bb6a'},
-        { title: '好玩', icon: 'mdi-mushroom', val: 'play', color: '#ffa726' },
-        { title: 'Apple', icon: 'mdi-apple', val: 'apple', color: '#000000' },
-        { title: '酷工作', icon: 'mdi-briefcase', val: 'jobs', color: '#9c27b0' },
-        { title: '交易', icon: 'mdi-bank-transfer', val: 'deals', color: '#4db6ac' },
-        { title: '城市', icon: 'mdi-city', val: 'city', color: '#90a4ae' },
-        { title: '问与答', icon: 'mdi-help-box', val: 'qna', color: '#03a9f4' },
-        { title: '最热', icon: 'mdi-trending-up', val: 'hot', color: '#e53935' },
-        { title: '干货-gank.io', icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' },
-        ],
+          { title: this.$t('main.nav.tech'), icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
+          { title: this.$t('main.nav.creative'), icon: 'mdi-thought-bubble', val: 'creative', color: '#66bb6a'},
+          { title: this.$t('main.nav.play'), icon: 'mdi-mushroom', val: 'play', color: '#ffa726' },
+          { title: this.$t('main.nav.apple'), icon: 'mdi-apple', val: 'apple', color: '#000000' },
+          { title: this.$t('main.nav.jobs'), icon: 'mdi-briefcase', val: 'jobs', color: '#9c27b0' },
+          { title: this.$t('main.nav.deals'), icon: 'mdi-bank-transfer', val: 'deals', color: '#4db6ac' },
+          { title: this.$t('main.nav.city'), icon: 'mdi-city', val: 'city', color: '#90a4ae' },
+          { title: this.$t('main.nav.qna'), icon: 'mdi-help-box', val: 'qna', color: '#03a9f4' },
+          { title: this.$t('main.nav.hot'), icon: 'mdi-trending-up', val: 'hot', color: '#e53935' },
+          { title: this.$t('main.nav.gank'), icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' },
+          ],
         drawer: true,
-        cLocale: '简体中文',
         locales: [
           {
             name: '简体中文',
@@ -135,14 +140,25 @@ export default {
           {
             name: 'English',
             val: 'en',
-          }
+          },
+          {
+            name: '日本語',
+            val: 'ja',
+          },
+          {
+            name: '한국어',
+            val: 'ko',
+          },
         ],
-    }),
+      };
+    },
     computed: {
-      
+      cLocale() {
+        const cLocale = localStorage.getItem('locale');
+        return supportLocalMap[cLocale];
+      },
     },
     mounted() {
-        console.log(this.$vuetify.application);
     },
     methods: {
         toSub(id) {
@@ -150,6 +166,14 @@ export default {
               this.$router.push({path: '/gank'});
           } else {
               this.$router.push({path: `/v2/tab/${id}`});
+          }
+        },
+        changeLocale(locale) {
+          if(Object.keys(supportLocalMap).includes(locale)) {
+            localStorage.setItem('locale', locale);
+            location.reload();
+          } else {
+            this.$message({message: this.$t('common.not_support'), type: 'error'});
           }
         },
     },
