@@ -17,8 +17,9 @@ Vue.config.productionTip = false;
 router.beforeEach((to, from, next) => {
   next();
 });
+const locale = localStorage.getItem('locale') || 'zh';
 new Vue({
-  i18n,
+  i18n: i18n(locale),
   router,
   vuetify,
   render: h => h(App),

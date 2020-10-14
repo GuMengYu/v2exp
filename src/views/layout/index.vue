@@ -60,20 +60,41 @@
       </v-toolbar-title>
       <v-spacer />
       <!-- <v-text-field placeholder="请输入" solo rounded dense :hide-details="true" prepend-inner-icon="mdi-magnify"/> -->
-      <v-toolbar-items>
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-apps</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-information</v-icon>
-        </v-btn>
-      </v-toolbar-items>
+      
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn 
+            text  
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon left>
+              mdi-translate
+            </v-icon>
+            {{ cLocale }}
+            <v-icon right>
+              mdi-menu-down
+            </v-icon>
+          </v-btn>
+          <v-btn icon>
+            <v-icon>mdi-apps</v-icon>
+          </v-btn>
+        </template>
+        <v-list 
+          nav 
+          dense
+        >
+          <v-list-item @click="() => {}">
+            <v-list-item-title>简体中文</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="() => {}">
+            <v-list-item-title>English</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-btn icon>
+        <v-icon>mdi-information</v-icon>
+      </v-btn>
     </v-app-bar>
     <main
       class="content"
@@ -105,17 +126,31 @@ export default {
         { title: '干货-gank.io', icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' },
         ],
         drawer: true,
+        cLocale: '简体中文',
+        locales: [
+          {
+            name: '简体中文',
+            val: 'zh',
+          },
+          {
+            name: 'English',
+            val: 'en',
+          }
+        ],
     }),
+    computed: {
+      
+    },
     mounted() {
         console.log(this.$vuetify.application);
     },
     methods: {
         toSub(id) {
-        if(id === 'gank') {
-            this.$router.push({path: '/gank'});
-        } else {
-            this.$router.push({path: `/v2/tab/${id}`});
-        }
+          if(id === 'gank') {
+              this.$router.push({path: '/gank'});
+          } else {
+              this.$router.push({path: `/v2/tab/${id}`});
+          }
         },
     },
 };
