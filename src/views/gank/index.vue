@@ -47,13 +47,13 @@
         <random-girl class="mb-6" />
         <hot-list
           class="mb-6"
-          title="本周热门文章"
+          :title="$t('gank.hot_article')"
           :data="article"
           :loading="loading"
         />
         <hot-list
           class="mb-6"
-          title="本周热门干货"
+          :title="$t('gank.hot_gank')"
           :data="ganhuo"
           :loading="loading"
         />
@@ -75,7 +75,7 @@ export default {
     slides: [],
     tabs: [
       {
-        title: 'iOS',
+        // title: 'iOS',
         icon: 'mdi-apple-ios',
         id: 'iOS',
         color: '#f95e74',

@@ -19,4 +19,10 @@ export default {
     common: {
         not_support: '暂时不支持哟',
     },
+    gank: {
+        hot_article: '本周热门文章',
+        hot_gank: '本周热门干货',
+        random_girl: '随机妹子图',
+        girl_pic: '妹子图 ',
+    }
 };

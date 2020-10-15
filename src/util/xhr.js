@@ -1,6 +1,6 @@
 import axios from 'axios';
 import localConfig from '../../config/local.config';
-
+import {Message} from '../plugins/snackbar';
 // create an axios instance
 const createRequest = (baseURL, successCode = 'ok') => {
   const service = axios.create({
@@ -33,6 +33,7 @@ const createRequest = (baseURL, successCode = 'ok') => {
     },
     error => {
       console.log('err' + error); // for debug
+      Message({message: error, type: 'error'})
       return Promise.reject(error);
     },
   );

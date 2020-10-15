@@ -19,4 +19,10 @@ export default {
     common: {
         not_support: 'can not support',
     },
+    gank: {
+        hot_article: 'hot articles',
+        hot_gank: 'hot gank resource',
+        random_girl: 'random girl',
+        girl_pic: 'Girl ',
+    }
 };
