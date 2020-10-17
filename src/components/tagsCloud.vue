@@ -20,7 +20,7 @@
         v-for="(node, index) in data"
         :key="index"
         :options="node"
-      />  
+      />
     </div>
   </v-card>
 </template>
@@ -73,7 +73,7 @@ export default {
             font-weight: 500;
             color:rgb(95, 99, 104);
         }
-        
+
     }
 }
 

@@ -1,11 +1,11 @@
 <template>
-  <v-card 
+  <v-card
     class="mx-auto"
     outlined
     rounded
   >
     <header>
-      <h2>{{ cardTitle }}</h2>
+      <h2 class="subtitle-1 font-weight-bold">{{ cardTitle }}</h2>
       <v-icon
         :class="{ 'mdi-crosshairs-gps-active': positionActive }"
         @click="initWeather"
@@ -13,43 +13,56 @@
         mdi-crosshairs-gps
       </v-icon>
     </header>
-    <v-divider></v-divider>
-    <v-card-text>
-      <v-row align="center">
-        <v-col class="display-3" cols="6">{{ $$(weather, 'now', 'temp') }}&deg;C </v-col>
-        <v-col cols="6"> </v-col>
-      </v-row>
-    </v-card-text>
-
-    <v-list-item>
-      <v-list-item-icon>
-        <v-icon>mdi-send</v-icon>
-      </v-list-item-icon>
-      <v-list-item-subtitle>{{ $$(weather, 'now', 'windSpeed') }} km/h</v-list-item-subtitle>
-    </v-list-item>
-
-    <v-list-item>
-      <v-list-item-icon>
-        <v-icon>mdi-cloud-download</v-icon>
-      </v-list-item-icon>
-      <v-list-item-subtitle>48%</v-list-item-subtitle>
-    </v-list-item>
-
-    <v-divider/>
-
+    <v-divider class="mx-4" />
+    <div class="my-4 px-4">
+      <div class="d-flex justify-space-between align-center">
+        <div class="pa-0">
+          <div class="text-subtitle-1">
+            {{ $$(weather, 'now', 'text') }}
+          </div>
+          <h2 class="text-h4">
+            {{ $$(weather, 'now', 'temp') }}
+          </h2>
+        </div>
+        <div class="pa-0">
+          <v-icon class="weather_icon">
+            <!-- {{ `mdi-${$$(weather, 'now', 'icon')}` }} -->
+            mdi-cloud
+          </v-icon>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+    <v-divider class="mx-4" />
     <v-card-actions class="d-flex justify-space-between">
-        <v-btn-toggle v-model="temperature_type" color="#1a73e8" group dense>
-            <v-btn x-small text value="0">C</v-btn>
-            <v-divider vertical />
-            <v-btn x-small text value="1">F</v-btn>
-            <v-divider vertical />
-            <v-btn x-small text value="2">K</v-btn>
-        </v-btn-toggle>
-
-      <v-btn 
-        text 
-        :href="weather.fxLink" 
-        target="_blank" 
+      <v-btn-toggle
+        v-model="temperature_type"
+        color="#1a73e8"
+        group
+        dense
+      >
+        <template
+          v-for="(o, index) in temps"
+        >
+          <v-btn
+            :key="index"
+            x-small
+            text
+            :value="o"
+            @click="changeTempType(o)"
+            v-text="o"
+          />
+          <v-divider
+            :key="`${index}_divider`"
+            vertical
+          />
+        </template>
+      </v-btn-toggle>
+      <v-btn
+        text
+        :href="weather.fxLink"
+        target="_blank"
         color="primary"
       >
         和风天气
@@ -65,6 +78,8 @@ export default {
   data() {
     return {
       loading: true,
+      temps: ['C', 'F', 'K'],
+      temperature_type: 'C',
       city: {
         name: '香港',
         lat: '22.30699921',
@@ -98,7 +113,6 @@ export default {
             'dew': '20',
         },
       },
-      temperature_type: '0',
     };
   },
   computed: {
@@ -111,6 +125,9 @@ export default {
     this.initWeather();
   },
   methods: {
+    changeTempType(type) {
+
+    },
     async initWeather() {
         this.loading = true;
         const location = await this.getCurrentPosition();
@@ -155,15 +172,14 @@ header {
   justify-content: space-between;
   padding: 12px 0;
   margin: 0 16px;
-  h2 {
-    font-size: 1rem;
-    font-weight: 500;
-  }
   .mdi-crosshairs-gps {
     font-size: 14px;
   }
   .mdi-crosshairs-gps-active {
     color: #1a73e8;
   }
-}</style
->>
+}
+.weather_icon {
+  font-size: 84px;
+}
+</style>
