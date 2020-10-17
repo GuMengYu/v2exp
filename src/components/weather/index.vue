@@ -31,8 +31,7 @@
           </v-icon>
         </div>
       </div>
-      <div>
-      </div>
+      <div></div>
     </div>
     <v-divider class="mx-4" />
     <v-card-actions class="d-flex justify-space-between">
@@ -48,11 +47,12 @@
           <v-btn
             :key="index"
             x-small
-            text
+            icon
             :value="o"
             @click="changeTempType(o)"
-            v-text="o"
-          />
+          >
+            <v-icon>{{ `mdi-${o}` }}</v-icon>
+          </v-btn>
           <v-divider
             :key="`${index}_divider`"
             vertical
@@ -78,8 +78,8 @@ export default {
   data() {
     return {
       loading: true,
-      temps: ['C', 'F', 'K'],
-      temperature_type: 'C',
+      temps: ['temperature-celsius', 'temperature-fahrenheit', 'temperature-kelvin'],
+      temperature_type: 'temperature-celsius',
       city: {
         name: '香港',
         lat: '22.30699921',
