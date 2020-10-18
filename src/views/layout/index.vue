@@ -61,7 +61,11 @@
       <v-spacer />
       <!-- <v-text-field placeholder="请输入" solo rounded dense :hide-details="true" prepend-inner-icon="mdi-magnify"/> -->
       
-      <v-menu offset-y open-on-hover slide-x>
+      <v-menu
+        offset-y
+        open-on-hover
+        slide-x
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn 
             text  

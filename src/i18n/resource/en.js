@@ -24,5 +24,5 @@ export default {
         hot_gank: 'hot gank resource',
         random_girl: 'random girl',
         girl_pic: 'Girl ',
-    }
+    },
 };

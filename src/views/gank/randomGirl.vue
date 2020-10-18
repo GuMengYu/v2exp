@@ -20,7 +20,7 @@
               href="/post/5e512d8107d934eade79461c"
               target="_blank"
               class="body-title text-body-1"
-            >{{ `${$t('gank.girl_pic')}${girl.title}`}}</a>
+            >{{ `${$t('gank.girl_pic')}${girl.title}` }}</a>
           </div>
           <div class="mt-2">
             <div class="d-flex justify-space-between">
@@ -29,7 +29,7 @@
                 color="teal"
                 text-color="white"
               >
-                {{$t('gank.random_girl')}}
+                {{ $t('gank.random_girl') }}
               </v-chip>
               <div>
                 <a

@@ -24,5 +24,5 @@ export default {
         hot_gank: '本周热门干货',
         random_girl: '随机妹子图',
         girl_pic: '妹子图 ',
-    }
+    },
 };

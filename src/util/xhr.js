@@ -2,7 +2,7 @@ import axios from 'axios';
 import localConfig from '../../config/local.config';
 import {Message} from '../plugins/snackbar';
 // create an axios instance
-const createRequest = (baseURL, successCode = 'ok') => {
+const createRequest = (baseURL, successCode = 'ok', returnOrigin = false) => {
   const service = axios.create({
     baseURL,
     timeout: 15000, // request timeout
@@ -26,14 +26,14 @@ const createRequest = (baseURL, successCode = 'ok') => {
     response => {
       const {code, data, status} = response.data;
       if(code === successCode || status === 100) {
-        return data;
+        return returnOrigin ? response.data  : data;
       } else {
         return Promise.reject(data);
       }
     },
     error => {
       console.log('err' + error); // for debug
-      Message({message: error, type: 'error'})
+      Message({message: error, type: 'error'});
       return Promise.reject(error);
     },
   );
@@ -42,3 +42,4 @@ const createRequest = (baseURL, successCode = 'ok') => {
 
 export const gankXhr = createRequest('https://gank.io/api/v2');
 export const v2Xhr = createRequest(`${localConfig.protocal}//${localConfig.url}:${localConfig.port}`);
+export const hfXhr = createRequest('https://devapi.heweather.net/v7/', '200', true);
