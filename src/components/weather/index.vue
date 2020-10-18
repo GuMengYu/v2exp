@@ -28,7 +28,7 @@
         </div>
         <div class="pa-0">
           <v-icon class="weather_icon">
-            <!-- {{ `mdi-${$$(weather, 'now', 'icon')}` }} -->
+            {{ $$(iconMap.get($$(weather, 'now', 'icon')), 'icon') }}
             mdi-cloud
           </v-icon>
         </div>
@@ -43,7 +43,7 @@
             {{ $dayjs(o.fxDate).format('dddd') }}
           </span>
           <v-icon class="weather-icon-sub">
-            mdi-cloud
+            {{ $$(iconMap.get(o.iconDay), 'icon') }}
           </v-icon>
           <div class="d-flex flex-column">
             <span class="M9zPtb">
@@ -100,7 +100,7 @@
 
 <script>
 import service from './service';
-// import iconMap from './weatherIcon';
+import iconMap from './weatherIcon';
 export default {
   data() {
     return {
@@ -120,33 +120,18 @@ export default {
         fxLink: 'http://hfx.link/2cz1',
       },
       weather: {
-        'updateTime': '2020-10-17T15:51+08:00',
-        'fxLink': 'http://hfx.link/2cz1',
-        'now':{
-            'obsTime': '2020-10-17T15:20+08:00',
-            'temp': '27',
-            'feelsLike': '28',
-            'icon': '104',
-            'text': '阴',
-            'wind360': '48',
-            'windDir': '东北风',
-            'windScale': '2',
-            'windSpeed': '9',
-            'humidity': '60',
-            'precip': '0.0',
-            'pressure': '1006',
-            'vis': '11',
-            'cloud': '91',
-            'dew': '20',
-        },
+        updateTime: '2020-10-17T15:51+08:00',
+        fxLink: 'http://hfx.link/2cz1',
+        now:{},
         forcast: [{'fxDate':'2020-10-18','sunrise':'06:29','sunset':'17:28','moonrise':'07:51','moonset':'18:41','moonPhase':'峨眉月','tempMax':'21','tempMin':'5','iconDay':'100','textDay':'晴','iconNight':'150','textNight':'晴','wind360Day':'45','windDirDay':'东北风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'0','windDirNight':'北风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'43','precip':'0.0','pressure':'1018','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-19','sunrise':'06:30','sunset':'17:26','moonrise':'09:08','moonset':'19:20','moonPhase':'峨眉月','tempMax':'20','tempMin':'7','iconDay':'100','textDay':'晴','iconNight':'101','textNight':'多云','wind360Day':'225','windDirDay':'西南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'225','windDirNight':'西南风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'33','precip':'0.0','pressure':'1017','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-20','sunrise':'06:31','sunset':'17:25','moonrise':'10:24','moonset':'20:05','moonPhase':'峨眉月','tempMax':'18','tempMin':'8','iconDay':'101','textDay':'多云','iconNight':'101','textNight':'多云','wind360Day':'180','windDirDay':'南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'315','windDirNight':'西北风','windScaleNight':'3-4','windSpeedNight':'16','humidity':'29','precip':'0.0','pressure':'1012','vis':'25','cloud':'5','uvIndex':'2'}],
       },
+      iconMap,
     };
   },
   computed: {
     positionActive: vm => !vm.loading,
     cardTitle() {
-      return this.loading ? '正在获取当地天气信息...' : '您当地的天气';
+      return this.loading ? '正在获取当地天气信息...' : [this.weather.adm1, this.weather.adm2, this.weather.country].join('·');
     },
   },
   created() {
@@ -158,8 +143,7 @@ export default {
         this.loading = true;
         const location = await this.getCurrentPosition();
         const weather = await this.getCityWeather(location);
-        console.log(weather);
-        // this.weather = weather;
+        this.weather = weather;
         this.loading = false;
     },
     async getCityWeather(location) {
@@ -204,7 +188,8 @@ header {
   font-size: 84px;
 }
 .weather-icon-sub {
-  font-size: 52px;
+  font-size: 30px;
+  padding: 10px;
 }
 .forecast {
   .forecast-item {
