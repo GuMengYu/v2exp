@@ -2,14 +2,16 @@
   <section>
     <div class="tab-header">
       <div class="">
-        <h2>{{ id.toUpperCase() }}</h2>
+        <h2 class="text-h6">
+          {{ $t(`main.nav.${id}`) }}
+        </h2>
       </div>
       <div>
         <a
           href="javascript:void(0);"
           class="link more"
         >
-          更多{{ id }}内容
+          {{ $t('main.tab.more', [$t(`main.nav.${id}`)]) }}
         </a>
       </div>
     </div>
@@ -111,28 +113,29 @@ export default {
 
 <style lang="less" scoped>
 .tab-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
     .more {
-        font-family: 'Google Sans',sans-serif;
-        font-size: 0.8125rem;
-        font-weight: 500;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        line-height: 36px;
+      font-family: 'Google Sans',sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      line-height: 36px;
+      text-decoration: none;
     }
 }
 .tab-content {
-    height: 95%;
+  height: 95%;
 }
 .tab-node-list {
-        padding: 10px;
-        .v-chip {
-            margin-right: 10px;
-        }
+  padding: 10px;
+  .v-chip {
+      margin-right: 10px;
+  }
 }
 .skeletion-loader-list {
-    min-width: 100%;
+  min-width: 100%;
 }
 </style>

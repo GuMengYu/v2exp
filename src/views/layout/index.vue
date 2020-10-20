@@ -11,12 +11,15 @@
         nav
         shaped
       >
-        <v-list-item-group color="primary">
+        <v-list-item-group
+          v-model="activeTab"
+          color="primary"
+        >
           <v-list-item
             v-for="item in tabs"
             :key="item.title"
             link
-            @click="toSub(item.val)"
+            :value="item.val"
           >
             <v-list-item-icon>
               <v-icon
@@ -60,15 +63,15 @@
       </v-toolbar-title>
       <v-spacer />
       <!-- <v-text-field placeholder="请输入" solo rounded dense :hide-details="true" prepend-inner-icon="mdi-magnify"/> -->
-      
+
       <v-menu
         offset-y
         open-on-hover
         slide-x
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn 
-            text  
+          <v-btn
+            text
             v-bind="attrs"
             v-on="on"
           >
@@ -84,8 +87,8 @@
             <v-icon>mdi-apps</v-icon>
           </v-btn>
         </template>
-        <v-list 
-          nav 
+        <v-list
+          nav
           dense
         >
           <v-list-item
@@ -112,7 +115,7 @@
 </template>
 
 <script>
-import footer from './footer';
+import myFooter from './footer';
 
 const supportLocalMap = {
   en: 'English',
@@ -120,7 +123,7 @@ const supportLocalMap = {
 };
 export default {
     name: 'Layout',
-    components: {myFooter: footer},
+    components: {myFooter},
     data: function(){
       return {
         tabs: [
@@ -161,17 +164,18 @@ export default {
         const cLocale = localStorage.getItem('locale');
         return supportLocalMap[cLocale];
       },
+      activeTab: {
+        get() {
+          return this.$route?.params?.id ?? 'hot';
+        },
+        set(val) {
+          this.$router.push({path: val === 'gank' ? `/${val}` : `/v2/tab/${val}`});
+        },
+      },
     },
     mounted() {
     },
     methods: {
-        toSub(id) {
-          if(id === 'gank') {
-              this.$router.push({path: '/gank'});
-          } else {
-              this.$router.push({path: `/v2/tab/${id}`});
-          }
-        },
         changeLocale(locale) {
           if(Object.keys(supportLocalMap).includes(locale)) {
             localStorage.setItem('locale', locale);

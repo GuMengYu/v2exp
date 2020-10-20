@@ -15,6 +15,9 @@ export default {
             hot: 'hot',
             gank: 'gank.io',
         },
+      tab: {
+        more: 'More {0}',
+      },
     },
     common: {
         not_support: 'can not support',

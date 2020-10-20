@@ -15,6 +15,9 @@ export default {
             hot: '最热',
             gank: '干货-gank.io',
         },
+      tab: {
+          more: '更多「{0}」内容',
+      },
     },
     common: {
         not_support: '暂时不支持哟',
