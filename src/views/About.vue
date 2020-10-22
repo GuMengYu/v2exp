@@ -1,5 +1,13 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <wave/>
   </div>
-</template>;
+</template>
+<script>
+
+import wave from '../components/wave';
+
+export default {
+  components: {wave},
+};
+</script>

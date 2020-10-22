@@ -42,5 +42,9 @@ export default new Router({
       children: [...v2Routers, ...gankRouters],
       redirect: { path: '/v2/tab/hot' },
     },
+    {
+      path: '/about',
+      component: () => import('./views/About'),
+    },
   ],
 });
