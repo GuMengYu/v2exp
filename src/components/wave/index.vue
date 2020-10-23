@@ -7,16 +7,17 @@
 <script>
 import { ready, drawCircle } from './wave';
 
+let requestAnimation = null;
 export default {
   name: 'Wave',
   props: {
     width: {
       type: Number,
-      default: 200,
+      default: 500,
     },
     height: {
       type: Number,
-      default: 200,
+      default: 500,
     },
     process: {
       type: Number,
@@ -24,16 +25,20 @@ export default {
     },
   },
   data() {
-    let staticConfig = {
+    let config = {
       height: this.height,
       width: this.width,
       speed: 0.2,
-      waveHeight: 2,
-      waveWidth: 0.15,
+      waveHeight: 5,
+      waveWidth: 0.05,
     };
     return {
-      ctx: {},
-      draw: ready(staticConfig),
+      config,
+      wave: {
+        config,
+        ctx: null,
+      },
+      draw: ready({config}),
     };
   },
   mounted() {
@@ -44,13 +49,17 @@ export default {
       const canvas = this.$refs.waveCanvas;
       canvas.height = this.height;
       canvas.width = this.width;
-      this.ctx = canvas.getContext('2d');
-      drawCircle(this.ctx);
+      this.wave.ctx = canvas.getContext('2d');
+      drawCircle(this.wave);
       this.start();
     },
     start() {
-      this.draw(this.ctx, this.process);
-      requestAnimationFrame(this.start);
+      this.draw(this.wave.ctx, this.process);
+      if (requestAnimation && this.process >= 100) {
+        cancelAnimationFrame(requestAnimation);
+        return;
+      }
+      requestAnimation = requestAnimationFrame(this.start);
     },
     stop() {
 
@@ -58,10 +67,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="less">
-//#waveCanvas {
-//  border: 1px solid rgba(255,0,0,0.5);
-//  border-radius: 200px;
-//}
-</style>

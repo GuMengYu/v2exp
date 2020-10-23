@@ -100,7 +100,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn icon>
+      <v-btn icon to="../../about">
         <v-icon>mdi-information</v-icon>
       </v-btn>
     </v-app-bar>
