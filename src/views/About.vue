@@ -5,7 +5,7 @@
 </template>
 <script>
 
-import wave from '../components/wave';
+import wave from '../components/wave/index';
 
 export default {
   components: {wave},
