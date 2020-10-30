@@ -179,7 +179,8 @@ export default {
         changeLocale(locale) {
           if(Object.keys(supportLocalMap).includes(locale)) {
             localStorage.setItem('locale', locale);
-            location.reload();
+            this.$eventHub.$emit('lang', locale);
+            // location.reload();
           } else {
             this.$message({message: this.$t('common.not_support'), type: 'error'});
           }
