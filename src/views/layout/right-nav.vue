@@ -1,24 +1,24 @@
 <template>
   <div class="right-nav">
-    <weather 
+    <weather
       v-if="enableWeather"
       class="mb-6"
     />
     <hot-list
-      title="热议主题"
+      :title="$t('v2ex.hot_topics')"
       :data="nodeData.hotTopics"
       :loading="loading"
       type="list-item-avatar"
       class="mb-4"
     />
     <tags-cloud
-      title="热门节点"
+      :title="$t('v2ex.hot_nodes')"
       :data="nodeData.hotNodes"
       :loading="loading"
       class="mb-4"
     />
     <tags-cloud
-      title="新增节点"
+      :title="$t('v2ex.new_nodes')"
       :data="nodeData.newNodes"
       :loading="loading"
       class="mb-4"

@@ -1,6 +1,7 @@
 export default {
     message: {
         hello: 'hello world',
+        logo_text: 'you ya you',
     },
     main: {
         nav: {
@@ -27,5 +28,10 @@ export default {
         hot_gank: 'hot gank resource',
         random_girl: 'random girl',
         girl_pic: 'Girl ',
+    },
+    v2ex: {
+      hot_topics: 'Hot Topics',
+      hot_nodes: 'Hot Nodes',
+      new_nodes: 'New Nodes',
     },
 };

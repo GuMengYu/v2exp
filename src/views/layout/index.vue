@@ -29,7 +29,7 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title v-text="item.title" />
+              <v-list-item-title v-text="$t(`main.nav.${item.val}`)" />
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -59,7 +59,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title class="headline">
         <span class="logo" />
-        <span class="logo-sub">&nbsp;•&nbsp;划水</span>
+        <span class="logo-sub">&nbsp;•&nbsp;{{ $t('message.logo_text') }}</span>
       </v-toolbar-title>
       <v-spacer />
       <!-- <v-text-field placeholder="请输入" solo rounded dense :hide-details="true" prepend-inner-icon="mdi-magnify"/> -->
@@ -127,16 +127,16 @@ export default {
     data: function(){
       return {
         tabs: [
-          { title: this.$t('main.nav.tech'), icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
-          { title: this.$t('main.nav.creative'), icon: 'mdi-thought-bubble', val: 'creative', color: '#66bb6a'},
-          { title: this.$t('main.nav.play'), icon: 'mdi-mushroom', val: 'play', color: '#ffa726' },
-          { title: this.$t('main.nav.apple'), icon: 'mdi-apple', val: 'apple', color: '#000000' },
-          { title: this.$t('main.nav.jobs'), icon: 'mdi-briefcase', val: 'jobs', color: '#9c27b0' },
-          { title: this.$t('main.nav.deals'), icon: 'mdi-bank-transfer', val: 'deals', color: '#4db6ac' },
-          { title: this.$t('main.nav.city'), icon: 'mdi-city', val: 'city', color: '#90a4ae' },
-          { title: this.$t('main.nav.qna'), icon: 'mdi-help-box', val: 'qna', color: '#03a9f4' },
-          { title: this.$t('main.nav.hot'), icon: 'mdi-trending-up', val: 'hot', color: '#e53935' },
-          { title: this.$t('main.nav.gank'), icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' },
+          { icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
+          { icon: 'mdi-thought-bubble', val: 'creative', color: '#66bb6a'},
+          { icon: 'mdi-mushroom', val: 'play', color: '#ffa726' },
+          { icon: 'mdi-apple', val: 'apple', color: '#000000' },
+          { icon: 'mdi-briefcase', val: 'jobs', color: '#9c27b0' },
+          { icon: 'mdi-bank-transfer', val: 'deals', color: '#4db6ac' },
+          { icon: 'mdi-city', val: 'city', color: '#90a4ae' },
+          { icon: 'mdi-help-box', val: 'qna', color: '#03a9f4' },
+          { icon: 'mdi-trending-up', val: 'hot', color: '#e53935' },
+          { icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' },
           ],
         drawer: true,
         locales: [
@@ -179,8 +179,9 @@ export default {
         changeLocale(locale) {
           if(Object.keys(supportLocalMap).includes(locale)) {
             localStorage.setItem('locale', locale);
-            this.$eventHub.$emit('lang', locale);
+            // this.$eventHub.$emit('lang', locale);
             // location.reload();
+            this.$i18n.locale = locale;
           } else {
             this.$message({message: this.$t('common.not_support'), type: 'error'});
           }

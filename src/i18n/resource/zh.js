@@ -1,6 +1,7 @@
 export default {
     message: {
         hello: '你好 世界',
+        logo_text: '划水水',
     },
     main: {
         nav: {
@@ -27,5 +28,10 @@ export default {
         hot_gank: '本周热门干货',
         random_girl: '随机妹子图',
         girl_pic: '妹子图 ',
+    },
+    v2ex: {
+      hot_topics: '热议主题',
+      hot_nodes: '热门节点',
+      new_nodes: '新增节点',
     },
 };

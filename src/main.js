@@ -14,11 +14,6 @@ Object.entries(filters).map((key, fn) => {
 Vue.use(plugins);
 Vue.config.productionTip = false;
 
-Vue.prototype.$eventHub.$on('lang', lang => {
-  console.log(lang);
-  initApp();
-});
-
 const initApp = () => {
   const locale = localStorage.getItem('locale') || 'zh';
   new Vue({
