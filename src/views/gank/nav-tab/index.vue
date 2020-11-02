@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .list-home {
     box-sizing: border-box;
     margin-top: 1.5rem;

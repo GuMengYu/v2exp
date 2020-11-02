@@ -189,7 +189,7 @@ export default {
     },
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .v2exp_app {
   // background: white !important;
   .headline {

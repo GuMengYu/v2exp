@@ -37,7 +37,7 @@ export default {
     },
 };
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
 .v-list-item__subtitle {
     margin-top: 5px;
 }

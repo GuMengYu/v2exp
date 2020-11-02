@@ -29,7 +29,7 @@ export default {
     },
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .v2-tag {
     border-color: rgba(0, 0, 0, 0.3) !important;
 }

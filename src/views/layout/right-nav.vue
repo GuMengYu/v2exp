@@ -48,7 +48,7 @@ export default {
   },
 };
 </script>
-<style lang="less">
+<style lang="scss">
 .right-nav {
   padding-top: 45px;
 }

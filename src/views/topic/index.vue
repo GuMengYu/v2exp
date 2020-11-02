@@ -83,7 +83,7 @@ export default {
     },
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .topic-breadcrumbs {
     padding: 10px 0 12px 5px;
 }

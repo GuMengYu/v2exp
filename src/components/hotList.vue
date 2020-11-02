@@ -113,7 +113,7 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .card_devider {
   margin: 0 16px 0 16px;
 }

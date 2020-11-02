@@ -111,7 +111,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .tab-header {
   display: flex;
   justify-content: space-between;
