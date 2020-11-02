@@ -1,4 +1,4 @@
-import { hfXhr } from '@/util/xhr';
+import { hfXhr } from '@util/xhr';
 const hfKey = '95d5078dd7f0478fb42a0365644a4251';
 
 export default {

@@ -1,4 +1,5 @@
 <template>
+
   <v-card
     :flat="true"
     :outlined="true"
@@ -25,7 +26,7 @@
   </v-card>
 </template>
 <script>
-import Tag from '@/components/tag';
+import Tag from '@component/tag';
 export default {
     name: 'TagsCard',
     components: {Tag},

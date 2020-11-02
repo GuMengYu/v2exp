@@ -2,6 +2,7 @@ export default {
     message: {
         hello: 'hello world',
         logo_text: 'you ya you',
+        he: 'hefeng weather',
     },
     main: {
         nav: {

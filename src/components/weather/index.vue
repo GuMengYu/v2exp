@@ -92,7 +92,7 @@
         target="_blank"
         color="primary"
       >
-        和风天气
+        {{ $t('message.he') }}
       </v-btn>
     </v-card-actions>
   </v-card>

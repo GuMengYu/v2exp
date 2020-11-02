@@ -33,7 +33,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-        <v-divider />
+        <v-divider class="mt-2 mb-2" />
         <v-list-item
           link
           href="https://github.com/GuMengYu/v2exp"

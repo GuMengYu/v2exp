@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import gankService from '@/util/gankService';
+import gankService from '@util/gankService';
 
 export default {
   data: () => {

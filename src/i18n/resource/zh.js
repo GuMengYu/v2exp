@@ -2,6 +2,7 @@ export default {
     message: {
         hello: '你好 世界',
         logo_text: '划水水',
+        he: '和风天气',
     },
     main: {
         nav: {

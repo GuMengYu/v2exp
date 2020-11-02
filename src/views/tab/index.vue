@@ -72,8 +72,8 @@
 </template>
 
 <script>
-import {getTabInfo} from '@/util/service';
-import Tag from '@/components/tag';
+import {getTabInfo} from '@util/service';
+import Tag from '@component/tag';
 import TopicItem from './topic-item';
 export default {
     name: 'Tab',

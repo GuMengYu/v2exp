@@ -11,18 +11,25 @@
         :key="i"
         class="list-item"
       >
-        <tab-item :data="o" />
+        <template v-if="o.type === 'Girl'">
+          <card-image :data="o" />
+        </template>
+        <template v-else>
+          <card-plian :data="o" />
+        </template>
       </div>
     </template>
   </article>
 </template>
 
 <script>
-import tabItem from './tab-item';
-import gankService from '@/util/gankService';
+import CardPlian from '@component/card-plain';
+import CardImage from '@component/card-image';
+
+import gankService from '@util/gankService';
 
 export default {
-    components: {tabItem},
+    components: {CardPlian, CardImage},
     props: {
         tabId: {
             type: String,
@@ -43,8 +50,8 @@ export default {
             page: this.page,
             size: this.size,
         };
-        const fetch = this.tabId === 'Girl' 
-        ? gankService.gankGirls.bind(0, params) 
+        const fetch = this.tabId === 'Girl'
+        ? gankService.gankGirls.bind(0, params)
         : gankService.ganHuoData.bind(0, params);
         fetch().then(res => {
             this.list = res;

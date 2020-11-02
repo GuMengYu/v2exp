@@ -26,8 +26,8 @@
       </div>
       <v-divider />
       <!--eslint-disable vue/no-v-html -->
-      <section 
-        class="topic-content" 
+      <section
+        class="topic-content"
         v-html="topic.content_rendered"
       />
     </v-card>
@@ -44,7 +44,7 @@
   </section>
 </template>
 <script>
-import {getTopicInfo, getTopicReply} from '@/util/service';
+import {getTopicInfo, getTopicReply} from '@util/service';
 import replyItem from './reply-item';
 
 export default {

@@ -22,15 +22,19 @@
             lazy-src="@/assets/girl.jpg"
           />
         </v-carousel>
-        <v-tabs>
+        <v-tabs
+          :icons-and-text="true"
+        >
           <v-tab
             v-for="tab in tabs"
             :key="tab.id"
           >
+            {{ tab.title }}
             <v-icon
               :color="tab.color"
+              class="mr-1"
               v-text="tab.icon"
-            />{{ tab.title }}
+            />
           </v-tab>
           <v-tab-item
             v-for="tab in tabs"
@@ -63,20 +67,21 @@
 </template>
 
 <script>
-import GankTab from './tab/index';
+import GankTab from './nav-tab/index';
 import RandomGirl from './randomGirl';
-import HotList from '@/components/hotList';
-import gankService from '@/util/gankService';
+import HotList from '@component/hotList';
+import gankService from '@util/gankService';
 
 export default {
   components: { GankTab, RandomGirl, HotList },
   props: {},
   data: () => ({
     slides: [],
+    currentTab: null,
     tabs: [
       {
-        // title: 'iOS',
-        icon: 'mdi-apple-ios',
+        title: 'iOS',
+        icon: 'mdi-apple',
         id: 'iOS',
         color: '#f95e74',
       },
@@ -148,4 +153,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.v-tab {
+  text-transform: initial !important;
+}
 </style>

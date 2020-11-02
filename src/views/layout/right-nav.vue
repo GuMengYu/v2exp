@@ -26,10 +26,10 @@
   </div>
 </template>
 <script>
-import TagsCloud from '@/components/tagsCloud';
-import HotList from '@/components/hotList';
-import Weather from '@/components/weather';
-import { getToDayHot } from '@/util/service';
+import TagsCloud from '@component/tagsCloud';
+import HotList from '@component/hotList';
+import Weather from '@component/weather';
+import { getToDayHot } from '@util/service';
 
 export default {
   components: { HotList, TagsCloud, Weather },
