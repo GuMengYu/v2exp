@@ -64,42 +64,7 @@
       <v-spacer />
       <!-- <v-text-field placeholder="请输入" solo rounded dense :hide-details="true" prepend-inner-icon="mdi-magnify"/> -->
 
-      <v-menu
-        offset-y
-        open-on-hover
-        slide-x
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            text
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon left>
-              mdi-translate
-            </v-icon>
-            {{ cLocale }}
-            <v-icon right>
-              mdi-menu-down
-            </v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>mdi-apps</v-icon>
-          </v-btn>
-        </template>
-        <v-list
-          nav
-          dense
-        >
-          <v-list-item
-            v-for="o in locales"
-            :key="o.val"
-            @click="changeLocale(o.val)"
-          >
-            <v-list-item-title v-text="o.name" />
-          </v-list-item>
-        </v-list>
-      </v-menu>
+      <language-select />
       <v-btn icon to="../../about">
         <v-icon>mdi-information</v-icon>
       </v-btn>
@@ -116,14 +81,11 @@
 
 <script>
 import myFooter from './footer';
+import languageSelect from './languageSelect';
 
-const supportLocalMap = {
-  en: 'English',
-  zh: '简体中文',
-};
 export default {
     name: 'Layout',
-    components: {myFooter},
+    components: {myFooter, languageSelect},
     data: function(){
       return {
         tabs: [
@@ -139,31 +101,9 @@ export default {
           { icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' },
           ],
         drawer: true,
-        locales: [
-          {
-            name: '简体中文',
-            val: 'zh',
-          },
-          {
-            name: 'English',
-            val: 'en',
-          },
-          {
-            name: '日本語',
-            val: 'ja',
-          },
-          {
-            name: '한국어',
-            val: 'ko',
-          },
-        ],
       };
     },
     computed: {
-      cLocale() {
-        const cLocale = localStorage.getItem('locale');
-        return supportLocalMap[cLocale];
-      },
       activeTab: {
         get() {
           return this.$route?.params?.id ?? 'hot';
@@ -172,20 +112,6 @@ export default {
           this.$router.push({path: val === 'gank' ? `/${val}` : `/v2/tab/${val}`});
         },
       },
-    },
-    mounted() {
-    },
-    methods: {
-        changeLocale(locale) {
-          if(Object.keys(supportLocalMap).includes(locale)) {
-            localStorage.setItem('locale', locale);
-            // this.$eventHub.$emit('lang', locale);
-            // location.reload();
-            this.$i18n.locale = locale;
-          } else {
-            this.$message({message: this.$t('common.not_support'), type: 'error'});
-          }
-        },
     },
 };
 </script>
