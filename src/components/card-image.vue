@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto">
+  <v-card class="mx-auto" max-width="740">
     <v-img
       class="white--text align-end"
       height="300px"
@@ -68,7 +68,10 @@
 </template>
 
 <script>
+import cardBase from '@component/cardBase';
+import './card.scss';
 export default {
+  mixins: cardBase,
   props: {
     data: {
       type: Object,

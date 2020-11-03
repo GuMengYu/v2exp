@@ -1,0 +1,17 @@
+@mixin h {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.h-2x {
+  -webkit-line-clamp: 2;
+  @include h;
+}
+.h-3x {
+  -webkit-line-clamp: 3;
+  @include h;
+}
+.h-4x {
+  -webkit-line-clamp: 4;
+  @include h;
+}

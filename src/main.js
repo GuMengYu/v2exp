@@ -6,6 +6,7 @@ import plugins from './plugins';
 import './mock/index';
 import filters from './filters';
 import i18n from './i18n';
+import './scss/global.scss';
 
 Object.entries(filters).map((key, fn) => {
   Vue.filter(key, fn);

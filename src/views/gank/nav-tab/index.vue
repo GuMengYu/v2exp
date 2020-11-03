@@ -15,7 +15,7 @@
           <card-image :data="o" />
         </template>
         <template v-else>
-          <card-plian :data="o" />
+          <card-plain :data="o" />
         </template>
       </div>
     </template>
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import CardPlian from '@component/card-plain';
+import CardPlain from '@component/card-plain';
 import CardImage from '@component/card-image';
 
 import gankService from '@util/gankService';
 
 export default {
-    components: {CardPlian, CardImage},
+    components: {CardPlain, CardImage},
     props: {
         tabId: {
             type: String,
@@ -70,4 +70,4 @@ export default {
         margin-bottom: 1.5rem;
     }
 }
-</style>>
+</style>

@@ -4,9 +4,9 @@ const MRandom = Mock.Random;
 // mock数据，包括标题title、内容desc, 创建时间createdAt
 const images = [
   'https://ae01.alicdn.com/kf/U762ce81ae5ad48b798f241c2d91c36d3A.jpg_300x300xz.jpg',
-  'https://ae01.alicdn.com/kf/U6624600595ca4e759992b895a9445cd5Q.jpg_300x300xz.jpg',
+  'https://ae01.alicdn.com/kf/Uf7e28ca53bc2445e9ceabff52b1aa348a.jpg_300x300xz.jpg',
   'https://ae01.alicdn.com/kf/U72d9042334064e53bdd456fcc0414d3eC.jpg_300x300xz.jpg',
-  'https://gank.io/images/131bc9a6661e46689af16b96a396facc/crop/1/w/300',
+  'https://ae01.alicdn.com/kf/U7768f7939dae41c4aa026f4bd5dfe3a35.jpg_300x300xz.jpg',
 ];
 const type = [
   'Android',
@@ -19,7 +19,7 @@ const GanHuo = function () {
   let GanHuoList = [];
   for (let i = 0; i < 5; i++) {
     let obj = {
-      _id: MRandom.guid(),
+      id: MRandom.guid(),
       author: MRandom.cname(),
       category: 'Ganhuo',
       createdAt: MRandom.datetime(),
@@ -65,7 +65,7 @@ const Girls = () => {
       title: '第96期',
       type: 'Girl',
       views: MRandom.integer(0, 100),
-      _id: MRandom.guid(),
+      id: MRandom.guid(),
       url: MRandom.url(),
     };
     GirlList.push(obj);

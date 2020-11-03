@@ -1,0 +1,14 @@
+.v-card {
+  .list-title {
+    a {
+      color:#333;
+      transition: all .3s ease;
+      &:hover {
+        color: #1976d2;
+      }
+    }
+    .v-chip {
+      padding: 0 5px;
+    }
+  }
+}
