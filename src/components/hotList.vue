@@ -34,7 +34,10 @@
             @click="go(item.id)"
           >
             <v-list-item-avatar size="30">
-              <v-img :src="item.img" />
+              <v-img
+                :src="item.img"
+                lazy-src="@assets/man.png"
+              />
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title v-text="item.title" />

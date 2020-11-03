@@ -27,6 +27,8 @@ export default {
     gank: {
         hot_article: '本周热门文章',
         hot_gank: '本周热门干货',
+        start_goods: '本周点赞最多干货',
+        view_goods: '本周浏览最多干货',
         random_girl: '随机妹子图',
         girl_pic: '妹子图 ',
     },

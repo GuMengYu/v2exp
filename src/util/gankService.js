@@ -16,7 +16,7 @@ export default {
             const tempLink = document.createElement('a');
             tempLink.style.display = 'none';
             tempLink.href = url;
-            tempLink.setAttribute('download', ''); 
+            tempLink.setAttribute('download', '');
             document.body.appendChild(tempLink);
             tempLink.click();
             document.body.removeChild(tempLink);
@@ -30,6 +30,12 @@ export default {
      * hotType: views（浏览数） | likes（点赞数） | comments（评论数）
      * category 可接受参数 Article | GanHuo | Girl
      * count: [1, 20]
-     **/ 
-    hot: category => xhr.get(`/hot/views/category/${category}/count/5`),
+     **/
+    hot: (category, hotType = 'views') => xhr.get(`/hot/${hotType}/category/${category}/count/5`),
+
+  /***
+   * 文章详情 API
+   https://gank.io/api/v2/post/<post_id>
+   */
+    post: id => xhr.get(`/post/${id}`),
 };

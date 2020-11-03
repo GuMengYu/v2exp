@@ -9,7 +9,7 @@
     >
       <v-col lg="4">
         <a
-          :href="`/post/${data.id}`"
+          :href="`/#/post/${data.id}`"
           target="_blank"
         >
           <v-img
@@ -35,7 +35,7 @@
               }}
             </v-chip>
             <a
-              :href="`/post/${data.id}`"
+              :href="`/#/post/${data.id}`"
               class="ml-2 text-decoration-none"
               target="_blank"
             ><span>{{ data.title }}</span></a>
