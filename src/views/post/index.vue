@@ -3,7 +3,7 @@
     <v-breadcrumbs
       :items="breadcrumbs"
       :large="true"
-      class="topic-breadcrumbs"
+      class="topic-breadcrumbs pl-0"
     >
       <template v-slot:divider>
         <v-icon>mdi-forward</v-icon>
@@ -11,9 +11,11 @@
     </v-breadcrumbs>
     <v-row>
       <v-col lg="8">
-        <v-card>
-
-        </v-card>
+        <v-card
+          outlined
+          class="markdown-body pa-8 pt-6"
+          v-html="article.render"
+        />
       </v-col>
       <v-col lg="4">
         <hot-list
@@ -36,6 +38,8 @@
 <script>
 import HotList from '@component/hotList';
 import Service from '@util/gankService';
+import markdown from '@util/md';
+import '../../scss/markdown.scss';
 export default {
   name: 'Post',
   components: {HotList},
@@ -75,6 +79,7 @@ export default {
       this.likes = likes;
       this.views = views;
       this.article = article;
+      this.article.render = markdown().render(article.markdown);
     }).finally(() => {
       this.loading = false;
     });
