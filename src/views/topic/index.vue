@@ -25,10 +25,10 @@
         </v-avatar>
       </div>
       <v-divider />
-      <!--eslint-disable vue/no-v-html -->
-      <section
-        class="topic-content"
-        v-html="topic.content_rendered"
+      <render-content
+        class="pa-4"
+        type="html"
+        :source="topic.content_rendered"
       />
     </v-card>
     <v-card
@@ -46,10 +46,11 @@
 <script>
 import {getTopicInfo, getTopicReply} from '@util/service';
 import replyItem from './reply-item';
+import RenderContent from '@component/render-content';
 
 export default {
     name: 'Topic',
-    components: {replyItem},
+    components: {replyItem, RenderContent},
     props: {
         id: {
             type: String,

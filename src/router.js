@@ -36,7 +36,7 @@ const gankRouters = [{
 }, {
   path: 'post/:id/',
   name: 'post',
-  component: lazyLoad('post'),
+  component: lazyLoad('gank/post'),
   props: true,
   meta: { keepAlive: true },
 }];
