@@ -1,8 +1,9 @@
 <template>
   <v-navigation-drawer
     v-model="drawer"
+    fixed
     app
-    :floating="true"
+    floating
     :clipped="$vuetify.breakpoint.lgAndUp"
   >
     <v-list
@@ -85,5 +86,8 @@ export default {
       },
     },
   },
+  created() {
+    console.log(this.$vuetify)
+  }
 };
 </script>

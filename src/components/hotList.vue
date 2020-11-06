@@ -1,7 +1,6 @@
 <template>
   <v-card
     :outlined="true"
-    color="#f8f9fa"
   >
     <v-card-title v-text="title" />
     <v-divider class="card_devider" />
@@ -124,13 +123,9 @@ export default {
   padding: 12px 0 12px 16px;
   font-size: 1rem;
   line-height: 21px;
-  color: rgb(95, 99, 104);
 }
 .list {
   padding: 0;
-  .list-content {
-    background: transparent;
-  }
   .list-item-image {
     .v-list-item {
       padding: 10px 16px;

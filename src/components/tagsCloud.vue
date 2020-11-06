@@ -1,9 +1,7 @@
 <template>
-
   <v-card
     :flat="true"
     :outlined="true"
-    color="#f8f9fa"
   >
     <v-card-title v-text="title" />
     <v-divider class="tagcard_devider" />
@@ -59,12 +57,10 @@ export default {
     padding: 12px 0 12px 16px;
     font-size: 1rem;
     line-height: 21px;
-    color:rgb(95, 99, 104);
 }
 .node-list {
     margin: 16px 5px 8px 16px;
     &::v-deep .v-chip {
-        background: white!important;
         &.v-chip--label {
             border-radius: 8px !important;
         }
@@ -72,7 +68,6 @@ export default {
         .v-chip__content {
             font-size: 0.9em;
             font-weight: 500;
-            color:rgb(95, 99, 104);
         }
 
     }

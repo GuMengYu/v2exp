@@ -1,7 +1,6 @@
 <template>
   <v-card
     outlined
-    max-width="740"
   >
     <v-row
       justify="space-between"

@@ -7,12 +7,14 @@
         </h2>
       </div>
       <div>
-        <a
+        <v-btn
+          text
           href="javascript:void(0);"
-          class="link more"
+          target="_blank"
+          color="primary"
         >
           {{ $t('main.tab.more', [$t(`main.nav.${id}`)]) }}
-        </a>
+        </v-btn>
       </div>
     </div>
     <div
@@ -116,15 +118,6 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-    .more {
-      font-family: 'Google Sans',sans-serif;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      word-break: break-word;
-      overflow-wrap: break-word;
-      line-height: 36px;
-      text-decoration: none;
-    }
 }
 .tab-content {
   height: 95%;

@@ -91,7 +91,7 @@ export default {
       } else {
         //restore currentLocale
         this.$nextTick().then(() => {
-          this.currentLocale = localStorage.getItem('locale');
+          this.currentLocale = localStorage.getItem('locale') ?? locales[0].val;
         });
         this.$message({message: this.$t('common.not_support'), type: 'error'});
       }

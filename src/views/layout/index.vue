@@ -7,7 +7,6 @@
     />
     <v-app-bar
       app
-      color="white"
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       :elevate-on-scroll="false"
     >
@@ -37,7 +36,7 @@
     >
       <router-view />
     </main>
-    <my-footer />
+    <!-- <my-footer /> -->
   </main>
 </template>
 
@@ -99,7 +98,6 @@ export default {
     }
   }
   .logo-sub {
-    color: #5f6368;
     font-size: 22px;
     line-height: 26px;
   }
