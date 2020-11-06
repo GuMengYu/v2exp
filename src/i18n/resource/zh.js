@@ -24,6 +24,12 @@ export default {
     common: {
         not_support: '暂时不支持哟',
         translations: '翻译',
+        setting: '设置',
+        theme: '主题',
+        light: '浅色',
+        night: '深色',
+        system: '跟随系统',
+        mixin: '混合模式',
     },
     gank: {
         hot_article: '本周热门文章',

@@ -23,7 +23,13 @@ export default {
     },
     common: {
         not_support: 'can not support',
-        translations: 'translations',
+        translations: 'Translations',
+        setting: 'Settings',
+        theme: 'Theme',
+        light: 'light',
+        night: 'night',
+        system: 'system',
+        mixin: 'mixin',
     },
     gank: {
         hot_article: 'hot articles',

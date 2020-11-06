@@ -19,9 +19,6 @@
           mdi-menu-down
         </v-icon>
       </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-apps</v-icon>
-      </v-btn>
     </template>
     <v-list
       nav
