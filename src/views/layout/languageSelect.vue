@@ -3,6 +3,7 @@
     offset-y
     open-on-hover
     slide-x
+    transition="slide-y-transition"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
@@ -26,13 +27,23 @@
       nav
       dense
     >
-      <v-list-item
-        v-for="o in locales"
-        :key="o.val"
-        @click="changeLocale(o.val)"
+      <v-list-item-group
+        v-model="currentLocale"
+        color="primary"
       >
-        <v-list-item-title v-text="o.name" />
-      </v-list-item>
+        <v-subheader
+          class="font-weight-black text-uppercase"
+          v-text="$t('common.translations')"
+        />
+        <v-list-item
+          v-for="o in locales"
+          :key="o.val"
+          :value="o.val"
+          @click="changeLocale(o.val)"
+        >
+          <v-list-item-title v-text="o.name" />
+        </v-list-item>
+      </v-list-item-group>
     </v-list>
   </v-menu>
 </template>
@@ -42,10 +53,7 @@ const supportLocalMap = {
   en: 'English',
   zh: '简体中文',
 };
-export default {
-  name: 'LanguageSelect',
-  data: () => ({
-    locales: [
+const locales = [
       {
         name: '简体中文',
         val: 'zh',
@@ -62,8 +70,12 @@ export default {
         name: '한국어',
         val: 'ko',
       },
-    ],
-    currentLocale: localStorage.getItem('locale'),
+    ];
+export default {
+  name: 'LanguageSelect',
+  data: () => ({
+    locales,
+    currentLocale: localStorage.getItem('locale') ?? locales[0].val,
   }),
   computed: {
     localeText() {
@@ -74,12 +86,16 @@ export default {
     changeLocale(locale) {
       if(Object.keys(supportLocalMap).includes(locale)) {
         localStorage.setItem('locale', locale);
-        this.currentLocale = localStorage.getItem('locale');
+        this.currentLocale = locale;
         // this.$eventHub.$emit('lang', locale);
         // location.reload();
         this.$i18n.locale = locale;
         this.$dayjs.locale(locale);
       } else {
+        //restore currentLocale
+        this.$nextTick().then(() => {
+          this.currentLocale = localStorage.getItem('locale');
+        });
         this.$message({message: this.$t('common.not_support'), type: 'error'});
       }
     },

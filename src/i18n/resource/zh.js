@@ -23,6 +23,7 @@ export default {
     },
     common: {
         not_support: '暂时不支持哟',
+        translations: '翻译',
     },
     gank: {
         hot_article: '本周热门文章',

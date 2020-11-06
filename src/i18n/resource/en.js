@@ -23,6 +23,7 @@ export default {
     },
     common: {
         not_support: 'can not support',
+        translations: 'translations',
     },
     gank: {
         hot_article: 'hot articles',
