@@ -10,9 +10,10 @@
       </h2>
       <v-icon
         :class="{ 'mdi-crosshairs-gps-active': positionActive }"
+        size="14"
         @click="initWeather"
       >
-        mdi-crosshairs-gps
+        {{ mdiCrosshairsGps }}
       </v-icon>
     </header>
     <v-divider class="mx-4" />
@@ -27,9 +28,8 @@
           </h2>
         </div>
         <div class="pa-0">
-          <v-icon class="weather_icon">
+          <v-icon size="65">
             {{ $$(iconMap.get($$(weather, 'now', 'icon')), 'icon') }}
-            mdi-cloud
           </v-icon>
         </div>
       </div>
@@ -37,12 +37,15 @@
         <div
           v-for="(o, idx) in weather.forecast"
           :key="idx"
-          class="d-flex flex-column forecast-item"
+          class="d-flex flex-column forecast-item align-center"
         >
           <span class="weekday">
             {{ $dayjs(o.fxDate).format('dddd') }}
           </span>
-          <v-icon class="weather-icon-sub">
+          <v-icon
+            class="mt-2 mb-2"
+            size="30"
+          >
             {{ $$(iconMap.get(o.iconDay), 'icon') }}
           </v-icon>
           <div class="d-flex flex-column">
@@ -76,9 +79,9 @@
             x-small
             icon
             :value="o"
-            @click="changeTempType(o)"
+            @click="changeTempType(index)"
           >
-            <v-icon>{{ `mdi-${o}` }}</v-icon>
+            <v-icon>{{ o }}</v-icon>
           </v-btn>
           <v-divider
             :key="`${index}_divider`"
@@ -101,11 +104,13 @@
 <script>
 import service from './service';
 import iconMap from './weatherIcon';
+import {mdiCrosshairsGps, mdiTemperatureCelsius, mdiTemperatureKelvin, mdiTemperatureFahrenheit} from '@mdi/js';
+
 export default {
   data() {
     return {
       loading: true,
-      temps: ['temperature-celsius', 'temperature-fahrenheit', 'temperature-kelvin'],
+      temps: [mdiTemperatureCelsius, mdiTemperatureFahrenheit, mdiTemperatureKelvin],
       temperature_type: 'temperature-celsius',
       city: {
         name: '香港',
@@ -126,6 +131,7 @@ export default {
         forecast: [{'fxDate':'2020-10-18','sunrise':'06:29','sunset':'17:28','moonrise':'07:51','moonset':'18:41','moonPhase':'峨眉月','tempMax':'21','tempMin':'5','iconDay':'100','textDay':'晴','iconNight':'150','textNight':'晴','wind360Day':'45','windDirDay':'东北风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'0','windDirNight':'北风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'43','precip':'0.0','pressure':'1018','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-19','sunrise':'06:30','sunset':'17:26','moonrise':'09:08','moonset':'19:20','moonPhase':'峨眉月','tempMax':'20','tempMin':'7','iconDay':'100','textDay':'晴','iconNight':'101','textNight':'多云','wind360Day':'225','windDirDay':'西南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'225','windDirNight':'西南风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'33','precip':'0.0','pressure':'1017','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-20','sunrise':'06:31','sunset':'17:25','moonrise':'10:24','moonset':'20:05','moonPhase':'峨眉月','tempMax':'18','tempMin':'8','iconDay':'101','textDay':'多云','iconNight':'101','textNight':'多云','wind360Day':'180','windDirDay':'南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'315','windDirNight':'西北风','windScaleNight':'3-4','windSpeedNight':'16','humidity':'29','precip':'0.0','pressure':'1012','vis':'25','cloud':'5','uvIndex':'2'}],
       },
       iconMap,
+      mdiCrosshairsGps,
     };
   },
   computed: {
@@ -177,19 +183,9 @@ header {
   justify-content: space-between;
   padding: 12px 0;
   margin: 0 16px;
-  .mdi-crosshairs-gps {
-    font-size: 14px;
-  }
   .mdi-crosshairs-gps-active {
     color: #1a73e8;
   }
-}
-.weather_icon {
-  font-size: 84px;
-}
-.weather-icon-sub {
-  font-size: 30px;
-  padding: 10px;
 }
 .forecast {
   .forecast-item {

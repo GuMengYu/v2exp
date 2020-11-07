@@ -12,11 +12,15 @@
         v-on="on"
       >
         <v-icon left>
-          mdi-translate
+          {{ mdiTranslate }}
         </v-icon>
         {{ localeText }}
-        <v-icon right>
-          mdi-menu-down
+        <v-icon
+          right
+          class="ml-0"
+          size="14"
+        >
+          {{ mdiChevronDown }}
         </v-icon>
       </v-btn>
     </template>
@@ -46,6 +50,8 @@
 </template>
 
 <script>
+import { mdiTranslate, mdiChevronDown } from '@mdi/js';
+
 const supportLocalMap = {
   en: 'English',
   zh: '简体中文',
@@ -73,6 +79,8 @@ export default {
   data: () => ({
     locales,
     currentLocale: localStorage.getItem('locale') ?? locales[0].val,
+    mdiChevronDown,
+    mdiTranslate,
   }),
   computed: {
     localeText() {

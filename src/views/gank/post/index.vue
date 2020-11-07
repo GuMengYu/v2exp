@@ -4,11 +4,7 @@
       :items="breadcrumbs"
       :large="true"
       class="topic-breadcrumbs pl-0"
-    >
-      <template v-slot:divider>
-        <v-icon>mdi-forward</v-icon>
-      </template>
-    </v-breadcrumbs>
+    />
     <v-row>
       <v-col lg="8">
         <v-card

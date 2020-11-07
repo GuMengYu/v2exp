@@ -20,14 +20,14 @@
         icon
         @click="openSetting = !openSetting"
       >
-        <v-icon>mdi-cog-outline</v-icon>
+        <v-icon>{{ mdiCogOutline }}</v-icon>
       </v-btn>
       <language-select />
       <v-btn
         icon
         to="../../about"
       >
-        <v-icon>mdi-information</v-icon>
+        <v-icon>{{ mdiInformation }}</v-icon>
       </v-btn>
     </v-app-bar>
     <main
@@ -41,16 +41,19 @@
 </template>
 
 <script>
-import myFooter from './footer';
 import languageSelect from './languageSelect';
 import settingDrawer from './setting';
 import leftNav from './left-nav';
+import { mdiCogOutline, mdiInformation } from '@mdi/js';
+
 export default {
   name: 'Layout',
-  components: {myFooter, languageSelect, settingDrawer, leftNav},
+  components: {languageSelect, settingDrawer, leftNav},
   data: () => ({
     drawer: true,
     openSetting: false,
+    mdiCogOutline,
+    mdiInformation,
   }),
   methods: {
     handleSettingClose() {

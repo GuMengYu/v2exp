@@ -19,15 +19,21 @@
       <v-icon
         @click="close"
       >
-        mdi-close
+        {{ mdiClose }}
       </v-icon>
     </v-toolbar>
     <v-container>
       <span class="text-subtitle-2 font-weight-black">{{ $t('common.theme') }}</span>
-      <v-item-group mandatory v-model="theme">
+      <v-item-group
+        v-model="theme"
+        mandatory
+      >
         <v-row>
           <v-col>
-            <v-item v-slot="{ active, toggle }" value="light">
+            <v-item
+              v-slot="{ active, toggle }"
+              value="light"
+            >
               <v-card
                 outlined
                 class="d-flex align-center py-3 px-4 text-center cursor-pointer d-flex justify-space-between rounded"
@@ -35,12 +41,15 @@
                 @click="toggle"
               >
                 <span>Light</span>
-                <v-icon>mdi-brightness-6</v-icon>
+                <v-icon>{{ mdiBrightness6 }}</v-icon>
               </v-card>
             </v-item>
           </v-col>
           <v-col>
-            <v-item v-slot="{ active, toggle }" value="night">
+            <v-item
+              v-slot="{ active, toggle }"
+              value="night"
+            >
               <v-card
                 outlined
                 class="d-flex align-center py-3 px-4 text-center cursor-pointer d-flex justify-space-between rounded"
@@ -48,14 +57,17 @@
                 @click="toggle"
               >
                 <span>Dark</span>
-                <v-icon>mdi-brightness-4</v-icon>
+                <v-icon>{{ mdiBrightness4 }}</v-icon>
               </v-card>
             </v-item>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-item v-slot="{ active, toggle }" value="system">
+            <v-item
+              v-slot="{ active, toggle }"
+              value="system"
+            >
               <v-card
                 outlined
                 class="d-flex align-center py-3 px-4 text-center cursor-pointer d-flex justify-space-between rounded"
@@ -63,12 +75,15 @@
                 @click="toggle"
               >
                 <span>System</span>
-                <v-icon>mdi-desktop-classic</v-icon>
+                <v-icon>{{ mdiDesktopClassic }}</v-icon>
               </v-card>
             </v-item>
           </v-col>
           <v-col>
-            <v-item v-slot="{ active, toggle }" value="mixed">
+            <v-item
+              v-slot="{ active, toggle }"
+              value="mixed"
+            >
               <v-card
                 outlined
                 class="d-flex align-center py-3 px-4 text-center cursor-pointer d-flex justify-space-between rounded"
@@ -76,7 +91,7 @@
                 @click="toggle"
               >
                 <span>Mixed</span>
-                <v-icon>mdi-theme-light-dark</v-icon>
+                <v-icon>{{ mdiThemeLightDark }}</v-icon>
               </v-card>
             </v-item>
           </v-col>
@@ -89,6 +104,7 @@
 </template>
 
 <script>
+import { mdiBrightness6, mdiDesktopClassic, mdiThemeLightDark, mdiBrightness4, mdiClose } from '@mdi/js';
 export default {
   props: {
     open: {
@@ -98,6 +114,11 @@ export default {
   },
   data: () => ({
     theme: localStorage.getItem('theme') ?? 'light',
+    mdiBrightness6,
+    mdiThemeLightDark,
+    mdiDesktopClassic,
+    mdiBrightness4,
+    mdiClose,
   }),
   computed: {
     drawer: {

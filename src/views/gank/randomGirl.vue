@@ -2,7 +2,7 @@
   <v-card outlined>
     <v-img
       max-height="400"
-      :aspect-ratio="1/1"
+      :aspect-ratio="1"
       lazy-src="@/assets/girl.jpg"
       :src="$$(girl, 'images', '0')"
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
@@ -40,7 +40,7 @@
                 ><v-icon
                   color="white"
                   :class="{ loading: isLoading }"
-                >mdi-refresh</v-icon></a>
+                >{{ mdiRefresh }}</v-icon></a>
               </div>
             </div>
           </div>
@@ -52,6 +52,7 @@
 
 <script>
 import gankService from '@util/gankService';
+import { mdiRefresh } from '@mdi/js';
 
 export default {
   data: () => {
@@ -64,6 +65,7 @@ export default {
       },
       isLoading: false,
       girl: {},
+      mdiRefresh,
     };
   },
   computed: {

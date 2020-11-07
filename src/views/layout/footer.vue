@@ -12,12 +12,12 @@
     >
       <v-card-text>
         <v-btn
-          v-for="icon in icons"
-          :key="icon"
+          v-for="(icon, index) in icons"
+          :key="index"
           class="mx-4 white--text"
           icon
         >
-          <v-icon size="24px">
+          <v-icon size="24">
             {{ icon }}
           </v-icon>
         </v-btn>
@@ -32,15 +32,16 @@
 </template>
 
 <script>
+import {mdiFacebook, mdiTwitter, mdiInstagram, mdiWechat, mdiSinaWeibo, mdiQqchat} from '@mdi/js';
 export default {
   data: () => ({
     icons: [
-      'mdi-facebook',
-      'mdi-twitter',
-      'mdi-instagram',
-      'mdi-wechat',
-      'mdi-sina-weibo',
-      'mdi-qqchat',
+      mdiFacebook,
+      mdiTwitter,
+      mdiInstagram,
+      mdiWechat,
+      mdiSinaWeibo,
+      mdiQqchat,
     ],
   }),
 };

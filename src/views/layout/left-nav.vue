@@ -24,8 +24,9 @@
           <v-list-item-icon>
             <v-icon
               :color="item.color"
-              v-text="item.icon"
-            />
+            >
+              {{ item.icon }}
+            </v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -39,11 +40,14 @@
         href="https://github.com/GuMengYu/v2exp"
         target="_blank"
       >
-        <v-list-item-icon><v-icon>mdi-github</v-icon></v-list-item-icon>
+        <v-list-item-icon>
+          <v-icon>{{ githubSvgPath }}</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
-            GitHub <v-icon :size="12">
-              mdi-open-in-new
+            GitHub
+            <v-icon size="14">
+              {{ newSvg }}
             </v-icon>
           </v-list-item-title>
         </v-list-item-content>
@@ -53,6 +57,8 @@
 </template>
 
 <script>
+import { mdiLaptop, mdiThoughtBubble, mdiMushroom, mdiApple, mdiBriefcase, mdiBankTransfer, mdiCity, mdiHelpBox, mdiTrendingUp, mdiDevTo, mdiOpenInNew, mdiGithub } from '@mdi/js';
+
 export default {
   props: {
     drawer: {
@@ -62,17 +68,19 @@ export default {
   },
   data: function(){
         return {
+          githubSvgPath: mdiGithub,
+          newSvg: mdiOpenInNew,
           tabs: [
-            { icon: 'mdi-laptop', val: 'tech', color: '#42a5f5' },
-            { icon: 'mdi-thought-bubble', val: 'creative', color: '#66bb6a'},
-            { icon: 'mdi-mushroom', val: 'play', color: '#ffa726' },
-            { icon: 'mdi-apple', val: 'apple', color: '#000000' },
-            { icon: 'mdi-briefcase', val: 'jobs', color: '#9c27b0' },
-            { icon: 'mdi-bank-transfer', val: 'deals', color: '#4db6ac' },
-            { icon: 'mdi-city', val: 'city', color: '#90a4ae' },
-            { icon: 'mdi-help-box', val: 'qna', color: '#03a9f4' },
-            { icon: 'mdi-trending-up', val: 'hot', color: '#e53935' },
-            { icon: 'mdi-dev-to', val: 'gank', color: '#f95e74' },
+            { icon: mdiLaptop, val: 'tech', color: '#42a5f5' },
+            { icon: mdiThoughtBubble, val: 'creative', color: '#66bb6a'},
+            { icon: mdiMushroom, val: 'play', color: '#ffa726' },
+            { icon: mdiApple, val: 'apple', color: '#000000' },
+            { icon: mdiBriefcase, val: 'jobs', color: '#9c27b0' },
+            { icon: mdiBankTransfer, val: 'deals', color: '#4db6ac' },
+            { icon: mdiCity, val: 'city', color: '#90a4ae' },
+            { icon: mdiHelpBox, val: 'qna', color: '#03a9f4' },
+            { icon: mdiTrendingUp, val: 'hot', color: '#e53935' },
+            { icon: mdiDevTo, val: 'gank', color: '#f95e74' },
             ],
         };
       },
@@ -86,8 +94,5 @@ export default {
       },
     },
   },
-  created() {
-    console.log(this.$vuetify)
-  }
 };
 </script>

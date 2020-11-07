@@ -16,12 +16,13 @@
       small
       class="mr-2"
     >
-      {{ `mdi-${color.icon}` }}
+      {{ color.icon }}
     </v-icon>
     <v-icon
       v-else
       small
       class="mr-2"
+      :color="color || typeColor"
     >
       {{ typeIcon }}
     </v-icon>
@@ -39,20 +40,23 @@
     >
       <v-icon
         v-bind="attrs"
+        :color="color || typeColor"
         @click="close"
       >
-        mdi-close
+        {{ mdiClose }}
       </v-icon>
     </template>
   </v-snackbar>
 </template>
 
 <script>
+import {mdiClose, mdiCheck, mdiInformation, mdiAlert, mdiCarBrakeAlert} from '@mdi/js';
+
 const typeMap = {
-    'success': 'check',
-    'info': 'information',
-    'error': 'alert',
-    'warning': 'car-brake-alert',
+    'success': mdiCheck,
+    'info': mdiInformation,
+    'error': mdiAlert,
+    'warning': mdiCarBrakeAlert,
 };
 const typeColorMap = {
     'success': 'success',
@@ -74,12 +78,13 @@ export default {
     iconClass: '',
     type: '',
     dangerouslyUseHTMLString: false,
-    showClose: false,
+    showClose: true,
     color: '',
+    mdiClose,
   }),
   computed: {
     typeIcon() {
-        return this.type && !this.iconClass ? `mdi-${typeMap[this.type]}` : '';
+        return this.type && !this.iconClass ? `${typeMap[this.type]}` : '';
     },
     typeColor() {
         return this.type && !this.color ? typeColorMap[this.type] : '';

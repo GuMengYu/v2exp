@@ -11,7 +11,7 @@
         <v-carousel
           height="400"
           cycle
-          delimiter-icon="mdi-minus"
+          :delimiter-icon="mdiMinus"
           hide-delimiter-background
           show-arrows-on-hover
         >
@@ -71,6 +71,7 @@ import GankTab from './nav-tab/index';
 import RandomGirl from './randomGirl';
 import HotList from '@component/hotList';
 import gankService from '@util/gankService';
+import { mdiApple, mdiAndroid, mdiReact, mdiLanguageJava, mdiMonitorCellphone, mdiWhatsapp, mdiFaceWomanShimmer, mdiMinus } from '@mdi/js';
 
 export default {
   components: { GankTab, RandomGirl, HotList },
@@ -81,43 +82,43 @@ export default {
     tabs: [
       {
         title: 'iOS',
-        icon: 'mdi-apple',
+        icon: mdiApple,
         id: 'iOS',
         color: '#f95e74',
       },
       {
         title: '安卓',
-        icon: 'mdi-android',
+        icon: mdiAndroid,
         id: 'android',
         color: '#34a853',
       },
       {
         title: '前端',
-        icon: 'mdi-react',
+        icon: mdiReact,
         id: 'frontend',
         color: '#ea4335',
       },
       {
         title: '后端',
-        icon: 'mdi-language-java',
+        icon: mdiLanguageJava,
         id: 'backend',
         color: '#ea4335',
       },
       {
         title: 'Flutter',
-        icon: 'mdi-monitor-cellphone',
+        icon: mdiMonitorCellphone,
         id: 'Flutter',
         color: '#ff9a00',
       },
       {
         title: 'App',
-        icon: 'mdi-whatsapp',
+        icon: mdiWhatsapp,
         id: 'app',
         color: '#ff9a00',
       },
       {
         title: '妹子',
-        icon: 'mdi-face-woman-shimmer',
+        icon: mdiFaceWomanShimmer,
         val: 'Girl',
         color: 'pink',
       },
@@ -125,6 +126,7 @@ export default {
     loading: false,
     article: [],
     ganhuo: [],
+    mdiMinus,
   }),
   created() {
     this.loading = true;
