@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c4fa893a-29ff-4632-b5b8-6e98fab1145e" name="Default Changelist" comment="improve: 优化图标显示，webfont加载文件过大，故改为webComponent 引入mdi/js，导入svg图标。😼" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EditorConfigPreviewManager">
+    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/src/views/layout/languageSelect.vue" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1j2uUwYa4gwodoI5BICT11rInx8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/scss" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="template.copyright.formatting" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/scss" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/views/gank" />
+      <recent name="$PROJECT_DIR$/src/views" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="serve" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <package-manager value="npm" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c4fa893a-29ff-4632-b5b8-6e98fab1145e" name="Default Changelist" comment="" />
+      <created>1603014527001</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603014527001</updated>
+      <workItem from="1603014528336" duration="1436000" />
+      <workItem from="1603156437417" duration="6466000" />
+      <workItem from="1603179552014" duration="1246000" />
+      <workItem from="1603241473098" duration="34966000" />
+      <workItem from="1603463160626" duration="9406000" />
+      <workItem from="1603674089269" duration="20644000" />
+      <workItem from="1604217929975" duration="1090000" />
+      <workItem from="1604279016287" duration="39912000" />
+      <workItem from="1604671865570" duration="13208000" />
+      <workItem from="1604883604106" duration="604000" />
+      <workItem from="1604884649890" duration="1495000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix: 波浪样式优化">
+      <created>1603436949643</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603436949644</updated>
+    </task>
+    <task id="LOCAL-00002" summary="improve: 干货文字卡片样式调整&#10;&#10;- 提供全局scss样式&#10;在main.js 引用&#10;```&#10;import './scss/global.scss';&#10;```">
+      <created>1604392001603</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604392001603</updated>
+    </task>
+    <task id="LOCAL-00003" summary="improve: dark mode 🌗">
+      <created>1604675826205</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604675826205</updated>
+    </task>
+    <task id="LOCAL-00004" summary="improve: 优化图标显示，webfont加载文件过大，故改为webComponent 引入mdi/js，导入svg图标。😼">
+      <created>1604749300090</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604749300090</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: 波浪样式优化" />
+    <MESSAGE value="improve: 干货文字卡片样式调整&#10;&#10;- 提供全局scss样式&#10;在main.js 引用&#10;```&#10;import './scss/global.scss';&#10;```" />
+    <MESSAGE value="improve: dark mode " />
+    <MESSAGE value="improve: 优化图标显示，webfont加载文件过大，故改为webComponent 引入mdi/js，导入svg图标。" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve: 优化图标显示，webfont加载文件过大，故改为webComponent 引入mdi/js，导入svg图标。" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="820" y="426" key="#ESLint" timestamp="1604476656336">
+      <screen x="0" y="23" width="1920" height="1010" />
+    </state>
+    <state x="820" y="426" key="#ESLint/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604476656336" />
+    <state x="559" y="192" width="802" height="719" key="#Intentions" timestamp="1603179244394">
+      <screen x="0" y="23" width="1920" height="1010" />
+    </state>
+    <state x="559" y="192" width="802" height="719" key="#Intentions/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1603179244394" />
+    <state x="989" y="538" key="#Notifications" timestamp="1604675857547">
+      <screen x="0" y="23" width="2560" height="1370" />
+    </state>
+    <state x="989" y="538" key="#Notifications/0.23.2560.1370@0.23.2560.1370" timestamp="1604675857547" />
+    <state x="2477" y="290" width="1073" height="702" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604883880116">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2477" y="290" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604883880116" />
+    <state x="743" y="369" width="1073" height="702" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1370@0.23.2560.1370" timestamp="1603014858052" />
+    <state x="513" y="127" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1604392040034">
+      <screen x="0" y="23" width="1920" height="1010" />
+    </state>
+    <state x="513" y="127" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604392040034" />
+    <state x="100" y="123" width="2360" height="1170" key="DiffContextDialog" timestamp="1604749317244">
+      <screen x="0" y="23" width="2560" height="1370" />
+    </state>
+    <state x="100" y="123" width="2360" height="1170" key="DiffContextDialog/0.23.2560.1370@0.23.2560.1370" timestamp="1604749317244" />
+    <state width="1897" height="107" key="GridCell.Tab.0.bottom" timestamp="1604887802848">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1897" height="75" key="GridCell.Tab.0.bottom/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604471469654" />
+    <state width="1897" height="107" key="GridCell.Tab.0.bottom/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604887802848" />
+    <state width="2537" height="55" key="GridCell.Tab.0.bottom/0.23.2560.1370@0.23.2560.1370" timestamp="1604839414927" />
+    <state width="1897" height="107" key="GridCell.Tab.0.center" timestamp="1604887802847">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1897" height="75" key="GridCell.Tab.0.center/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604471469652" />
+    <state width="1897" height="107" key="GridCell.Tab.0.center/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604887802847" />
+    <state width="2537" height="55" key="GridCell.Tab.0.center/0.23.2560.1370@0.23.2560.1370" timestamp="1604839414925" />
+    <state width="1897" height="107" key="GridCell.Tab.0.left" timestamp="1604887802846">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1897" height="75" key="GridCell.Tab.0.left/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604471469651" />
+    <state width="1897" height="107" key="GridCell.Tab.0.left/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604887802846" />
+    <state width="2537" height="55" key="GridCell.Tab.0.left/0.23.2560.1370@0.23.2560.1370" timestamp="1604839414923" />
+    <state width="1897" height="107" key="GridCell.Tab.0.right" timestamp="1604887802847">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1897" height="75" key="GridCell.Tab.0.right/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604471469653" />
+    <state width="1897" height="107" key="GridCell.Tab.0.right/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604887802847" />
+    <state width="2537" height="55" key="GridCell.Tab.0.right/0.23.2560.1370@0.23.2560.1370" timestamp="1604839414926" />
+    <state x="746" y="154" key="RollbackChangesDialog" timestamp="1603436860409">
+      <screen x="0" y="23" width="1920" height="1010" />
+    </state>
+    <state x="746" y="154" key="RollbackChangesDialog/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1603436860409" />
+    <state x="2506" y="273" key="SettingsEditor" timestamp="1604885123767">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="586" y="262" key="SettingsEditor/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604300220773" />
+    <state x="2506" y="273" key="SettingsEditor/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604885123767" />
+    <state x="781" y="347" key="SettingsEditor/0.23.2560.1370@0.23.2560.1370" timestamp="1604732950048" />
+    <state x="745" y="351" key="Vcs.Push.Dialog.v2" timestamp="1604749318491">
+      <screen x="0" y="23" width="2560" height="1370" />
+    </state>
+    <state x="559" y="265" key="Vcs.Push.Dialog.v2/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1603436958869" />
+    <state x="2479" y="276" key="Vcs.Push.Dialog.v2/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604398997309" />
+    <state x="745" y="351" key="Vcs.Push.Dialog.v2/0.23.2560.1370@0.23.2560.1370" timestamp="1604749318491" />
+    <state x="2728" y="490" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604884269320">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2728" y="490" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604884269320" />
+    <state x="1077" y="628" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1370@0.23.2560.1370" timestamp="1604824404837" />
+    <state x="876" y="184" width="808" height="1046" key="find.popup" timestamp="1604748870803">
+      <screen x="0" y="23" width="2560" height="1370" />
+    </state>
+    <state x="657" y="142" width="606" height="771" key="find.popup/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604471125810" />
+    <state x="2577" y="148" width="606" height="807" key="find.popup/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604562242731" />
+    <state x="876" y="184" width="808" height="1046" key="find.popup/0.23.2560.1370@0.23.2560.1370" timestamp="1604748870803" />
+    <state x="2543" y="254" width="672" height="710" key="search.everywhere.popup" timestamp="1604885275158">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="623" y="244" width="672" height="678" key="search.everywhere.popup/0.23.1920.1010/1920.23.1920.1057@0.23.1920.1010" timestamp="1604476134136" />
+    <state x="2543" y="254" width="672" height="710" key="search.everywhere.popup/0.23.1920.1010/1920.23.1920.1057@1920.23.1920.1057" timestamp="1604885275158" />
+    <state x="831" y="323" width="896" height="920" key="search.everywhere.popup/0.23.2560.1370@0.23.2560.1370" timestamp="1604732948001" />
+  </component>
+</project>
