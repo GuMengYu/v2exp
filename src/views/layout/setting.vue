@@ -105,6 +105,17 @@
 
 <script>
 import { mdiBrightness6, mdiDesktopClassic, mdiThemeLightDark, mdiBrightness4, mdiClose } from '@mdi/js';
+import DetectMode from '@util/detectMode';
+const MODE = {
+  NIGHT: 'night',
+  LIGHT: 'light',
+};
+const THEME = {
+  SYSTEM: 'system',
+  NIGHT: 'night',
+  LIGHT: 'light',
+  MIXED: 'mixed',
+};
 export default {
   props: {
     open: {
@@ -113,7 +124,8 @@ export default {
     },
   },
   data: () => ({
-    theme: localStorage.getItem('theme') ?? 'light',
+    theme: localStorage.getItem('theme') ?? THEME.SYSTEM,
+    detectMode: new DetectMode(),
     mdiBrightness6,
     mdiThemeLightDark,
     mdiDesktopClassic,
@@ -136,25 +148,29 @@ export default {
     },
   },
   watch: {
-    'theme': function(newVal) {
+    'theme': function(newTheme) {
       localStorage.setItem('theme', this.theme);
-      switch (newVal) {
-        case 'night' :
-          this.$vuetify.theme.dark = true;
-          break;
-        case 'light' :
-          this.$vuetify.theme.dark = false;
-          break;
-        case 'system' :
-          this.$vuetify.theme.dark = false;
-          break;
-        case 'mixed' :
-          this.$vuetify.theme.dark = false;
-          break;
-      }
+      this.switchTheme(newTheme);
     },
   },
+  created() {
+    this.switchTheme(this.theme);
+    this.detectMode.onChange((e) => {
+      if(this.theme === THEME.SYSTEM || !this.theme) {
+        this.$vuetify.theme.dark = e.matches;
+      }
+    });
+  },
   methods: {
+    switchTheme(theme) {
+      const toDark = isDark => this.$vuetify.theme.dark = isDark;
+      ({
+        light: toDark.bind(void 0, false),
+        night: toDark.bind(void 0, true),
+        system: toDark.bind(void 0, this.detectMode.currentMode() === MODE.NIGHT),
+        mixed: toDark.bind(void 0, false),
+      })[theme]();
+    },
     close() {
       this.drawer = false;
       this.$emit('setting-close');
