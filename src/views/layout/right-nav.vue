@@ -23,16 +23,18 @@
       :loading="loading"
       class="mb-4"
     />
+    <tweet/>
   </div>
 </template>
 <script>
 import TagsCloud from '@component/tagsCloud';
 import HotList from '@component/hotList';
 import Weather from '@component/weather';
+import Tweet from '@component/twitter-tweet';
 import { getToDayHot } from '@util/service';
 
 export default {
-  components: { HotList, TagsCloud, Weather },
+  components: { HotList, TagsCloud, Weather, Tweet },
   data: () => ({
     nodeData: {},
     loading: false,
