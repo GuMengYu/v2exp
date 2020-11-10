@@ -1,6 +1,9 @@
 <template>
   <main class="v2exp_app">
-    <left-nav :drawer="drawer" />
+    <left-nav
+      :open="openNav"
+      @left-nav-toggle="handleNav"
+    />
     <setting-drawer
       :open="openSetting"
       @setting-close="handleSettingClose"
@@ -10,7 +13,7 @@
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       :elevate-on-scroll="false"
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="openNav = !openNav" />
       <v-toolbar-title class="headline">
         <span class="logo" />
         <span class="logo-sub">&nbsp;•&nbsp;{{ $t('message.logo_text') }}</span>
@@ -32,7 +35,7 @@
     </v-app-bar>
     <main
       class="content"
-      :class="{open : drawer}"
+      :class="{open : openNav}"
     >
       <router-view />
     </main>
@@ -50,12 +53,15 @@ export default {
   name: 'Layout',
   components: {languageSelect, settingDrawer, leftNav},
   data: () => ({
-    drawer: true,
+    openNav: true,
     openSetting: false,
     mdiCogOutline,
     mdiInformation,
   }),
   methods: {
+    handleNav(val) {
+      this.openNav = val;
+    },
     handleSettingClose() {
       this.openSetting = false;
     },

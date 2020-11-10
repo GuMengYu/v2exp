@@ -61,9 +61,9 @@ import { mdiLaptop, mdiThoughtBubble, mdiMushroom, mdiApple, mdiBriefcase, mdiBa
 
 export default {
   props: {
-    drawer: {
+    open: {
       type: Boolean,
-      default: true,
+      defalut: false,
     },
   },
   data: function(){
@@ -83,7 +83,7 @@ export default {
             { icon: mdiDevTo, val: 'gank', color: '#f95e74' },
             ],
         };
-      },
+  },
   computed: {
     activeTab: {
       get() {
@@ -91,6 +91,14 @@ export default {
       },
       set(val) {
         this.$router.push({path: val === 'gank' ? `/${val}` : `/v2/tab/${val}`});
+      },
+    },
+    drawer: {
+      get() {
+        return this.open;
+      },
+      set(val) {
+        this.$emit('left-nav-toggle', val);
       },
     },
   },
