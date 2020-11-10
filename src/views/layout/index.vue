@@ -37,7 +37,9 @@
       class="content"
       :class="{open : openNav}"
     >
-      <router-view />
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </main>
     <!-- <my-footer /> -->
   </main>
