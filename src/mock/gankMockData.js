@@ -15,7 +15,7 @@ const type = [
   '前端',
   'APP',
 ];
-const GanHuo = function (params) {
+const GanHuo = function () {
   let GanHuoList = [];
   for (let i = 0; i < 5; i++) {
     let obj = {

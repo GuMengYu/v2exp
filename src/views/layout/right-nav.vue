@@ -23,7 +23,7 @@
       :loading="loading"
       class="mb-4"
     />
-    <tweet/>
+    <tweet />
   </div>
 </template>
 <script>

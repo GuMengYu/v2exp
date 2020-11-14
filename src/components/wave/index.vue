@@ -1,6 +1,9 @@
 <template>
   <v-container>
-    <canvas ref="waveCanvas" id="waveCanvas"></canvas>
+    <canvas
+      id="waveCanvas"
+      ref="waveCanvas"
+    />
   </v-container>
 </template>
 

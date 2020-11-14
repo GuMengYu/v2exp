@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <wave :process="process"/>
+    <wave :process="process" />
   </div>
 </template>
 <script>

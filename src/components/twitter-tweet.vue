@@ -1,8 +1,14 @@
 <template>
   <div :id="`tweet-${id}`">
-    <blockquote class="twitter-tweet"><p lang="und" dir="ltr">😏 <a href="https://t.co/ldXT1idKxI">pic.twitter.com/ldXT1idKxI</a>
-    </p>&mdash; 小洪小洪根正苗红 (@YuhoRob) <a
-      href="https://twitter.com/YuhoRob/status/1325719238464602115?ref_src=twsrc%5Etfw">November 9, 2020</a>
+    <blockquote class="twitter-tweet">
+      <p
+        lang="und"
+        dir="ltr"
+      >
+        😏 <a href="https://t.co/ldXT1idKxI">pic.twitter.com/ldXT1idKxI</a>
+      </p>&mdash; 小洪小洪根正苗红 (@YuhoRob) <a
+        href="https://twitter.com/YuhoRob/status/1325719238464602115?ref_src=twsrc%5Etfw"
+      >November 9, 2020</a>
     </blockquote>
   </div>
 </template>
