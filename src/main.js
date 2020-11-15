@@ -7,7 +7,7 @@ import './mock/index';
 import filters from './filters';
 import i18n from './i18n';
 import './scss/global.scss';
-
+import store from './store';
 Object.entries(filters).map((key, fn) => {
   Vue.filter(key, fn);
 });
@@ -20,6 +20,7 @@ const initApp = () => {
   new Vue({
     i18n: i18n(locale),
     router,
+    store,
     vuetify,
     render: h => h(App),
   }).$mount('#app');

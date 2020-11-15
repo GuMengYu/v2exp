@@ -124,7 +124,7 @@ export default {
     },
   },
   data: () => ({
-    theme: localStorage.getItem('theme') ?? THEME.SYSTEM,
+    theme: localStorage.getItem('setting')?.theme ?? THEME.SYSTEM,
     detectMode: new DetectMode(),
     mdiBrightness6,
     mdiThemeLightDark,
@@ -149,7 +149,7 @@ export default {
   },
   watch: {
     'theme': function(newTheme) {
-      localStorage.setItem('theme', this.theme);
+      this.$store.commit('system/updateTheme', this.theme);
       this.switchTheme(newTheme);
     },
   },
