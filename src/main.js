@@ -16,7 +16,7 @@ Vue.use(plugins);
 Vue.config.productionTip = false;
 
 const initApp = () => {
-  const locale = localStorage.getItem('locale') || 'zh';
+  const locale = store.getters['system/locale'];
   new Vue({
     i18n: i18n(locale),
     router,

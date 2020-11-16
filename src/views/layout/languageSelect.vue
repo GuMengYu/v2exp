@@ -76,12 +76,14 @@ const locales = [
     ];
 export default {
   name: 'LanguageSelect',
-  data: () => ({
-    locales,
-    currentLocale: localStorage.getItem('locale') ?? locales[0].val,
-    mdiChevronDown,
-    mdiTranslate,
-  }),
+  data() {
+    return {
+      locales,
+      currentLocale: this.$store.getters['system/locale'],
+      mdiChevronDown,
+      mdiTranslate,
+    };
+  },
   computed: {
     localeText() {
       return supportLocalMap[this.currentLocale];
@@ -90,8 +92,8 @@ export default {
   methods: {
     changeLocale(locale) {
       if(Object.keys(supportLocalMap).includes(locale)) {
-        localStorage.setItem('locale', locale);
-        this.currentLocale = locale;
+        this.$store.commit('system/updateLanguage', locale);
+        // this.currentLocale = locale;
         // this.$eventHub.$emit('lang', locale);
         // location.reload();
         this.$i18n.locale = locale;
@@ -99,7 +101,7 @@ export default {
       } else {
         //restore currentLocale
         this.$nextTick().then(() => {
-          this.currentLocale = localStorage.getItem('locale') ?? locales[0].val;
+          this.currentLocale = this.$store.getters['system/locale'];
         });
         this.$message({message: this.$t('common.not_support'), type: 'error'});
       }

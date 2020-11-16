@@ -123,15 +123,17 @@ export default {
       defalut: false,
     },
   },
-  data: () => ({
-    theme: localStorage.getItem('setting')?.theme ?? THEME.SYSTEM,
-    detectMode: new DetectMode(),
-    mdiBrightness6,
-    mdiThemeLightDark,
-    mdiDesktopClassic,
-    mdiBrightness4,
-    mdiClose,
-  }),
+  data(){
+    return {
+      theme: this.$store.getters['system/theme'],
+      detectMode: new DetectMode(),
+      mdiBrightness6,
+      mdiThemeLightDark,
+      mdiDesktopClassic,
+      mdiBrightness4,
+      mdiClose,
+    };
+  },
   computed: {
     drawer: {
       get() {

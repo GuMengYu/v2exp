@@ -4,10 +4,11 @@ import 'dayjs/locale/en';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import weekday from 'dayjs/plugin/weekday';
+import store from '../store';
 dayjs.extend(weekday);
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
-const locale = localStorage.getItem('locale') || 'zh';
+const locale = store.getters['system/locale'];
 dayjs.locale(locale);
 
 

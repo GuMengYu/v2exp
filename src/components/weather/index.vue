@@ -112,23 +112,22 @@ export default {
       loading: true,
       temps: [mdiTemperatureCelsius, mdiTemperatureFahrenheit, mdiTemperatureKelvin],
       temperature_type: 'temperature-celsius',
-      city: {
-        name: '香港',
+      weather: {
+        name: '第三红岸基地',
         lat: '22.30699921',
         lon: '114.17700195',
-        adm2: '香港',
-        adm1: '香港特别行政区',
-        country: '中国',
-        tz: 'Asia/Shanghai',
-        utcOffset: '+08:00',
+        adm2: '第三红岸基地',
+        adm1: '',
+        country: '地球某处',
         type: 'city',
-        fxLink: 'http://hfx.link/2cz1',
-      },
-      weather: {
         updateTime: '2020-10-17T15:51+08:00',
         fxLink: 'http://hfx.link/2cz1',
-        now:{},
-        forecast: [{'fxDate':'2020-10-18','sunrise':'06:29','sunset':'17:28','moonrise':'07:51','moonset':'18:41','moonPhase':'峨眉月','tempMax':'21','tempMin':'5','iconDay':'100','textDay':'晴','iconNight':'150','textNight':'晴','wind360Day':'45','windDirDay':'东北风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'0','windDirNight':'北风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'43','precip':'0.0','pressure':'1018','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-19','sunrise':'06:30','sunset':'17:26','moonrise':'09:08','moonset':'19:20','moonPhase':'峨眉月','tempMax':'20','tempMin':'7','iconDay':'100','textDay':'晴','iconNight':'101','textNight':'多云','wind360Day':'225','windDirDay':'西南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'225','windDirNight':'西南风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'33','precip':'0.0','pressure':'1017','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-20','sunrise':'06:31','sunset':'17:25','moonrise':'10:24','moonset':'20:05','moonPhase':'峨眉月','tempMax':'18','tempMin':'8','iconDay':'101','textDay':'多云','iconNight':'101','textNight':'多云','wind360Day':'180','windDirDay':'南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'315','windDirNight':'西北风','windScaleNight':'3-4','windSpeedNight':'16','humidity':'29','precip':'0.0','pressure':'1012','vis':'25','cloud':'5','uvIndex':'2'}],
+        now:{
+          temp: 0,
+          text: '晴',
+          icon: '100',
+        },
+        forecast: [{'fxDate':'2020-10-18','sunrise':'06:29','sunset':'17:28','moonrise':'07:51','moonset':'18:41','moonPhase':'峨眉月','tempMax':'21','tempMin':'-5','iconDay':'104','textDay':'晴','iconNight':'150','textNight':'晴','wind360Day':'45','windDirDay':'东北风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'0','windDirNight':'北风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'43','precip':'0.0','pressure':'1018','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-19','sunrise':'06:30','sunset':'17:26','moonrise':'09:08','moonset':'19:20','moonPhase':'峨眉月','tempMax':'20','tempMin':'7','iconDay':'100','textDay':'晴','iconNight':'101','textNight':'多云','wind360Day':'225','windDirDay':'西南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'225','windDirNight':'西南风','windScaleNight':'1-2','windSpeedNight':'3','humidity':'33','precip':'0.0','pressure':'1017','vis':'25','cloud':'0','uvIndex':'4'},{'fxDate':'2020-10-20','sunrise':'06:31','sunset':'17:25','moonrise':'10:24','moonset':'20:05','moonPhase':'峨眉月','tempMax':'18','tempMin':'8','iconDay':'101','textDay':'多云','iconNight':'101','textNight':'多云','wind360Day':'180','windDirDay':'南风','windScaleDay':'1-2','windSpeedDay':'3','wind360Night':'315','windDirNight':'西北风','windScaleNight':'3-4','windSpeedNight':'16','humidity':'29','precip':'0.0','pressure':'1012','vis':'25','cloud':'5','uvIndex':'2'}],
       },
       iconMap,
       mdiCrosshairsGps,
@@ -137,7 +136,7 @@ export default {
   computed: {
     positionActive: vm => !vm.loading,
     cardTitle() {
-      return this.loading ? '正在获取当地天气信息...' : [this.weather.adm1, this.weather.adm2, this.weather.country].join('·');
+      return this.loading ? '正在获取当地天气信息...' : [this.weather.adm1, this.weather.adm2, this.weather.country].filter(i=>i).join('·');
     },
   },
   created() {
@@ -146,10 +145,13 @@ export default {
   methods: {
     changeTempType() {},
     async initWeather() {
-        this.loading = true;
+      this.loading = true;
+      try {
         const location = await this.getCurrentPosition();
         this.weather = await this.getCityWeather(location);
+      } catch(e) {
         this.loading = false;
+      }
     },
     async getCityWeather(location) {
       const cityInfo = await service.city(location.longitude, location.latitude);
