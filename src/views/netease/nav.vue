@@ -1,14 +1,10 @@
 <template>
   <v-navigation-drawer
-    permanent
-    fixed
     color="#d1d0d3"
-    :clipped="$vuetify.breakpoint.lgAndUp"
+    width="230"
   >
     <div class="searchArea ma-2">
-      <v-input dense :hide-details="true" class="input-field" :class="{'actived': searchInputActived}" v-click-outside="onClickOutside">
-        <input class="searchInput" placeholder="搜索" @click="searchInputActived = true"/>
-      </v-input>
+      <i-input />
     </div>
 
     <v-list
@@ -21,7 +17,7 @@
         <template v-for="o in sideBar">
           <v-list-item-subtitle
             :key="o.val"
-            class="mt-2 mb-2 font-weight-bold grey--text text--darken-2"
+            class="mt-2 mb-2 font-weight-bold grey--text text--darken-2 text-caption"
           >
             {{ o.name }}
           </v-list-item-subtitle>
@@ -41,7 +37,7 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>{{ tab.val }}</v-list-item-title>
+              <v-list-item-title>{{ tab.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </template>
@@ -51,9 +47,11 @@
 </template>
 
 <script>
-import { mdiMotionPlay, mdiMusicNoteEighth, mdiPodcast, mdiPlaylistMusicOutline, mdiAlbum, mdiMicrophoneVariant, mdiHistory, mdiMusicNoteHalfDotted, mdiTrendingUp, mdiDevTo, mdiOpenInNew, mdiGithub } from '@mdi/js';
+import { mdiMotionPlay, mdiMusicNoteEighth, mdiPodcast, mdiPlaylistMusicOutline, mdiAlbum, mdiMicrophoneVariant, mdiHistory, mdiMusicNoteHalfDotted } from '@mdi/js';
+import IInput from './component/input';
 
 export default {
+  components: {IInput},
   props: {
     open: {
       type: Boolean,
@@ -67,7 +65,7 @@ export default {
               name: 'AppleMusic',
               val: 'apple',
               child: [
-                { icon: mdiMotionPlay, val: 'now', name: '现在播放', color: '#42a5f5' },
+                { icon: mdiMotionPlay, val: 'now', name: '现在就听', color: '#42a5f5' },
                 { icon: mdiMusicNoteEighth, val: 'views', name: '浏览', color: '#66bb6a'},
                 { icon: mdiPodcast, val: 'broadcast', name: '广播', color: '#ffa726' },
               ],
@@ -90,7 +88,6 @@ export default {
               ],
             },
           ],
-          searchInputActived: false,
         };
   },
   computed: {
@@ -98,7 +95,7 @@ export default {
       get() {
         return 'now';
       },
-      set(val) {
+      set() {
         // this.$router.push({path: val === 'gank' ? `/${val}` : `/v2/tab/${val}`});
       },
     },
@@ -111,34 +108,14 @@ export default {
       },
     },
   },
-  methods: {
-    onClickOutside() {
-      this.searchInputActived = false;
-    },
-  },
 };
 </script>
 <style lang="scss" scoped>
-.v-list-item {
-  min-height: 32px !important;
-}
-.input-field {
-  height: 32px;
-  width: 100%;
-  padding: 0 20px ;
-  border-radius: 4px;
-  border: 1px solid #bcbbbd;
-  background-color: #d5d4d4;
-  line-height: 32px;
-  display: inline-block;
-  font-size: 13px;
-  transition: all .1s ease-in-out;
-}
-.actived {
-  border: 2px solid #de7a7b;
-}
-.searchInput {
-  max-height: 28px;
-  width: 100%;
+.v-navigation-drawer {
+  top: 0 !important;
+  max-height: 100% !important;
+  .v-list-item {
+    min-height: 32px !important;
+  }
 }
 </style>

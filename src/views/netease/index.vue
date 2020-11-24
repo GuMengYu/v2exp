@@ -1,53 +1,24 @@
 <template>
-  <main class="inetease-app">
-    <left-nav
-      :open="openNav"
-      @left-nav-toggle="handleNav"
-    />
-    <!-- <v-app-bar
-      app
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
-      :elevate-on-scroll="false"
-    >
-      <v-app-bar-nav-icon @click.stop="openNav = !openNav" />
-      <v-toolbar-title class="headline">
-        <span class="logo" />
-        <span class="logo-sub">&nbsp;•&nbsp;{{ $t('message.logo_text') }}</span>
-      </v-toolbar-title>
-      <v-spacer />
-      <v-btn
-        icon
-        @click="openSetting = !openSetting"
-      >
-        <v-icon>{{ mdiCogOutline }}</v-icon>
-      </v-btn>
-      <language-select />
-      <v-btn
-        icon
-        to="../../about"
-      >
-        <v-icon>{{ mdiInformation }}</v-icon>
-      </v-btn>
-    </v-app-bar> -->
-    <main
-      class="content"
-      :class="{open : openNav}"
-    >
-      <keep-alive>
-        <router-view />
-      </keep-alive>
-    </main>
-    <!-- <my-footer /> -->
-  </main>
+  <div class="inetease-app d-flex">
+    <side-nav />
+    <div class="content">
+      <play-bar />
+      <v-container tag="main">
+        <div></div>
+      </v-container>
+    </div>
+      <!-- <my-footer /> -->
+  </div>
 </template>
 
 <script>
-import leftNav from './nav.vue';
+import sideNav from './nav.vue';
+import playBar from './playbar/index';
 import { mdiCogOutline, mdiInformation } from '@mdi/js';
 
 export default {
   name: 'Layout',
-  components: {leftNav},
+  components: {sideNav, playBar},
   data: () => ({
     openNav: true,
     openSetting: false,
@@ -62,49 +33,28 @@ export default {
       this.openSetting = false;
     },
   },
+  mounted() {
+    console.log(this.$vuetify.application);
+  },
 };
 </script>
 <style lang="scss" scoped>
-.v2exp_app {
-  // background: white !important;
-  .headline {
-    display: flex;
-    padding-left: 10px !important;
-  }
+$playerHeight:700px;
+$palyerWidth:1200px;
+$playerbarHeight: 64px;
+.inetease-app {
+  width: $palyerWidth;
+  height: $playerHeight;
+  max-height: $playerHeight;
+  margin: 0 auto;
+  position: relative;
+  transform: translate(0%);
   .content {
-    display: flex;
-    max-width: 1276px;
-    margin: auto;
-    padding: 64px 10px 32px;
+    width: calc(100% - 230px);
   }
-
-  .open {
-    @media(max-width: 1736px) {
-        margin-left: 256px;
-    }
-  }
-  .search-wrap {
-      padding: 0 10px;
-      border-radius: 4px;
-      max-width: 700px;
-    }
-  .font-weight-light {
-    padding-left: 1em;
-    font-size: 0.4em;
-  }
-  .logo {
-    line-height: 24px;
-    vertical-align: middle;
-    &::before{
-      content: url(../../assets/googlelogo_clr_74x24px.svg);
-      display: inline-block;
-      height: 24px;
-      width: 74px;
-    }
-  }
-  .logo-sub {
-    font-size: 22px;
-    line-height: 26px;
+  main {
+    max-height: calc(#{$playerHeight} - #{$playerbarHeight});
+    overflow-y: auto;
   }
 }
 </style>

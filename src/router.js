@@ -55,7 +55,6 @@ export default new Router({
     {
       path: '/inetease',
       component: lazyLoad('netease'),
-      children: [...v2Routers, ...gankRouters],
       // redirect: { path: '/inetease/now' },
     },
   ],
