@@ -52,12 +52,28 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      <v-list-item
+        link
+        href="/#/inetease/"
+        target="_blank"
+      >
+        <v-list-item-icon>
+          <v-icon color="red">
+            {{ mdiMusicClefTreble }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>
+            Music Player
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
-import { mdiLaptop, mdiThoughtBubble, mdiMushroom, mdiApple, mdiBriefcase, mdiBankTransfer, mdiCity, mdiHelpBox, mdiTrendingUp, mdiDevTo, mdiOpenInNew, mdiGithub } from '@mdi/js';
+import { mdiLaptop, mdiThoughtBubble, mdiMushroom, mdiApple, mdiBriefcase, mdiBankTransfer, mdiCity, mdiHelpBox, mdiTrendingUp, mdiDevTo, mdiOpenInNew, mdiGithub, mdiMusicClefTreble } from '@mdi/js';
 
 export default {
   props: {
@@ -70,6 +86,7 @@ export default {
         return {
           githubSvgPath: mdiGithub,
           newSvg: mdiOpenInNew,
+          mdiMusicClefTreble,
           tabs: [
             { icon: mdiLaptop, val: 'tech', color: '#42a5f5' },
             { icon: mdiThoughtBubble, val: 'creative', color: '#66bb6a'},

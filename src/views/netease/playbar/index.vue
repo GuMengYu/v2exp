@@ -14,14 +14,20 @@
             :class="{ 'on-hover': hover }"
           >
             <v-row class="pa-0 ma-0">
-              <v-col lg="4" class="pa-0 ma-0">
+              <v-col
+                lg="4"
+                class="pa-0 ma-0"
+              >
                 <v-img
                   src="../../../assets/girl.jpg"
                   height="40"
                   width="40"
                 />
               </v-col>
-              <v-col lg="8" class="pa-0 ma-0">
+              <v-col
+                lg="8"
+                class="pa-0 ma-0"
+              >
                 <v-card-title>mindisa</v-card-title>
               </v-col>
             </v-row>
@@ -48,8 +54,7 @@
           </v-icon>
         </v-btn>
       </v-col>
-      <v-col lg="4">
-      </v-col>
+      <v-col lg="4" />
     </v-row>
     <v-slider
       height="10"
@@ -57,8 +62,8 @@
       hide-details
       max="100"
       min="0"
-    >
-    </v-slider>
+      color="#de7a7b"
+    />
   </v-card>
 </template>
 
@@ -69,10 +74,8 @@ import {
   mdiSkipNextCircleOutline,
   mdiPlayCircleOutline,
 } from '@mdi/js';
-import IInput from '../component/input';
 
 export default {
-  components: {IInput},
   data: () => ({
     icon: {
       mdiHeartOutline,

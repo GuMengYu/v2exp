@@ -42,7 +42,10 @@ export default {
   transition: all .1s ease-in-out;
 }
 .actived {
-  border: 2px solid #de7a7b;
+    border-color: #de7a7b;
+    border-right-width: 1px!important;
+    outline: 0;
+    box-shadow: 0 0 0 3px #de7a7b;
 }
 .searchInput {
   max-height: 28px;
