@@ -38,7 +38,9 @@
       :class="{open : openNav}"
     >
       <keep-alive>
-        <router-view />
+        <transition>
+          <router-view />
+        </transition>
       </keep-alive>
     </main>
     <!-- <my-footer /> -->

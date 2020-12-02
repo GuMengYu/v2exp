@@ -1,8 +1,11 @@
 <template>
   <v-navigation-drawer
-    color="#d1d0d3"
+    color="#E4E3E2"
     width="230"
   >
+    <div class="logo pa-4">
+      <v-img src="@assets/googlelogo_clr_74x24px.svg" width="150"/>
+    </div>
     <div class="searchArea ma-2">
       <i-input />
     </div>
@@ -17,7 +20,7 @@
         <template v-for="o in sideBar">
           <v-list-item-subtitle
             :key="o.val"
-            class="mt-2 mb-2 font-weight-bold grey--text text--darken-2 text-caption"
+            class="mt-2 mb-2 pl-2 pr-2 font-weight-bold grey--text text--darken-2 text-caption"
           >
             {{ o.name }}
           </v-list-item-subtitle>
@@ -42,6 +45,34 @@
           </v-list-item>
         </template>
       </v-list-item-group>
+      <v-list-group
+        v-for="item in playlist"
+        :key="item.val"
+        :value="item.val"
+      >
+        <template v-slot:activator>
+          <v-list-item-subtitle>{{ item.name }}</v-list-item-subtitle>
+        </template>
+        <v-list-item
+          v-for="list in item.child"
+          :key="list.val"
+          link
+          :value="list.val"
+        >
+          <v-list-item-icon class="ml-2 mr-2 mt-1 mb-1 d-flex align-center">
+            <v-icon
+              color="#f9223b"
+              size="18"
+            >
+              {{ list.icon }}
+            </v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ list.name }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-group>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -80,11 +111,17 @@ export default {
                 { icon: mdiMusicNoteHalfDotted, val: 'music', name: '歌曲', color: '#ffa726' },
               ],
             },
+          ],
+          playlist: [
             {
               name: '播放列表',
               val: 'playlist',
               child: [
-                { icon: mdiPlaylistMusicOutline, val: 'life', name: '划水', color: '#42a5f5' },
+                { icon: mdiPlaylistMusicOutline, val: 'fav', name: '我喜欢的音乐', color: '#42a5f5' },
+                { icon: mdiPlaylistMusicOutline, val: 'list1', name: '我怀念的', color: '#42a5f5' },
+                { icon: mdiPlaylistMusicOutline, val: 'list2', name: '是无话不说', color: '#42a5f5' },
+                { icon: mdiPlaylistMusicOutline, val: 'list3', name: '我怀恋的', color: '#42a5f5' },
+                { icon: mdiPlaylistMusicOutline, val: 'list4', name: '是一起做梦', color: '#42a5f5' },
               ],
             },
           ],

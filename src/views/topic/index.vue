@@ -37,16 +37,18 @@
         :reply="o"
       />
     </v-card>
+    <watermark text="测试水印" />
   </section>
 </template>
 <script>
 import {getTopicInfo, getTopicReply} from '@util/service';
 import replyItem from './reply-item';
 import RenderContent from '@component/render-content';
+import watermark from '@component/watermark';
 
 export default {
     name: 'Topic',
-    components: {replyItem, RenderContent},
+    components: {replyItem, RenderContent, watermark},
     props: {
         id: {
             type: String,
