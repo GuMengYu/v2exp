@@ -8,7 +8,7 @@ import filters from './filters';
 import i18n from './i18n';
 import './scss/global.scss';
 import store from './store';
-Object.entries(filters).map((key, fn) => {
+Object.entries(filters).map(([key, fn]) => {
   Vue.filter(key, fn);
 });
 
