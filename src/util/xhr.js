@@ -1,6 +1,6 @@
 import axios from 'axios';
 import localConfig from '../../config/local.config';
-import {Message} from '../plugins/snackbar';
+import {Message} from '@/plugins/snackbar';
 // create an axios instance
 const createRequest = (baseURL, successCode = 'ok', returnOrigin = false) => {
   const service = axios.create({
@@ -43,3 +43,4 @@ const createRequest = (baseURL, successCode = 'ok', returnOrigin = false) => {
 export const gankXhr = createRequest('https://gank.io/api/v2');
 export const v2Xhr = createRequest(`${localConfig.protocal}//${localConfig.url}:${localConfig.port}`);
 export const hfXhr = createRequest('https://devapi.heweather.net/v7/', '200', true);
+export const musicXhr = createRequest('http://localhost:3000', 200, true);
