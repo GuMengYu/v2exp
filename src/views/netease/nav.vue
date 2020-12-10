@@ -4,7 +4,10 @@
     width="230"
   >
     <div class="logo pa-4">
-      <v-img src="@assets/googlelogo_clr_74x24px.svg" width="150"/>
+      <v-img
+        src="@assets/googlelogo_clr_74x24px.svg"
+        width="150"
+      />
     </div>
     <div class="searchArea ma-2">
       <i-input />
@@ -153,6 +156,11 @@ export default {
   max-height: 100% !important;
   .v-list-item {
     min-height: 32px !important;
+  }
+  .logo {
+    ::v-deep .v-image {
+      margin: auto;
+    }
   }
 }
 </style>

@@ -1,43 +1,14 @@
 <template>
   <header
-    class="playbar"
+    class="playing-bar"
   >
     <v-row
       justify="space-between"
-      class="ml-0 mr-0"
+      class="ml-0 mr-0 now-playing-bar"
     >
       <v-col
-        lg="2"
-        class="d-flex justify-space-around pa-2 align-center"
-      >
-        <v-btn
-          icon
-          @click="nextSong"
-        >
-          <v-icon>
-            {{ icon.mdiSkipPreviousCircleOutline }}
-          </v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          @click="playPause"
-        >
-          <v-icon x-large>
-            {{ playing ? icon.mdiPauseCircleOutline : icon.mdiPlayCircleOutline }}
-          </v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          @click="prevSong"
-        >
-          <v-icon>
-            {{ icon.mdiSkipNextCircleOutline }}
-          </v-icon>
-        </v-btn>
-      </v-col>
-      <v-col
-        lg="6"
-        class="d-flex pa-2 align-center"
+        lg="3"
+        class="now-playing-bar__left pr-0"
       >
         <v-hover v-slot="{ hover }">
           <v-img
@@ -49,66 +20,181 @@
             :class="{ 'on-hover': hover }"
           />
         </v-hover>
-        <div class="d-flex flex-column text-caption ml-2 justify-center">
-          <span class="song-name">{{ song.name }} - {{ $$(song, 'ar', '0', 'name') }}</span>
-          <div>
-            <span class="song-time">{{ playTime | formatDuring }}</span>/<span class="song-time">{{ song.dt | formatDuring }}</span>
+        <div class="song-info">
+          <a>
+            <span
+              class="song-name"
+              :title="`${song.name} - ${$$(song, 'ar', '0', 'name')}`"
+            >
+              {{ song.name }} - {{ $$(song, 'ar', '0', 'name') }}
+            </span>
+          </a>
+          <div class="song-time">
+            <span>{{ playTime | formatDuring }}</span>/
+            <span>{{ song.dt | formatDuring }}</span>
           </div>
         </div>
       </v-col>
-
       <v-col
-        lg="4"
-        class="pa-2"
+        lg="6"
+        class="now-playing-bar__center"
       >
-        <audio
-          ref="audio"
-          :src="musicUrl"
-          @play="onPlayAndPause"
-          @pause="onPlayAndPause"
-        >
-          Your browser does not support the <code>audio</code> element.
-        </audio>
+        <div class="playing-control">
+          <div class="playing-control-buttons">
+            <v-btn
+              icon
+              text
+              color="#f9223b"
+            >
+              <v-icon small>
+                {{ icon.mdiHeart }}
+              </v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              text
+              color="purple"
+              @click="nextSong"
+            >
+              <v-icon small>
+                {{ icon.mdiSkipPrevious }}
+              </v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              text
+              color="deep-orange"
+              @click="playPause"
+            >
+              <v-icon x-large>
+                {{ playing ? icon.mdiPause : icon.mdiPlay }}
+              </v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              text
+              color="green"
+              @click="prevSong"
+            >
+              <v-icon small>
+                {{ icon.mdiSkipNext }}
+              </v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              text
+              color="blue"
+              @click="playOrder"
+            >
+              <v-icon small>
+                {{ icon.mdiRepeat }}
+              </v-icon>
+            </v-btn>
+          </div>
+          <div class="playing-control-slider">
+            <v-slider
+              v-model="playTime"
+              height="10"
+              dense
+              hide-details
+              :max="song.dt"
+              min="0"
+              color="#de7a7b"
+              track-fill-color="#de7a7b"
+              @start="handleChangeTimeStart"
+              @change="handleSlideChange"
+            />
+          </div>
+        </div>
+      </v-col>
+      <v-col
+        lg="3"
+        class="now-playing-bar__right"
+      >
+        <div class="ExtraControls">
+          <v-btn
+            icon
+            text
+            color="blue"
+          >
+            <v-icon small>
+              {{ icon.mdiPlaylistMusic }}
+            </v-icon>
+          </v-btn>
+          <div class="volume-bar d-flex align-center">
+            <v-btn
+              icon
+              text
+              color="blue"
+              @click="toggleVolume"
+            >
+              <v-icon small>
+                {{ volumeIconState }}
+              </v-icon>
+            </v-btn>
+            <v-slider
+              v-model="volume"
+              dense
+              hide-details
+              :max="1"
+              min="0"
+              step="0.01"
+              @change="volumeChange"
+            />
+          </div>
+        </div>
       </v-col>
     </v-row>
-    <v-slider
-      v-model="playTime"
-      height="10"
-      dense
-      hide-details
-      :max="song.dt"
-      min="0"
-      track-color="grey lighten-2"
-      color="#de7a7b"
-      track-fill-color="#de7a7b"
-      @start="handleChangeTimeStart"
-      @change="handleSlideChange"
-    />
+    <audio
+      ref="audio"
+      :src="musicUrl"
+      @play="onPlayAndPause"
+      @pause="onPlayAndPause"
+    >
+      Your browser does not support the <code>audio</code> element.
+    </audio>
   </header>
 </template>
 
 <script>
 import {
-  mdiHeartOutline,
-  mdiSkipPreviousCircleOutline,
-  mdiSkipNextCircleOutline,
-  mdiPlayCircleOutline,
-  mdiPauseCircleOutline,
+  mdiHeart,
+  mdiSkipPrevious,
+  mdiSkipNext,
+  mdiPlay,
+  mdiPause,
+  mdiRepeat,
+  mdiDolby,
+  mdiVolumeHigh,
+  mdiPlaylistMusic,
+  mdiVolumeMute,
+  mdiVolumeMedium,
+  mdiVolumeLow,
 } from '@mdi/js';
-import Audio from './audio';
 
+import Audio from './audio';
+let prevVolume = 1;
 export default {
   data: () => ({
     icon: {
-      mdiHeartOutline,
-      mdiSkipPreviousCircleOutline,
-      mdiSkipNextCircleOutline,
-      mdiPlayCircleOutline,
-      mdiPauseCircleOutline,
+      mdiHeart,
+      mdiSkipPrevious,
+      mdiSkipNext,
+      mdiPlay,
+      mdiPause,
+      mdiRepeat,
+      mdiDolby,
+      mdiVolumeHigh,
+      mdiVolumeMedium,
+      mdiVolumeLow,
+      mdiVolumeMute,
+      mdiPlaylistMusic,
     },
     player: {},
     interval: null,
     playTime: 0,
+    volume: 1,
+    prevVolume: 1,
   }),
   computed: {
     musicUrl() {
@@ -123,11 +209,22 @@ export default {
     currentTime() {
       return this.$store.state.music.currentTime;
     },
+    volumeIconState() {
+      if (this.volume === 0) {
+        return this.icon.mdiVolumeMute;
+      } else if (this.volume > 0 && this.volume <= 0.4) {
+        return this.icon.mdiVolumeLow;
+      } else if (this.volume > 0.4 && this.volume <= 0.7) {
+        return this.icon.mdiVolumeMedium;
+      } else {
+        return this.icon.mdiVolumeHigh;
+      }
+    },
   },
   watch: {
     playing(val) {
       this.$nextTick(() => {
-        if(val) {
+        if (val) {
           this.setPlayTime();
           this.player.play();
         } else {
@@ -179,17 +276,83 @@ export default {
       this.$store.commit('music/UPDATE_PLAYER', {currentTime: v});
       this.playing && this.setPlayTime();
     },
+    toggleVolume() {
+      if (this.volume === 0) {
+        this.volume = prevVolume;
+      } else {
+        prevVolume = this.volume;
+        this.volume = 0;
+      }
+    },
+    playOrder() {
+
+    },
+    volumeChange(val) {
+      console.log(val);
+      this.player.element.volume = val;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.song-name {
-  text-align: center;
-}
-.song-time {
-  display: inline-block;
-  width: 38px;
-  text-align: center;
+.playing-bar {
+  background: #E0DFDE;
+  .now-playing-bar__left {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    .song-info {
+      display: flex;
+      flex-flow: column;
+      margin: 0 14px;
+    }
+    .song-name {
+      display: inline-block;
+      max-width: 180px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      color: #6a737d;
+    }
+    .song-time {
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .now-playing-bar__center {
+    .playing-control {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .playing-control-buttons {
+        display: flex;
+        width: 200px;
+        justify-content: space-around;
+        margin-bottom: 10px;
+      }
+      .playing-control-slider {
+        width: 90%;
+      }
+    }
+  }
+  .now-playing-bar__right {
+    display: flex;
+    align-items: center;
+    .ExtraControls {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      .volume-bar {
+        width: 130px;
+      }
+    }
+  }
+
 }
 </style>
