@@ -1,24 +1,31 @@
 <template>
-  <div class="inetease-app d-flex">
+  <v-sheet
+    class="inetease-app d-flex"
+    elevation="1"
+  >
     <side-nav />
     <div class="content">
       <play-bar />
+      <pending-list
+        :open="true"
+        class="pending-list"
+      />
       <v-container tag="main">
-        <div></div>
+        <div />
       </v-container>
     </div>
-      <!-- <my-footer /> -->
-  </div>
+  </v-sheet>
 </template>
 
 <script>
 import sideNav from './nav.vue';
 import playBar from './playbar/index';
 import { mdiCogOutline, mdiInformation } from '@mdi/js';
+import PendingList from '@/views/netease/playbar/pending-list';
 
 export default {
   name: 'Layout',
-  components: {sideNav, playBar},
+  components: {PendingList, sideNav, playBar},
   data: () => ({
     openNav: true,
     openSetting: false,
@@ -33,9 +40,6 @@ export default {
       this.openSetting = false;
     },
   },
-  mounted() {
-    console.log(this.$vuetify.application);
-  },
 };
 </script>
 <style lang="scss" scoped>
@@ -49,6 +53,10 @@ $playerbarHeight: 64px;
   margin: 0 auto;
   position: relative;
   transform: translate(0%);
+  .pending-list {
+    top: 80px!important;
+    height: calc(100% - 80px) !important;
+  }
   .content {
     width: calc(100% - 230px);
   }

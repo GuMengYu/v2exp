@@ -1,4 +1,4 @@
-import {getSongData, getSongUrl, getPlayList} from '@util/musicService';
+import {getSongData, getSongUrl} from '@util/musicService';
 
 export default {
   namespaced: true,
@@ -7,7 +7,8 @@ export default {
     resourceUrl: '',
     song: {},
     currentTime: 0,
-    playList: {},
+    pendingList: [],
+    showList: false,
   },
   getters: {
 
@@ -23,14 +24,10 @@ export default {
         resourceUrl:  data?.[0]?.url,
       });
     },
-    async playList({commit}, listId) {
-      const {playlist} = await getPlayList(listId);
-      commit('UPDATE_PLAYLIST', playlist);
-    },
   },
   mutations: {
-    UPDATE_PLAYLIST(state, list) {
-      state.playList = list;
+    UPDATE_PENDING_LIST(state, list) {
+      state.pendingList = list;
     },
     UPDATE_SONG(state, song) {
       state.song = song;
@@ -39,6 +36,9 @@ export default {
       Object.keys(payload).map(key => {
         state[key] = payload[key];
       });
+    },
+    UPDATE_WAIT_LIST(state, showList = false) {
+      state.showList = showList;
     },
   },
 };

@@ -2,6 +2,7 @@
   <v-navigation-drawer
     color="#E4E3E2"
     width="230"
+    permanent
   >
     <div class="logo pa-4">
       <v-img

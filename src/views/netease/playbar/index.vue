@@ -1,5 +1,6 @@
 <template>
-  <header
+  <v-sheet
+    tag="header"
     class="playing-bar"
   >
     <v-row
@@ -11,14 +12,16 @@
         class="now-playing-bar__left pr-0"
       >
         <v-hover v-slot="{ hover }">
-          <v-img
-            :src="$$(song, 'al', 'picUrl')"
-            height="50"
-            width="50"
-            max-height="50"
-            max-width="50"
-            :class="{ 'on-hover': hover }"
-          />
+          <v-card>
+            <v-img
+              :src="$$(song, 'al', 'picUrl')"
+              height="50"
+              width="50"
+              max-height="50"
+              max-width="50"
+              :class="{ 'on-hover': hover }"
+            />
+          </v-card>
         </v-hover>
         <div class="song-info">
           <a>
@@ -63,11 +66,11 @@
             <v-btn
               icon
               text
-              color="deep-orange"
+              color="blue"
               @click="playPause"
             >
               <v-icon x-large>
-                {{ playing ? icon.mdiPause : icon.mdiPlay }}
+                {{ playing ? icon.mdiPauseCircle : icon.mdiPlayCircle }}
               </v-icon>
             </v-btn>
             <v-btn
@@ -112,15 +115,6 @@
         class="now-playing-bar__right"
       >
         <div class="ExtraControls">
-          <v-btn
-            icon
-            text
-            color="blue"
-          >
-            <v-icon small>
-              {{ icon.mdiPlaylistMusic }}
-            </v-icon>
-          </v-btn>
           <div class="volume-bar d-flex align-center">
             <v-btn
               icon
@@ -142,6 +136,16 @@
               @change="volumeChange"
             />
           </div>
+          <v-btn
+            icon
+            text
+            color="blue"
+            @click="toggleWaitList"
+          >
+            <v-icon small>
+              {{ icon.mdiPlaylistMusic }}
+            </v-icon>
+          </v-btn>
         </div>
       </v-col>
     </v-row>
@@ -153,7 +157,7 @@
     >
       Your browser does not support the <code>audio</code> element.
     </audio>
-  </header>
+  </v-sheet>
 </template>
 
 <script>
@@ -161,8 +165,8 @@ import {
   mdiHeart,
   mdiSkipPrevious,
   mdiSkipNext,
-  mdiPlay,
-  mdiPause,
+  mdiPlayCircle,
+  mdiPauseCircle,
   mdiRepeat,
   mdiDolby,
   mdiVolumeHigh,
@@ -180,8 +184,8 @@ export default {
       mdiHeart,
       mdiSkipPrevious,
       mdiSkipNext,
-      mdiPlay,
-      mdiPause,
+      mdiPlayCircle,
+      mdiPauseCircle,
       mdiRepeat,
       mdiDolby,
       mdiVolumeHigh,
@@ -219,6 +223,9 @@ export default {
       } else {
         return this.icon.mdiVolumeHigh;
       }
+    },
+    showList() {
+      return this.$store.state.music.showList;
     },
   },
   watch: {
@@ -290,6 +297,9 @@ export default {
     volumeChange(val) {
       console.log(val);
       this.player.element.volume = val;
+    },
+    toggleWaitList() {
+      this.$store.commit('music/UPDATE_WAIT_LIST', !this.showList);
     },
   },
 };
