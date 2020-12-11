@@ -64,7 +64,7 @@
 
 <script>
 import { mdiClose } from '@mdi/js';
-
+import { mapState } from 'vuex';
 export default {
   data(){
     return {
@@ -72,15 +72,11 @@ export default {
     };
   },
   computed: {
-    open() {
-      return this.$store.state.music.showList === true;
-    },
-    pendingList() {
-      return this.$store.state.music.pendingList;
-    },
-    currentSong() {
-      return this.$store.state.music.song?.id;
-    },
+    ...mapState({
+      open: state => state.music.showList === true,
+      pendingList: state => state.music.pendingList,
+      currentSong: state => state.music.song?.id,
+    }),
   },
   watch: {
   },

@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: {
     playing: false,
-    resourceUrl: '',
+    musicUrl: '',
     song: {},
     currentTime: 0,
     pendingList: [],
@@ -20,8 +20,8 @@ export default {
       console.log(songs, data);
       commit('UPDATE_SONG', songs[0]);
       commit('UPDATE_PLAYER', {
-        playing: false,
-        resourceUrl:  data?.[0]?.url,
+        playing: true,
+        musicUrl:  data?.[0]?.url,
       });
     },
   },

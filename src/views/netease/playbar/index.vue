@@ -2,6 +2,7 @@
   <v-sheet
     tag="header"
     class="playing-bar"
+    elevation="2"
   >
     <v-row
       justify="space-between"
@@ -12,13 +13,15 @@
         class="now-playing-bar__left pr-0"
       >
         <v-hover v-slot="{ hover }">
-          <v-card>
+          <v-card
+            class="playing-cover-card"
+            :img="$$(song, 'al', 'picUrl')"
+          >
             <v-img
               :src="$$(song, 'al', 'picUrl')"
-              height="50"
-              width="50"
               max-height="50"
               max-width="50"
+              class="cover-img"
               :class="{ 'on-hover': hover }"
             />
           </v-card>
@@ -32,15 +35,11 @@
               {{ song.name }} - {{ $$(song, 'ar', '0', 'name') }}
             </span>
           </a>
-          <div class="song-time">
-            <span>{{ playTime | formatDuring }}</span>/
-            <span>{{ song.dt | formatDuring }}</span>
-          </div>
         </div>
       </v-col>
       <v-col
         lg="6"
-        class="now-playing-bar__center"
+        class="now-playing-bar__center pb-0"
       >
         <div class="playing-control">
           <div class="playing-control-buttons">
@@ -57,7 +56,7 @@
               icon
               text
               color="purple"
-              @click="nextSong"
+              @click="playPrev"
             >
               <v-icon small>
                 {{ icon.mdiSkipPrevious }}
@@ -77,7 +76,7 @@
               icon
               text
               color="green"
-              @click="prevSong"
+              @click="playNext"
             >
               <v-icon small>
                 {{ icon.mdiSkipNext }}
@@ -90,14 +89,16 @@
               @click="playOrder"
             >
               <v-icon small>
-                {{ icon.mdiRepeat }}
+                {{ orderIconState }}
               </v-icon>
             </v-btn>
           </div>
           <div class="playing-control-slider">
+            <div class="playing-time mr-1">
+              <span>{{ playTime | formatDuring }}</span>
+            </div>
             <v-slider
               v-model="playTime"
-              height="10"
               dense
               hide-details
               :max="song.dt"
@@ -107,6 +108,9 @@
               @start="handleChangeTimeStart"
               @change="handleSlideChange"
             />
+            <div class="playing-time ml-1">
+              <span>{{ song.dt | formatDuring }}</span>
+            </div>
           </div>
         </div>
       </v-col>
@@ -133,7 +137,6 @@
               :max="1"
               min="0"
               step="0.01"
-              @change="volumeChange"
             />
           </div>
           <v-btn
@@ -154,6 +157,7 @@
       :src="musicUrl"
       @play="onPlayAndPause"
       @pause="onPlayAndPause"
+      @ended="playNext"
     >
       Your browser does not support the <code>audio</code> element.
     </audio>
@@ -161,6 +165,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import {
   mdiHeart,
   mdiSkipPrevious,
@@ -168,16 +173,24 @@ import {
   mdiPlayCircle,
   mdiPauseCircle,
   mdiRepeat,
-  mdiDolby,
   mdiVolumeHigh,
   mdiPlaylistMusic,
   mdiVolumeMute,
   mdiVolumeMedium,
   mdiVolumeLow,
+  mdiReorderHorizontal,
+  mdiRepeatOnce,
+  mdiMusicNoteOffOutline,
 } from '@mdi/js';
 
 import Audio from './audio';
 let prevVolume = 1;
+const PLAY_MODE = {
+  ORDER: 0,
+  CYCLE: 1,
+  SINGLE_CYCLE: 2,
+  RANDOM: 3,
+};
 export default {
   data: () => ({
     icon: {
@@ -186,12 +199,6 @@ export default {
       mdiSkipNext,
       mdiPlayCircle,
       mdiPauseCircle,
-      mdiRepeat,
-      mdiDolby,
-      mdiVolumeHigh,
-      mdiVolumeMedium,
-      mdiVolumeLow,
-      mdiVolumeMute,
       mdiPlaylistMusic,
     },
     player: {},
@@ -199,33 +206,44 @@ export default {
     playTime: 0,
     volume: 1,
     prevVolume: 1,
+    playMode: PLAY_MODE.ORDER,
   }),
   computed: {
-    musicUrl() {
-      return this.$store.state.music.resourceUrl;
+    ...mapState({
+      song: state => state.music.song,
+      musicUrl: state => state.music.musicUrl,
+      playing: state => state.music.playing,
+      pendingList: state => state.music.pendingList,
+      currentTime: state => state.music.currentTime,
+      showList: state => state.music.showList,
+    }),
+    songIndex() {
+      return this.pendingList.findIndex(song => song.id === this.song.id);
     },
-    song() {
-      return this.$store.state.music.song;
+    next() {
+      return this.pendingList[(this.songIndex + 1) === this.pendingList.length ? 0 : this.songIndex + 1];
     },
-    playing() {
-      return this.$store.state.music.playing;
-    },
-    currentTime() {
-      return this.$store.state.music.currentTime;
+    prev() {
+      return this.pendingList[this.songIndex  === 0 ? (this.pendingList.length - 1) : this.songIndex - 1];
     },
     volumeIconState() {
       if (this.volume === 0) {
-        return this.icon.mdiVolumeMute;
+        return mdiVolumeMute;
       } else if (this.volume > 0 && this.volume <= 0.4) {
-        return this.icon.mdiVolumeLow;
+        return mdiVolumeLow;
       } else if (this.volume > 0.4 && this.volume <= 0.7) {
-        return this.icon.mdiVolumeMedium;
+        return mdiVolumeMedium;
       } else {
-        return this.icon.mdiVolumeHigh;
+        return mdiVolumeHigh;
       }
     },
-    showList() {
-      return this.$store.state.music.showList;
+    orderIconState() {
+      return ({
+        [PLAY_MODE.ORDER] : mdiReorderHorizontal,
+        [PLAY_MODE.CYCLE] : mdiRepeat,
+        [PLAY_MODE.SINGLE_CYCLE] : mdiRepeatOnce,
+        [PLAY_MODE.RANDOM] : mdiMusicNoteOffOutline,
+      })[this.playMode];
     },
   },
   watch: {
@@ -243,6 +261,9 @@ export default {
     currentTime(val) {
       this.playTime = val;
     },
+    volume(val) {
+      this.player.element.volume = val;
+    },
   },
   mounted() {
     this.player = new Audio(this.$refs.audio);
@@ -257,11 +278,24 @@ export default {
     onPlayAndPause(e) {
       this.$store.commit('music/UPDATE_PLAYER', {playing: e?.type === 'play'});
     },
-    nextSong() {
-      this.$store.dispatch('music/startPlayMusic');
+    playNext() {
+      let id = this.next.id;
+      const len = this.pendingList.length;
+      if (this.playMode === PLAY_MODE.RANDOM) {
+        id = this.pendingList[Math.floor(Math.random() * len)]?.id;
+      } else if (this.playMode === PLAY_MODE.SINGLE_CYCLE) {
+        this.rePlay();
+      } else if (this.playMode === PLAY_MODE.ORDER && this.songIndex === len - 1) {
+        this.$store.commit('music/UPDATE_PLAYER', {currentTime: 0, playing: false});
+      } else {
+        this.$store.dispatch('music/startPlayMusic', id);
+      }
     },
-    prevSong() {
-      this.$store.dispatch('music/startPlayMusic');
+    playPrev() {
+      this.$store.dispatch('music/startPlayMusic', this.prev.id);
+    },
+    rePlay() {
+      this.handleSlideChange(0);
     },
     setPlayTime() {
       this.interval = setInterval(() => {
@@ -292,11 +326,7 @@ export default {
       }
     },
     playOrder() {
-
-    },
-    volumeChange(val) {
-      console.log(val);
-      this.player.element.volume = val;
+      this.playMode < 3 ? this.playMode++ : (this.playMode = 0);
     },
     toggleWaitList() {
       this.$store.commit('music/UPDATE_WAIT_LIST', !this.showList);
@@ -311,7 +341,7 @@ export default {
   .now-playing-bar__left {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     .song-info {
       display: flex;
       flex-flow: column;
@@ -328,10 +358,24 @@ export default {
       overflow: hidden;
       color: #6a737d;
     }
-    .song-time {
-      font-size: 12px;
-      display: flex;
-      justify-content: center;
+    .playing-cover-card {
+      &::after {
+        content: "";
+        background: inherit;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 10px 40px 0 rgba(76, 70, 124, 0.5);
+        display: block;
+        z-index: 0;
+        position: absolute;
+        top: 10px;
+        transform: scale(0.9);
+        filter: blur(5px);
+        opacity: 0.9;
+      }
+      .cover-img {
+        z-index: 1;
+      }
     }
   }
   .now-playing-bar__center {
@@ -344,11 +388,20 @@ export default {
         display: flex;
         width: 200px;
         justify-content: space-around;
-        margin-bottom: 10px;
       }
       .playing-control-slider {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 90%;
+        .playing-time {
+          font-size: 14px;
+          font-weight: 500;
+          font-variant-numeric: tabular-nums;
+          -webkit-font-smoothing: antialiased;
+        }
       }
+
     }
   }
   .now-playing-bar__right {

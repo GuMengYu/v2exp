@@ -3,6 +3,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+// 限制文本行数
 .h-2x {
   -webkit-line-clamp: 2;
   @include h;
@@ -19,4 +20,7 @@
   border-width: 0 0 thin;
   border-style: solid;
   border-bottom-color: rgba(0,0,0,.12)!important;
+}
+html, body, div, span, header, footer, section, article, a, img {
+  font-family: Gordita,Avenir,"Helvetica Neue",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
