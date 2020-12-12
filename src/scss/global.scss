@@ -1,9 +1,13 @@
 @mixin h {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+  overflow: hidden!important;
+  display: -webkit-box!important;
+  -webkit-box-orient: vertical!important;
 }
 // 限制文本行数
+.h-1x {
+  -webkit-line-clamp: 1;
+  @include h;
+}
 .h-2x {
   -webkit-line-clamp: 2;
   @include h;

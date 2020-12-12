@@ -364,7 +364,6 @@ export default {
         background: inherit;
         width: 100%;
         height: 100%;
-        box-shadow: 0 10px 40px 0 rgba(76, 70, 124, 0.5);
         display: block;
         z-index: 0;
         position: absolute;

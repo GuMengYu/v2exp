@@ -10,9 +10,13 @@
         :open="true"
         class="pending-list"
       />
-      <v-container tag="main">
-        <div />
-      </v-container>
+      <v-sheet tag="main">
+        <keep-alive>
+          <transition>
+            <router-view />
+          </transition>
+        </keep-alive>
+      </v-sheet>
     </div>
   </v-sheet>
 </template>
@@ -63,6 +67,7 @@ $playerbarHeight: 64px;
   main {
     max-height: calc(#{$playerHeight} - #{$playerbarHeight});
     overflow-y: auto;
+    padding: 20px;
   }
 }
 </style>

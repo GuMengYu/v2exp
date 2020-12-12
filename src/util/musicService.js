@@ -19,9 +19,15 @@ const getSongUrl = id => xhr.get(`/song/url?id=${id}`);
  * 根据歌单id返回歌单详细信息
  */
 const getPlayList = id => xhr.get(`/playlist/detail?id=${id}`);
+/**
+ * 获取推荐歌单列表
+ * 根据歌单id返回歌单详细信息
+ */
+const getPersonalized = () => xhr.get('/personalized');
 
 export {
   getSongData,
   getSongUrl,
   getPlayList,
+  getPersonalized,
 };

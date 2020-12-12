@@ -40,6 +40,12 @@ const gankRouters = [{
   props: true,
   meta: { keepAlive: true },
 }];
+const musicRoutes = [{
+  path: 'now/',
+  name: 'now',
+  component: lazyLoad('netease/listen-now'),
+  meta: {keepAlive: true},
+}];
 export default new Router({
   routes: [
     {
@@ -55,7 +61,8 @@ export default new Router({
     {
       path: '/inetease',
       component: lazyLoad('netease'),
-      // redirect: { path: '/inetease/now' },
+      children: musicRoutes,
+      redirect: { path: '/inetease/now' },
     },
   ],
 });
