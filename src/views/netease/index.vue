@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 $playerHeight:700px;
 $palyerWidth:1200px;
-$playerbarHeight: 64px;
+$playerbarHeight: 80px;
 .inetease-app {
   width: $palyerWidth;
   height: $playerHeight;
@@ -59,7 +59,7 @@ $playerbarHeight: 64px;
   transform: translate(0%);
   .pending-list {
     top: 80px!important;
-    height: calc(100% - 80px) !important;
+    height: calc(100% - #{$playerbarHeight}) !important;
   }
   .content {
     width: calc(100% - 230px);

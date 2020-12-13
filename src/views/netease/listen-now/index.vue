@@ -13,7 +13,7 @@
           v-for="song in songList"
           :key="song.id"
           :data="song"
-          class="item pb-4"
+          class="item pb-6"
         />
       </div>
     </div>

@@ -24,8 +24,8 @@
                 fab
                 color="pink"
                 class="play-fab"
-                width="50"
-                height="50"
+                width="40"
+                height="40"
               >
                 <v-icon
                   large
@@ -40,7 +40,7 @@
       </v-card>
       <a>
         <span class="h-2x mt-2 mb-2 black--text text-caption">{{ data.name }}</span>
-        <span class="h-1x pt-2 pb-2 grey--text text-caption">{{ data.copywriter }}</span>
+        <span class="h-1x grey--text text-caption">{{ data.copywriter }}</span>
       </a>
     </v-sheet>
   </v-hover>
@@ -87,8 +87,8 @@ export default {
 .music-card {
   ::v-deep .v-overlay__content {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 8px;
+    right: 8px;
   }
 }
 </style>
