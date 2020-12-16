@@ -268,7 +268,7 @@ export default {
   mounted() {
     this.player = new Audio(this.$refs.audio);
     // todo: delete me for test
-    this.$store.dispatch('music/startPlayMusic', '288003');
+    // this.$store.dispatch('music/startPlayMusic', '288003');
   },
   methods: {
     playPause() {

@@ -24,39 +24,11 @@
         v-model="currentSong"
         color="primary"
       >
-        <v-list-item
+        <song-bar
           v-for="(song, i) in pendingList"
           :key="i"
-          :value="song.id"
-        >
-          <v-img
-            :src="$$(song, 'al', 'picUrl')"
-            max-height="50"
-            max-width="50"
-            class="mr-4"
-            lazy-src="@assets/girl.jpg"
-          />
-          <v-list-item-content>
-            <v-list-item-title v-text="song.name" />
-            <v-list-item-subtitle
-              class="text--primary"
-              v-text="$$(song, 'ar', '0', 'name')"
-            />
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-btn
-              text
-              color="grey lighten-1"
-              x-small
-              class="list-delete-button"
-            >
-              <v-icon small>
-                {{ mdiClose }}
-              </v-icon>
-            </v-btn>
-            <v-list-item-action-text>{{ song.dt | formatDuring }}</v-list-item-action-text>
-          </v-list-item-action>
-        </v-list-item>
+          :song="song"
+        />
       </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
@@ -65,7 +37,9 @@
 <script>
 import { mdiClose } from '@mdi/js';
 import { mapState } from 'vuex';
+import SongBar from '../component/songbar';
 export default {
+  components: {SongBar},
   data(){
     return {
       mdiClose,

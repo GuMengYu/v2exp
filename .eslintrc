@@ -1,9 +1,15 @@
 {
     "rules": {
         "comma-dangle":["error", "always-multiline"],
-        "semi": ["error", "always"],
         "quotes": ["error", "single"],
-        "no-alert": "error"
+        "no-alert": "error",
+        "vue/max-attributes-per-line": ["error", {
+            "singleline": 3,
+            "multiline": {
+                "max": 3,
+                "allowFirstLine": false
+            }
+        }]
     },
     "extends": [
         "eslint:recommended",
