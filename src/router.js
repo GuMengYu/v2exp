@@ -45,6 +45,12 @@ const musicRoutes = [{
   name: 'now',
   component: lazyLoad('netease/listen-now'),
   meta: {keepAlive: true},
+}, {
+  path: 'playlist/:id/',
+  name: 'playlist',
+  component: lazyLoad('netease/playlist'),
+  props: true,
+  meta: {keepAlive: true},
 }];
 export default new Router({
   routes: [

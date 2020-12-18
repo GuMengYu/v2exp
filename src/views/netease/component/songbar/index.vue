@@ -44,7 +44,9 @@
             {{ mdiDotsHorizontal }}
           </v-icon>
         </v-btn>
-        <v-list-item-action-text v-show="!hover">{{ song.dt | formatDuring }}</v-list-item-action-text>
+        <v-list-item-action-text v-show="!hover">
+          {{ song.dt | formatDuring }}
+        </v-list-item-action-text>
       </v-list-item-action>
     </v-list-item>
   </v-hover>

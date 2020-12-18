@@ -16,7 +16,6 @@
       </div>
     </v-toolbar>
     <v-list
-      nav
       dense
       two-line
     >
