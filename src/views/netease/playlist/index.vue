@@ -3,38 +3,36 @@
     <v-row>
       <v-col lg="4" class="d-flex justify-center playlist-cover">
         <v-hover v-slot="{ hover }">
-          <v-sheet max-width="200" class="music-card">
-            <v-card
-              :img="playList.coverImgUrl"
-              min-width="200"
-              min-height="200"
-              max-width="200"
-              max-height="200"
-              rounded
-              class="pa-2 d-flex align-end justify-end"
-            >
-              <v-fade-transition>
-                <v-overlay
-                  :value="hover"
-                  absolute
-                >
-                  <v-card-actions>
-                    <v-btn
-                      elevation="0" fab color="pink"
-                      class="play-fab" width="50" height="50"
+          <v-card
+            :img="playList.coverImgUrl"
+            min-width="200"
+            min-height="200"
+            max-width="200"
+            max-height="200"
+            rounded
+            class="d-flex align-end justify-end cover"
+          >
+            <v-fade-transition>
+              <v-overlay
+                :value="hover"
+                absolute
+              >
+                <v-card-actions>
+                  <v-btn
+                    elevation="0" fab color="pink"
+                    class="play-fab" width="50" height="50"
+                  >
+                    <v-icon
+                      large
+                      color="white"
                     >
-                      <v-icon
-                        large
-                        color="white"
-                      >
-                        {{ mdiPlay }}
-                      </v-icon>
-                    </v-btn>
-                  </v-card-actions>
-                </v-overlay>
-              </v-fade-transition>
-            </v-card>
-          </v-sheet>
+                      {{ mdiPlay }}
+                    </v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-overlay>
+            </v-fade-transition>
+          </v-card>
         </v-hover>
       </v-col>
       <v-col lg="8">
@@ -69,7 +67,6 @@
         </v-sheet>
       </v-col>
     </v-row>
-
   </v-sheet>
 </template>
 <script>
@@ -123,7 +120,14 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '../../../scss/common';
 .playlist {
+  .playlist-cover {
+    .cover {
+      position: fixed;
+      @include bg_blur;
+    }
+  }
   .playlist-action {
     width: 40%;
   }

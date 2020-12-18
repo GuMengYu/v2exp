@@ -16,14 +16,25 @@
           <v-card
             class="playing-cover-card"
             :img="$$(song, 'al', 'picUrl')"
+            max-height="50"
+            max-width="50"
+            min-width="50"
+            min-height="50"
           >
-            <v-img
-              :src="$$(song, 'al', 'picUrl')"
-              max-height="50"
-              max-width="50"
-              class="cover-img"
-              :class="{ 'on-hover': hover }"
-            />
+            <v-fade-transition>
+              <v-overlay
+                :value="hover"
+                absolute
+              >
+                <v-card-actions>
+                  <v-btn icon>
+                    <v-icon color="pink">
+                      {{ icon.mdiArrowExpand }}
+                    </v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-overlay>
+            </v-fade-transition>
           </v-card>
         </v-hover>
         <div class="song-info">
@@ -181,6 +192,7 @@ import {
   mdiReorderHorizontal,
   mdiRepeatOnce,
   mdiMusicNoteOffOutline,
+  mdiArrowExpand,
 } from '@mdi/js';
 
 import Audio from './audio';
@@ -200,6 +212,7 @@ export default {
       mdiPlayCircle,
       mdiPauseCircle,
       mdiPlaylistMusic,
+      mdiArrowExpand,
     },
     player: {},
     interval: null,
@@ -268,7 +281,7 @@ export default {
   mounted() {
     this.player = new Audio(this.$refs.audio);
     // todo: delete me for test
-    // this.$store.dispatch('music/startPlayMusic', '288003');
+    this.$store.dispatch('music/startPlayMusic', '288003');
   },
   methods: {
     playPause() {
@@ -336,6 +349,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../scss/common';
 .playing-bar {
   background: #E0DFDE;
   .now-playing-bar__left {
@@ -359,22 +373,7 @@ export default {
       color: #6a737d;
     }
     .playing-cover-card {
-      &::after {
-        content: "";
-        background: inherit;
-        width: 100%;
-        height: 100%;
-        display: block;
-        z-index: 0;
-        position: absolute;
-        top: 10px;
-        transform: scale(0.9);
-        filter: blur(5px);
-        opacity: 0.9;
-      }
-      .cover-img {
-        z-index: 1;
-      }
+      @include bg_blur;
     }
   }
   .now-playing-bar__center {
