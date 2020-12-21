@@ -27,7 +27,7 @@
                 absolute
               >
                 <v-card-actions>
-                  <v-btn icon>
+                  <v-btn icon @click="showMusic = !showMusic">
                     <v-icon color="pink">
                       {{ icon.mdiArrowExpand }}
                     </v-icon>
@@ -163,6 +163,13 @@
         </div>
       </v-col>
     </v-row>
+    <v-expand-transition>
+      <v-sheet v-show="showMusic" class="musicStation">
+        <div>
+          expand content
+        </div>
+      </v-sheet>
+    </v-expand-transition>
     <audio
       ref="audio"
       :src="musicUrl"
@@ -220,6 +227,7 @@ export default {
     volume: 1,
     prevVolume: 1,
     playMode: PLAY_MODE.ORDER,
+    showMusic: false,
   }),
   computed: {
     ...mapState({
@@ -414,6 +422,12 @@ export default {
       }
     }
   }
-
+  .musicStation {
+    position: absolute;
+    top: 80px;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+  }
 }
 </style>
