@@ -173,8 +173,6 @@
     <audio
       ref="audio"
       :src="musicUrl"
-      @play="onPlayAndPause"
-      @pause="onPlayAndPause"
       @ended="playNext"
     >
       Your browser does not support the <code>audio</code> element.
@@ -285,6 +283,9 @@ export default {
     volume(val) {
       this.player.element.volume = val;
     },
+    song() {
+      this.initMediaSession();
+    },
   },
   mounted() {
     this.player = new Audio(this.$refs.audio);
@@ -294,10 +295,6 @@ export default {
   methods: {
     playPause() {
       this.$store.commit('music/UPDATE_PLAYER', {playing: !this.playing});
-    },
-    // 外部控制
-    onPlayAndPause(e) {
-      this.$store.commit('music/UPDATE_PLAYER', {playing: e?.type === 'play'});
     },
     playNext() {
       let id = this.next.id;
@@ -351,6 +348,26 @@ export default {
     },
     toggleWaitList() {
       this.$store.commit('music/UPDATE_WAIT_LIST', !this.showList);
+    },
+    initMediaSession() {
+      // https://developers.google.com/web/updates/2017/02/media-session
+      if ('mediaSession' in navigator) {
+        // eslint-disable-next-line no-undef
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: this.song.name,
+          artist: this.song.ar?.[0]?.name,
+          album: 'Whenever You Need Somebody',
+          artwork: [
+            { src: this.song.al?.picUrl, sizes: '512x512', type: 'image/png' },
+          ],
+        });
+        [
+          ['play', this.playPause],
+          ['pause', this.playPause],
+          ['previoustrack', this.playPrev],
+          ['nexttrack', this.playNext],
+        ].map(([name, fn]) => navigator.mediaSession.setActionHandler(name, fn));
+      }
     },
   },
 };
