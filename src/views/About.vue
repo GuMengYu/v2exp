@@ -8,7 +8,7 @@
 import wave from '../components/wave/index';
 
 export default {
-  components: {wave},
+  components: {AppleMusic, wave},
   data: () =>({
     process: 0,
   }),

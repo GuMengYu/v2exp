@@ -4,7 +4,7 @@ const request = `${localConfig.protocal}//${localConfig.url}:${localConfig.port}
 
 import {produceNewsData, toDayHot, tabTopicList, topicData, replies} from './test';
 import {GanHuo, Girls, Banners, Post} from './gankMockData';
-import {musicDetail, playList, songUrl} from './music';
+import {musicDetail, playList, songUrl, songLrc} from './music';
 import { songList } from '@/mock/songListData';
 
 Mock.mock(`${request}/mock/test`, produceNewsData);
@@ -23,5 +23,6 @@ Mock.mock(/song\/detail/, musicDetail);
 Mock.mock(/song\/url/, songUrl);
 Mock.mock(/playlist\/detail/, playList);
 Mock.mock(/personalized/, songList);
+Mock.mock(/lyric/, songLrc);
 
 

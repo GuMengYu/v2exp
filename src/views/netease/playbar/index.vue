@@ -165,9 +165,7 @@
     </v-row>
     <v-expand-transition>
       <v-sheet v-show="showMusic" class="musicStation">
-        <div>
-          expand content
-        </div>
+        <play-content :song="song" @close="closeMusic" />
       </v-sheet>
     </v-expand-transition>
     <audio
@@ -201,6 +199,7 @@ import {
 } from '@mdi/js';
 
 import Audio from './audio';
+import PlayContent from '@/views/netease/playbar/play-content';
 let prevVolume = 1;
 const PLAY_MODE = {
   ORDER: 0,
@@ -209,6 +208,7 @@ const PLAY_MODE = {
   RANDOM: 3,
 };
 export default {
+  components: {PlayContent},
   data: () => ({
     icon: {
       mdiHeart,
@@ -369,6 +369,9 @@ export default {
         ].map(([name, fn]) => navigator.mediaSession.setActionHandler(name, fn));
       }
     },
+    closeMusic() {
+      this.showMusic = false;
+    },
   },
 };
 </script>
@@ -441,7 +444,10 @@ export default {
   }
   .musicStation {
     position: absolute;
-    top: 80px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     height: 100%;
     width: 100%;
     z-index: 999;

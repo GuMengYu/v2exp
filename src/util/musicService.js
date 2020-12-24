@@ -25,9 +25,11 @@ const getPlayList = id => xhr.get(`/playlist/detail?id=${id}`);
  */
 const getPersonalized = () => xhr.get('/personalized');
 
+const getLyric = id => xhr.get(`/lyric?id=${id}`);
 export {
   getSongData,
   getSongUrl,
   getPlayList,
   getPersonalized,
+  getLyric,
 };
