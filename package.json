@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "loadjs": "^4.2.0",
     "markdown-it": "^12.0.2",
+    "query-string": "^6.13.7",
     "vue": "^2.6.10",
     "vue-i18n": "^8.22.0",
     "vue-router": "^3.0.3",

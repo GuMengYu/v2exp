@@ -1,5 +1,5 @@
-import {getSongData, getSongUrl} from '@util/musicService';
-
+import {getLyric, getSongData} from '@util/musicService';
+import {Message} from '@/plugins/snackbar';
 export default {
   namespaced: true,
   state: {
@@ -14,15 +14,23 @@ export default {
 
   },
   actions: {
-    async startPlayMusic({ commit }, id) {
+    async startNewMusic({ commit }, id) {
       commit('UPDATE_PLAYER', {playing: false, currentTime: 0});
-      const [{songs}, {data}] = await Promise.all([getSongData([id]), getSongUrl(id)]);
-      console.log(songs, data);
-      commit('UPDATE_SONG', songs[0]);
-      commit('UPDATE_PLAYER', {
-        playing: true,
-        musicUrl:  data?.[0]?.url,
-      });
+      const [song, lyric] = await Promise.all([getSongData([id]).then(res => res.songs?.[0] ?? {}), getLyric(id).then(result => {
+        const {lrc, uncollected} = result;
+        return uncollected ? [] : lrc.lyric?.split('\n').map(i => {
+          const [time, sentence] = i.split(']');
+          return {time, sentence};
+        });
+      })]);
+      if (!song) {
+        Message.error('加载歌曲失败');
+      } else {
+        commit('UPDATE_SONG', {lyric, ...song});
+        commit('UPDATE_PLAYER', {
+          musicUrl:  `https://music.163.com/song/media/outer/url?id=${id}.mp3`,
+        });
+      }
     },
   },
   mutations: {

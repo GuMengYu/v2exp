@@ -4,9 +4,9 @@ const request = `${localConfig.protocal}//${localConfig.url}:${localConfig.port}
 
 import {produceNewsData, toDayHot, tabTopicList, topicData, replies} from './test';
 import {GanHuo, Girls, Banners, Post} from './gankMockData';
-import {musicDetail, playList, songUrl, songLrc} from './music';
-import { songList } from '@/mock/songListData';
-
+import {musicDetail, songUrl, songLrc} from '@/mock/music/music';
+import recommendPlayList from '@/mock/music/playlist-recommend.json';
+import playlist from '@/mock/music/playlist.json';
 Mock.mock(`${request}/mock/test`, produceNewsData);
 Mock.mock(`${request}/getToDayHot`, toDayHot);
 Mock.mock(/getTabInfo/, tabTopicList);
@@ -21,8 +21,8 @@ Mock.mock(/post/, Post);
 
 Mock.mock(/song\/detail/, musicDetail);
 Mock.mock(/song\/url/, songUrl);
-Mock.mock(/playlist\/detail/, playList);
-Mock.mock(/personalized/, songList);
+Mock.mock(/playlist\/detail/, () => playlist);
+Mock.mock(/personalized/, () => recommendPlayList);
 Mock.mock(/lyric/, songLrc);
 
 

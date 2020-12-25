@@ -26,6 +26,7 @@
                 class="play-fab"
                 width="40"
                 height="40"
+                @click="play"
               >
                 <v-icon
                   large
@@ -77,7 +78,9 @@ export default {
 
   },
   methods: {
-
+    play() {
+      this.$emit('play', this.data?.id);
+    },
   },
 
 };

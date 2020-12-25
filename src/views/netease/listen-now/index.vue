@@ -14,6 +14,7 @@
           :key="song.id"
           :data="song"
           class="item pb-6"
+          @play="play"
         />
       </div>
     </div>
@@ -27,6 +28,7 @@
 <script>
 import MusicCard from '@/views/netease/component/music-card';
 import {getPersonalized} from '@util/musicService';
+import {getPlayList} from '@util/musicService';
 
 export default {
   name: '',
@@ -38,6 +40,13 @@ export default {
     getPersonalized().then(({result: songList}) => {
       this.songList = songList;
     });
+  },
+  methods: {
+    async play(id) {
+      const {playlist} = await getPlayList(id);
+      this.$store.commit('music/UPDATE_PENDING_LIST', playlist.tracks);
+      await this.$store.dispatch('music/startNewMusic', playlist.tracks[0].id);
+    },
   },
 };
 </script>

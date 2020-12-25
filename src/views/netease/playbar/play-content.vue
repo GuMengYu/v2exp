@@ -5,7 +5,7 @@
       <v-col lg="5" class="d-flex flex-column justify-center align-center frame-content-left pa-0">
         <v-card max-height="350" elevation="0" class="rounded-xl album-cover">
           <v-img
-            :src="$$(song, 'al', 'picUrl')"
+            :src="albumPicUrl"
             max-height="350"
             max-width="350"
           />
@@ -47,8 +47,13 @@
       </v-col>
       <v-col lg="7" class="frame-content-right pa-0">
         <div class="frame-lyrics">
-          <div v-for="item in lyric" :key="item.time">
-            {{ item.sentence }}
+          <template v-if="lyric.length">
+            <div v-for="item in lyric" :key="item.time">
+              {{ item.sentence }}
+            </div>
+          </template>
+          <div v-else>
+            暂无歌词
           </div>
         </div>
       </v-col>
@@ -67,7 +72,6 @@
 </template>
 
 <script>
-import {getLyric} from '@util/musicService';
 import {mdiSkipPrevious, mdiDotsHorizontal, mdiPauseCircle, mdiSkipNext} from '@mdi/js';
 
 export default {
@@ -79,7 +83,6 @@ export default {
     },
   },
   data: () => ({
-    lyric: [],
     icon: {
       mdiDotsHorizontal,
     },
@@ -97,14 +100,13 @@ export default {
       icon: mdiSkipNext,
     }],
   }),
-  created() {
-    getLyric(this.song.id).then(result => {
-      const {lrc} = result;
-      this.lyric = lrc.lyric.split('\n').map(i => {
-        const [time, sentence] = i.split(']');
-        return {time, sentence};
-      });
-    })
+  computed: {
+    albumPicUrl() {
+      return `${this.song.al?.picUrl}?param=400y400`;
+    },
+    lyric() {
+      return this.song.lyric ?? [];
+    },
   },
   methods: {
     close() {
@@ -201,7 +203,7 @@ export default {
   width: 200%;
   position: absolute;
   border-radius: 100em;
-  animation: rotate 35s linear infinite;
+  animation: rotate 100s linear infinite;
 }
 
 .frame-bg .bg-color {

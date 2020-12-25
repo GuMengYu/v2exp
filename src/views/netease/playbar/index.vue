@@ -15,7 +15,7 @@
         <v-hover v-slot="{ hover }">
           <v-card
             class="playing-cover-card"
-            :img="$$(song, 'al', 'picUrl')"
+            :img="albumPicUrl"
             max-height="50"
             max-width="50"
             min-width="50"
@@ -172,6 +172,7 @@
       ref="audio"
       :src="musicUrl"
       @ended="playNext"
+      @canplaythrough="onCanPlayThrough"
     >
       Your browser does not support the <code>audio</code> element.
     </audio>
@@ -264,6 +265,9 @@ export default {
         [PLAY_MODE.RANDOM] : mdiMusicNoteOffOutline,
       })[this.playMode];
     },
+    albumPicUrl() {
+      return this.song.al ? `${this.song.al?.picUrl}?param=200y200` : '';
+    },
   },
   watch: {
     playing(val) {
@@ -289,8 +293,6 @@ export default {
   },
   mounted() {
     this.player = new Audio(this.$refs.audio);
-    // todo: delete me for test
-    this.$store.dispatch('music/startPlayMusic', '288003');
   },
   methods: {
     playPause() {
@@ -306,14 +308,18 @@ export default {
       } else if (this.playMode === PLAY_MODE.ORDER && this.songIndex === len - 1) {
         this.$store.commit('music/UPDATE_PLAYER', {currentTime: 0, playing: false});
       } else {
-        this.$store.dispatch('music/startPlayMusic', id);
+        this.$store.dispatch('music/startNewMusic', id);
       }
     },
     playPrev() {
-      this.$store.dispatch('music/startPlayMusic', this.prev.id);
+      this.$store.dispatch('music/startNewMusic', this.prev.id);
     },
     rePlay() {
       this.handleSlideChange(0);
+    },
+    onCanPlayThrough() {
+      console.log('already can play');
+      this.$store.commit('music/UPDATE_PLAYER', {playing: true});
     },
     setPlayTime() {
       this.interval = setInterval(() => {
@@ -356,9 +362,9 @@ export default {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: this.song.name,
           artist: this.song.ar?.[0]?.name,
-          album: 'Whenever You Need Somebody',
+          album: this.song.al?.name,
           artwork: [
-            { src: this.song.al?.picUrl, sizes: '512x512', type: 'image/png' },
+            { src: this.albumPicUrl, sizes: '512x512', type: 'image/png' },
           ],
         });
         [
