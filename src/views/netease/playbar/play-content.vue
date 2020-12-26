@@ -127,6 +127,7 @@ export default {
   color: white;
   padding-top: 2em;
   .frame-header {
+    z-index: 10;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -182,6 +183,9 @@ export default {
         }
         & > div:not(.active) {
           filter: blur(0.05px);
+        }
+        &::-webkit-scrollbar {
+          width: 50px;
         }
       }
     }
