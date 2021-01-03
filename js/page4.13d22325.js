@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["page4"],{"5ce7":function(e,n,t){"use strict";t.r(n);var a=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[e._v(e._s(e.id))])},i=[],l={name:"Node",props:{id:{type:String,default:""}}},p=l,r=t("2877"),s=Object(r["a"])(p,a,i,!1,null,null,null);n["default"]=s.exports}}]);
-//# sourceMappingURL=page4.13d22325.js.map
